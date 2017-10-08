@@ -1,0 +1,41 @@
+<!-- Content -->
+<h1>Inventario</h1>
+
+<div class="row">
+
+  <div class="col-md-12">
+    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in displayedCollection">
+          <td>{{row.name}}</td>
+          <td>{{row.description}}</td>
+          <td>
+            <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> Visualizza</button>
+          </td>
+          <td>
+            <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span> Modifica</button>
+          </td>
+          <td>
+            <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> Elimina</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-10">
+    <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  Nuovo</button>
+  </div>
+</div>
+<!-- /Content -->
