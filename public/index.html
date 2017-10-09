@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <base href="/">
-  <title>Warehouse</title>
+  <title>Bujuse</title>
 
   <!-- Vendor CSS -->
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
@@ -18,10 +18,12 @@
     <!-- Header -->
     <nav class="navbar">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/warehouse">Inventario</a>
+        <a class="navbar-brand" href="/warehouse">Bujuse - Warehouse</a>
       </div>
       <ul class="nav navbar-nav">
-        <li></li>
+        <li><a href="/warehouse">Warehouse</a></li>
+        <li><a href="/item">Item</a></li>
+        <li><a href="/operation">Operation</a></li>
       </ul>
     </nav>
 
@@ -34,9 +36,15 @@
   <script src="libs/angular/angular.js"></script>
   <script src="libs/angular-route/angular-route.js"></script>
   <script src="libs/angular-smart-table/dist/smart-table.js"></script>
+  <script src="libs/angular-translate/angular-translate.js"></script>
 
   <!-- Custom JS -->
+  <script src="app/services/enumService.js"></script>
+  <script src="app/services/itemService.js"></script>
+  <script src="app/services/operationService.js"></script>
   <script src="app/services/warehouseService.js"></script>
+  <script src="app/item/item.js"></script>
+  <script src="app/operation/operation.js"></script>
   <script src="app/warehouse/warehouse.js"></script>
   <script src="app/warehouse/add-warehouse.js"></script>
   <script src="app/item/item.js"></script>

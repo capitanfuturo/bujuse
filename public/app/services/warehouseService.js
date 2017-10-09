@@ -9,10 +9,6 @@ angular.module('WarehouseService').factory('WarehouseService', ['$http', functio
       return $http.get('/api/warehouse');
     },
 
-    getItems: function(idWarehouse) {
-      return $http.get('/api/warehouse/' + idWarehouse + '/item');
-    },
-
     create: function(warehouseData) {
       return $http.post('/api/warehouse', warehouseData);
     },
