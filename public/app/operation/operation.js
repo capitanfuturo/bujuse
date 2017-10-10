@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('warehouse.operation', ['ngRoute', 'OperationService']);
+angular.module('warehouse.operation', [
+  'ngRoute',
+  'smart-table',
+  'OperationService'
+]);
 
 angular.module('warehouse.operation').config(['$routeProvider',
   function($routeProvider) {
@@ -11,8 +15,28 @@ angular.module('warehouse.operation').config(['$routeProvider',
   }
 ]);
 
-angular.module('warehouse.operation').controller('OperationCtrl', ['$scope', 'OperationService', function($scope, OperationService) {
-  //angular functions
-  //private functions
-  //init controller
-}]);
+angular.module('warehouse.operation')
+  .controller('OperationCtrl', [
+    '$scope',
+    'OperationService',
+    '$location',
+    function($scope, OperationService, $location) {
+      //angular functions
+
+      //private functions
+      var retrieveOperaion = function() {
+        ItemService.get().then(function successCallback(response) {
+          console.log(response.data);
+          $scope.rowCollection = response.data
+        }, function errorCallback(response) {
+          console.log(response);
+        });
+      };
+
+
+      //init controller
+      console.log('init OperationCtrl');
+      $scope.rowCollection = [];
+      retrieveOperation();
+    }
+  ]);

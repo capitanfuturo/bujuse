@@ -2,7 +2,9 @@
 
 angular.module('app').config(function($translateProvider) {
   //translation
-  $translateProvider.translations('it', {});
+  $translateProvider.translations('it', {
+    ADD: 'Aggiungi'
+  });
   $translateProvider.translations('en', {});
 
   //options
