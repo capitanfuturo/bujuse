@@ -2,6 +2,7 @@
 
 angular.module('warehouse.warehouse', [
   'ngRoute',
+  'pascalprecht.translate',
   'smart-table',
   'WarehouseService'
 ]);

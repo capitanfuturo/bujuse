@@ -1,5 +1,5 @@
 <!-- Content -->
-<h1>Warehouse</h1>
+<h1>{{ 'WAREHOUSE' | translate }}</h1>
 
 <div class="row">
 
@@ -7,8 +7,8 @@
     <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Description</th>
+          <th>{{ 'NAME' | translate }}</th>
+          <th>{{ 'DESCRIPTION' | translate }}</th>
           <th></th>
           <th></th>
           <th></th>
@@ -19,13 +19,13 @@
           <td>{{row.name}}</td>
           <td>{{row.description}}</td>
           <td>
-            <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> View</button>
+            <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span>{{ 'DETAIL' | translate }}</button>
           </td>
           <td>
-            <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span> Edit</button>
+            <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
           </td>
           <td>
-            <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> Delete</button>
+            <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
           </td>
         </tr>
       </tbody>

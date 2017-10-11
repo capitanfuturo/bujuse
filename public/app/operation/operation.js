@@ -2,6 +2,7 @@
 
 angular.module('warehouse.operation', [
   'ngRoute',
+  'pascalprecht.translate',
   'smart-table',
   'OperationService'
 ]);
@@ -24,8 +25,8 @@ angular.module('warehouse.operation')
       //angular functions
 
       //private functions
-      var retrieveOperaion = function() {
-        ItemService.get().then(function successCallback(response) {
+      var retrieveOperation = function() {
+        OperationService.get().then(function successCallback(response) {
           console.log(response.data);
           $scope.rowCollection = response.data
         }, function errorCallback(response) {

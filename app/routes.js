@@ -8,45 +8,48 @@ module.exports = function(app) {
   // handle things like api calls
   // authentication routes
 
+  var reqLogger = function(req, res, next) {
+    var method = req.method;
+    var url = req.originalUrl;
+    console.log('--> ' + method + ' ' + url);
+    next();
+  }
+
+  app.use(reqLogger);
+
   // route to handle finding goes here (app.get)
   app.get('/api/warehouse', function(req, res) {
-    console.log('-- GET /api/warehouse');
-    Warehouse.find(function(err, warehouse) {
+    Warehouse.find(function(err, data) {
       if (err) {
-        console.log('-- GET KO');
-        console.log(err);
         res.send(err);
       } else {
-        console.log('-- GET OK');
-        console.log(warehouse);
-        res.json(warehouse);
+        res.json(data);
       }
     });
   });
 
-  app.get('/api/warehouse/:id/item', function(req, res) {
-    var id = req.params.id;
-    console.log('-- GET /api/warehouse/' + id + '/item');
-    Warehouse.findOne({
-      warehouse: id
-    }, function(err, items) {
+  app.get('/api/item', function(req, res) {
+    Item.find(function(err, data) {
       if (err) {
-        console.log('-- GET KO');
-        console.log(err);
         res.send(err);
       } else {
-        console.log('-- GET OK');
-        console.log(items);
-        res.json(items);
+        res.json(data);
+      }
+    });
+  });
+
+  app.get('/api/operation', function(req, res) {
+    Operation.find(function(err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(data);
       }
     });
   });
 
   // route to handle creating goes here (app.post)
   app.post('/api/warehouse', function(req, res) {
-    console.log('-- POST /api/warehouse');
-    console.log(req.body);
-
     var data = req.body;
     var warehouse = new Warehouse;
 
@@ -55,12 +58,9 @@ module.exports = function(app) {
 
     warehouse.save(function(err) {
       if (err) {
-        console.log('-- POST KO');
-        console.log(err);
         res.send(err);
       } else {
-        console.log('-- POST OK');
-        //return res.send(Warehouse);
+        return res.send(warehouse._id);
       }
     });
   });
@@ -68,21 +68,14 @@ module.exports = function(app) {
   // route to handle delete goes here (app.delete)
   app.delete('/api/warehouse/:id', function(req, res) {
     var id = req.params.id;
-    console.log('-- DELETE /api/warehouse' + id);
 
     Warehouse.find({
       _id: id
     }).remove(function(err) {
       if (err) {
-        console.log('-- DELETE KO');
-        console.log(err);
         res.send(err);
-      } else {
-        console.log('-- DELETE OK');
-        //return res.send(Warehouse);
       }
     });
-
   });
 
   // frontend routes =========================================================

@@ -1,5 +1,5 @@
 <!-- Content -->
-<h1>Operation</h1>
+<h1>{{ 'MOVEMENT' | translate }}</h1>
 
 <div class="row">
 
@@ -7,11 +7,11 @@
     <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
       <thead>
         <tr>
-          <th>Creation Date</th>
-          <th>Item</th>
-          <th>Warehouse</th>
-          <th>Type</th>
-          <th>Quantity</th>
+          <th>{{ 'CREATION_DATE' | translate }}</th>
+          <th>{{ 'ITEM' | translate }}</th>
+          <th>{{ 'WAREHOUSE' | translate }}</th>
+          <th>{{ 'TYPE' | translate }}</th>
+          <th>{{ 'QUANTITY' | translate }}</th>
           <th></th>
           <th></th>
           <th></th>
@@ -25,13 +25,13 @@
           <td>{{row.type}}</td>
           <td>{{row.qty}}</td>
           <td>
-            <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> View</button>
+            <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span>{{ 'DETAIL' | translate }}</button>
           </td>
           <td>
-            <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span> Edit</button>
+            <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
           </td>
           <td>
-            <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> Delete</button>
+            <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
           </td>
         </tr>
       </tbody>
@@ -41,7 +41,7 @@
 
 <div class="row">
   <div class="col-md-2 col-md-offset-10">
-    <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  Nuovo</button>
+    <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>{{ 'ADD' | translate }}</button>
   </div>
 </div>
 <!-- /Content -->

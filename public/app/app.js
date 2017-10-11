@@ -10,13 +10,14 @@ angular.module('app', [
   'WarehouseService',
   'warehouse.warehouse',
   'warehouse.addWarehouse',
-  'warehouse.item'
+  'warehouse.item',
+  'warehouse.operation'
 ]);
 
 angular.module('app').config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.otherwise({
-      redirectTo: '/warehouse'
+      redirectTo: '/operation'
     });
   }
 ]);

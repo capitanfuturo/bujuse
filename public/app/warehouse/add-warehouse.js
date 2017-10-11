@@ -2,6 +2,7 @@
 
 angular.module('warehouse.addWarehouse', [
   'ngRoute',
+  'pascalprecht.translate',
   'WarehouseService'
 ]);
 
