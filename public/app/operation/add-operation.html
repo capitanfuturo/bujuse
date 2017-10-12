@@ -1,0 +1,38 @@
+<!-- Content -->
+<h1>{{ 'ADD' | translate }} {{ 'OPERATION' | translate }}</h1>
+<div class="row">
+  <form class="form-horizontal">
+    <!-- Creation Date -->
+    <div class="form-group">
+      <label for="inputDate" class="col-md-2 control-label">{{ 'CREATION_DATE' | translate }}</label>
+      <div class="col-md-10">
+        <input ng-model="operation.creationDate" type="text" class="form-control" id="inputDate">
+      </div>
+    </div>
+    <!-- Item -->
+    <!-- Warehouse -->
+    <!-- Type -->
+    <div class="form-group">
+      <label for="typeSelect" class="col-md-2 control-label">{{ 'TYPE' | translate }}</label>
+      <div class="col-md-10">
+        <select name="typeSelect" id="typeSelect" ng-model="operation.type">
+          <option ng-repeat="option in operationTypes" value="{{option}}" translate>{{option}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- Quantity -->
+    <div class="form-group">
+      <label for="inputDate" class="col-md-2 control-label">{{ 'CREATION_DATE' | translate }}</label>
+      <div class="col-md-10">
+        <input ng-model="operation.creationDate" type="text" class="form-control" id="inputDate">
+      </div>
+    </div>
+    <!-- Add button -->
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-default" type="submit" ng-click="createOperation()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- /Content -->

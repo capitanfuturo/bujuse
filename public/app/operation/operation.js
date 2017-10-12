@@ -23,6 +23,9 @@ angular.module('warehouse.operation')
     '$location',
     function($scope, OperationService, $location) {
       //angular functions
+      $scope.add = function() {
+        $location.path('/add-operation');
+      };
 
       //private functions
       var retrieveOperation = function() {

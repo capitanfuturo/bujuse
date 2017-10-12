@@ -1,8 +1,20 @@
-<!-- Content -->
+<!-- Title -->
 <h1>{{ 'WAREHOUSE' | translate }}</h1>
-
 <div class="row">
-
+  <div class="col-md-2">
+    <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+  </div>
+</div>
+<!-- /Title -->
+<!-- Buttons -->
+<div class="row">
+  <div class="col-md-2">
+    <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+  </div>
+</div>
+<!-- /Buttons -->
+<!-- Content -->
+<div class="row">
   <div class="col-md-12">
     <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
       <thead>
@@ -30,12 +42,6 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-2 col-md-offset-10">
-    <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
   </div>
 </div>
 <!-- /Content -->

@@ -2,7 +2,7 @@
 
 angular.module('EnumService', []);
 
-angular.module('EnumService').factory('GenderService', function() {
+angular.module('EnumService').factory('ItemGenderService', function() {
 
   return {
     get: function() {
@@ -12,7 +12,7 @@ angular.module('EnumService').factory('GenderService', function() {
 
 });
 
-angular.module('EnumService').factory('CategoryService', function() {
+angular.module('EnumService').factory('ItemCategoryService', function() {
 
   return {
     get: function() {
@@ -22,7 +22,7 @@ angular.module('EnumService').factory('CategoryService', function() {
 
 });
 
-angular.module('EnumService').factory('GenderService', function() {
+angular.module('EnumService').factory('ItemSizeService', function() {
 
   return {
     get: function(gender) {
@@ -31,6 +31,15 @@ angular.module('EnumService').factory('GenderService', function() {
       } else {
         return ['S', 'M', 'L', 'U'];
       }
+    }
+  }
+});
+
+angular.module('EnumService').factory('OperationTypeService', function() {
+
+  return {
+    get: function() {
+      return ['I', 'O'];
     }
   }
 
