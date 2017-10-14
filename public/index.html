@@ -18,7 +18,7 @@
     <!-- Header -->
     <nav class="navbar">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#!/warehouse">Bujuse - Warehouse</a>
+        <a class="navbar-brand" href="#!/warehouse">Bujuse - {{ 'WAREHOUSE' | translate }}</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="#!/warehouse">{{ 'WAREHOUSE' | translate }}</a></li>
@@ -43,11 +43,15 @@
   <script src="app/services/itemService.js"></script>
   <script src="app/services/operationService.js"></script>
   <script src="app/services/warehouseService.js"></script>
+  
   <script src="app/item/item.js"></script>
+  
   <script src="app/operation/operation.js"></script>
   <script src="app/operation/add-operation.js"></script>
+  
   <script src="app/warehouse/warehouse.js"></script>
   <script src="app/warehouse/add-warehouse.js"></script>
+  
   <script src="app/app.js"></script>
   <script src="app/languages.js"></script>
 </body>

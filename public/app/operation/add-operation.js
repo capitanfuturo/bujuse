@@ -12,7 +12,7 @@ angular.module('warehouse.addOperation', [
 angular.module('warehouse.addOperation').config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.when('/add-operation', {
-      templateUrl: 'app/warehouse/add-operation.html',
+      templateUrl: 'app/operation/add-operation.html',
       controller: 'AddOperationCtrl'
     });
   }
@@ -65,8 +65,8 @@ angular.module('warehouse.addOperation')
       $scope.items = [];
       $scope.operationTypes = [];
 
-      retrieveWarehouses();
-      retrieveItems();
+      //retrieveWarehouses();
+      //retrieveItems();
       retrieveTypes();
 
     }
