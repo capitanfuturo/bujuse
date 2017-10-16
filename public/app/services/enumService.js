@@ -6,7 +6,25 @@ angular.module('EnumService').factory('ItemGenderService', function() {
 
     return {
         get: function() {
-            return ['M', 'F', 'U', 'BM', 'BF', 'BU'];
+            return [{
+                id: 'M',
+                key: 'Uomo'
+            }, {
+                id: 'F',
+                key: 'Donna'
+            }, {
+                id: 'U',
+                key: 'Unisex'
+            }, {
+                id: 'BM',
+                key: 'Bimbo'
+            }, {
+                id: 'BF',
+                key: 'Bimba'
+            }, {
+                id: 'BU',
+                key: 'Bimbo unisex'
+            }];
         }
     }
 
@@ -16,7 +34,55 @@ angular.module('EnumService').factory('ItemCategoryService', function() {
 
     return {
         get: function() {
-            return ['CSP', 'TOP', 'VES', 'PAN', 'TUT', 'GON', 'GIL', 'FEL', 'TRI', 'CAP', 'BAG', 'SCI'];
+            return [{
+                    id: 'CSP',
+                    key: 'Capospalla'
+                },
+                {
+                    id: 'TOP',
+                    key: 'Top'
+                },
+                {
+                    id: 'VES',
+                    key: 'Vestito'
+                },
+                {
+                    id: 'PAN',
+                    key: 'Pantalone'
+                },
+                {
+                    id: 'TUT',
+                    key: 'Tuta'
+                },
+                {
+                    id: 'GON',
+                    key: 'Gonna'
+                },
+                {
+                    id: 'GIL',
+                    key: 'Gilet'
+                },
+                {
+                    id: 'FEL',
+                    key: 'Felpa'
+                },
+                {
+                    id: 'TRI',
+                    key: 'Tricot'
+                },
+                {
+                    id: 'CAP',
+                    key: 'Cappello'
+                },
+                {
+                    id: 'BAG',
+                    key: 'Borsa'
+                },
+                {
+                    id: 'SCI',
+                    key: 'Sciarpa'
+                }
+            ];
         }
     }
 

@@ -17,7 +17,7 @@
   </div>
   <div class="col-md-2"><label class="control-label">{{ 'WAREHOUSE' | translate }}</label></div>
   <div class="col-md-4">
-    <select ng-model="operation.warehouse" ng-options="warehouse.name for warehouse in warehouses" class="form-control"></select>
+    <select ng-model="operation.warehouse" ng-options="warehouse.name for warehouse in warehouses track by warehouse._id" class="form-control"></select>
   </div>
 </div>
 <div class="row">
@@ -26,13 +26,10 @@
         <input ng-model="operation.quantity" type="number" class="form-control" id="inputQty">
       </div>
 </div>
-
 <!-- Add button -->
 <div class="row">
-    <div class="form-group">
-      <div class="col-md-12">
-        <button class="btn btn-default" type="submit" ng-click="createOperation()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
-      </div>
+    <div class="col-md-12">
+      <button class="btn btn-default" type="submit" ng-click="createOperation()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
     </div>
 </div>
 <!-- /Content -->

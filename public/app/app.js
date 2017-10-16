@@ -11,6 +11,7 @@ angular.module('app', [
   'warehouse.warehouse',
   'warehouse.addWarehouse',
   'warehouse.item',
+  'warehouse.addItem',
   'warehouse.operation',
   'warehouse.addOperation'
 ]);

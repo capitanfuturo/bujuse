@@ -56,13 +56,7 @@
                     logConcurrentOutput: true
                 },
                 tasks: ['nodemon', 'watch']
-            },
-
-            jshint: {
-                dev: {
-                    src: ['public/**/*']
-                },
-            },
+            }
 
         });
 
@@ -71,8 +65,7 @@
         grunt.loadNpmTasks('grunt-contrib-copy');
         grunt.loadNpmTasks('grunt-nodemon');
         grunt.loadNpmTasks('grunt-concurrent');
-        grunt.loadNpmTasks('grunt-contrib-jshint');
-
+        
         grunt.registerTask('default', ['clean', 'concurrent']);
 
     };

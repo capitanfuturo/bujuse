@@ -23,7 +23,6 @@ angular.module('warehouse.addOperation')
     '$scope',
     'OperationTypeService',
     'ItemService',
-    'OperationService',
     'WarehouseService',
     '$location',
     function($scope, OperationTypeService, ItemService, WarehouseService, $location) {
@@ -65,8 +64,8 @@ angular.module('warehouse.addOperation')
       $scope.items = [];
       $scope.operationTypes = [];
 
-      //retrieveWarehouses();
-      //retrieveItems();
+      retrieveWarehouses();
+      retrieveItems();
       retrieveTypes();
 
     }

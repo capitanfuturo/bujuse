@@ -1,24 +1,19 @@
 <!-- Content -->
 <h1>{{ 'ADD' | translate }} {{ 'WAREHOUSE' | translate }}</h1>
 <div class="row">
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="inputName" class="col-md-2 control-label">{{ 'NAME' | translate }}</label>
-      <div class="col-md-10">
-        <input ng-model="warehouse.name" type="text" class="form-control" id="inputName">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputDescription" class="col-md-2 control-label">{{ 'DESCRIPTION' | translate }}</label>
-      <div class="col-md-10">
-        <input ng-model="warehouse.description" type="text" class="form-control" id="inputDescription">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-offset-2 col-md-10">
-        <button class="btn btn-default" type="submit" ng-click="createWarehouse()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
-      </div>
-    </div>
-  </form>
+  <div class="col-md-2"><label for="inputName" class="control-label">{{ 'NAME' | translate }}</label></div>
+  <div class="col-md-4">
+    <input ng-model="warehouse.name" type="text" class="form-control" id="inputName">
+  </div>
+  <div class="col-md-2"><label for="inputDescription" class="control-label">{{ 'DESCRIPTION' | translate }}</label></div>
+  <div class="col-md-4">
+    <input ng-model="warehouse.description" type="text" class="form-control" id="inputDescription">
+  </div>
+</div>
+<!-- Add button -->
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-default" type="submit" ng-click="createWarehouse()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+  </div>
 </div>
 <!-- /Content -->

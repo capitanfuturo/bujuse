@@ -40,14 +40,14 @@ angular.module('warehouse.warehouse')
       $scope.remove = function(row) {
         var id = row._id;
         WarehouseService.delete(id).then(function successCallback(response) {
-          retrieveWarehouse();
+          retrieveWarehouses();
         }, function errorCallback(response) {
           console.log(response);
         });
       }
 
       //private functions
-      var retrieveWarehouse = function() {
+      var retrieveWarehouses = function() {
         WarehouseService.get().then(function successCallback(response) {
           console.log(response.data);
           $scope.rowCollection = response.data
@@ -60,6 +60,6 @@ angular.module('warehouse.warehouse')
       //init controller
       console.log('init WarehouseCtrl');
       $scope.rowCollection = [];
-      retrieveWarehouse();
+      retrieveWarehouses();
     }
   ]);
