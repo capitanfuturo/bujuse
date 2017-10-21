@@ -40,6 +40,7 @@ angular.module('warehouse.warehouse')
       $scope.remove = function(row) {
         var id = row._id;
         WarehouseService.delete(id).then(function successCallback(response) {
+          console.log("Deleted..." + response);
           retrieveWarehouses();
         }, function errorCallback(response) {
           console.log(response);

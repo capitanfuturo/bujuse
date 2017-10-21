@@ -1,1 +1,1 @@
-# My project's README
+# Bujuse - Warehouse manager

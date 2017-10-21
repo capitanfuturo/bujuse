@@ -7,22 +7,22 @@ angular.module('EnumService').factory('ItemGenderService', function() {
     return {
         get: function() {
             return [{
-                id: 'M',
+                id: 'G_M',
                 key: 'Uomo'
             }, {
-                id: 'F',
+                id: 'G_F',
                 key: 'Donna'
             }, {
-                id: 'U',
+                id: 'G_U',
                 key: 'Unisex'
             }, {
-                id: 'BM',
+                id: 'G_BM',
                 key: 'Bimbo'
             }, {
-                id: 'BF',
+                id: 'G_BF',
                 key: 'Bimba'
             }, {
-                id: 'BU',
+                id: 'G_BU',
                 key: 'Bimbo unisex'
             }];
         }
@@ -92,10 +92,40 @@ angular.module('EnumService').factory('ItemSizeService', function() {
 
     return {
         get: function(gender) {
-            if (gender == 'BM' || gender == 'BF' || gender == 'BU') {
-                return ['1', '3', '5', '7', '9', '11'];
+            if (gender == 'G_BM' || gender == 'G_BF' || gender == 'G_BU') {
+                return [{
+                    id: 'S_1',
+                    key: '1-2 anni'
+                }, {
+                    id: 'S_3',
+                    key: '3-4 anni'
+                }, {
+                    id: 'S_5',
+                    key: '5-6 anni'
+                }, {
+                    id: 'S_7',
+                    key: '7-8 anni'
+                }, {
+                    id: 'S_9',
+                    key: '9-10 anni'
+                }, {
+                    id: 'S_11',
+                    key: '11-12 anni'
+                }];
             } else {
-                return ['S', 'M', 'L', 'U'];
+                return [{
+                    id: 'S_S',
+                    key: 'Small'
+                }, {
+                    id: 'S_M',
+                    key: 'Medium'
+                }, {
+                    id: 'S_L',
+                    key: 'Large'
+                }, {
+                    id: 'S_U',
+                    key: 'Unisize'
+                }];
             }
         }
     }

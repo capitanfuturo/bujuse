@@ -8,12 +8,13 @@ var ItemSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['M', 'F', 'U', 'BM', 'BF', 'BU']
+    enum: ['G_M', 'G_F', 'G_U', 'G_BM', 'G_BF', 'G_BU']
   },
   size: {
     type: String,
-    enum: ['S', 'M', 'L', 'U', '1', '3', '5', '7', '9', '11']
-  }
+    enum: ['S_S', 'S_M', 'S_L', 'S_U', 'S_1', 'S_3', 'S_5', 'S_7', 'S_9', 'S_11']
+  },
+  price: Number
 });
 
 module.exports = mongoose.model('Item', ItemSchema);

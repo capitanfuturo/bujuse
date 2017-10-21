@@ -19,6 +19,7 @@
           <th>{{ 'WAREHOUSE' | translate }}</th>
           <th>{{ 'TYPE' | translate }}</th>
           <th>{{ 'QUANTITY' | translate }}</th>
+          <th>{{ 'PRICE' | translate }}</th>
           <th></th>
           <th></th>
           <th></th>
@@ -31,6 +32,7 @@
           <td>{{row.warehouse}}</td>
           <td>{{row.type}}</td>
           <td>{{row.qty}}</td>
+          <th>{{row.price}}</th>
           <td>
             <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span>{{ 'DETAIL' | translate }}</button>
           </td>

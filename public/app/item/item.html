@@ -18,6 +18,7 @@
                     <th>{{ 'CATEGORY' | translate }}</th>
                     <th>{{ 'GENDER' | translate }}</th>
                     <th>{{ 'SIZE' | translate }}</th>
+                    <th>{{ 'PRICE' | translate }}</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -25,10 +26,11 @@
             </thead>
             <tbody>
                 <tr ng-repeat="row in displayedCollection">
-                    <td>{{row.model}}</td>
-                    <td>{{row.category}}</td>
-                    <td>{{row.gender}}</td>
-                    <td>{{row.size}}</td>
+                    <td>{{ row.model }}</td>
+                    <td>{{ row.category | translate }}</td>
+                    <td>{{ row.gender | translate }}</td>
+                    <td>{{ row.size | translate }}</td>
+                    <td>{{ row.price }}</td>
                     <td>
                         <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span>{{ 'DETAIL' | translate }}</button>
                     </td>

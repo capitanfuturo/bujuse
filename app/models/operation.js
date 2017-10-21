@@ -17,7 +17,8 @@ var OperationSchema = new mongoose.Schema({
   warehouse: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Warehouse'
-  }
+  },
+  price: Number
 });
 
 module.exports = mongoose.model('Operation', OperationSchema);
