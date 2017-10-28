@@ -7,7 +7,7 @@
   </div>
   <label class="col-md-2 control-label">{{ 'TYPE' | translate }}*</label>
   <div class="col-md-4">
-    <select ng-model="operation.type" class="form-control" ng-options="type as type.key for type in operationTypes track by type.id" ng-change="hasChanged()"></select>
+    <select ng-model="operationType" class="form-control" ng-options="type as type.key for type in operationTypes track by type.id" ng-change="hasChangedType()"></select>
   </div>
 </div>
 <div class="row">

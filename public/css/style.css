@@ -1,0 +1,9 @@
+.st-sort-ascent:before {
+    font-family: FontAwesome;
+    content: '\f062';
+}
+
+.st-sort-descent:before {
+    font-family: FontAwesome;
+    content: '\f063';
+}

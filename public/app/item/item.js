@@ -22,15 +22,32 @@ angular.module('warehouse.item')
         'ItemService',
         '$location',
         function($scope, ItemService, $location) {
+
             //angular functions
             $scope.add = function() {
                 $location.path('/add-item');
             };
 
+            $scope.edit = function(row) {
+              var itemId = row._id;
+              $location.path('/edit-item/' + itemId);
+            }
+
+            $scope.remove = function(row) {
+                var id = row._id;
+                ItemService.delete(id).then(function successCallback(response) {
+                    var index = $scope.rowCollection.indexOf(row);
+                    if (index !== -1) {
+                        $scope.rowCollection.splice(index, 1);
+                    }
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+            }
+
             //private functions
             var retrieveItem = function() {
                 ItemService.get().then(function successCallback(response) {
-                    console.log(response.data);
                     $scope.rowCollection = response.data
                 }, function errorCallback(response) {
                     console.log(response);
@@ -39,7 +56,6 @@ angular.module('warehouse.item')
 
 
             //init controller
-            console.log('init ItemCtrl');
             $scope.rowCollection = [];
             retrieveItem();
         }

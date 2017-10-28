@@ -2,6 +2,7 @@
 
 angular.module('app', [
   'ngRoute',
+  'monospaced.qrcode',
   'pascalprecht.translate',
   'smart-table',
   'EnumService',
@@ -12,6 +13,7 @@ angular.module('app', [
   'warehouse.addWarehouse',
   'warehouse.item',
   'warehouse.addItem',
+  'warehouse.editItem',
   'warehouse.operation',
   'warehouse.addOperation'
 ]);

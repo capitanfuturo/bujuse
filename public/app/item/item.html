@@ -14,26 +14,26 @@
         <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
             <thead>
                 <tr>
-                    <th>{{ 'MODEL' | translate }}</th>
+                    <th st-sort="model">{{ 'MODEL' | translate }}</th>
                     <th>{{ 'CATEGORY' | translate }}</th>
                     <th>{{ 'GENDER' | translate }}</th>
                     <th>{{ 'SIZE' | translate }}</th>
-                    <th>{{ 'PRICE' | translate }}</th>
-                    <th></th>
+                    <th st-sort="price">{{ 'PRICE' | translate }}</th>
+                    <th>{{ 'I' | translate }}</th>
+                    <th>{{ 'O' | translate }}</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="row in displayedCollection">
-                    <td>{{ row.model }}</td>
+                    <td>{{ row.model | uppercase }}</td>
                     <td>{{ row.category | translate }}</td>
                     <td>{{ row.gender | translate }}</td>
                     <td>{{ row.size | translate }}</td>
                     <td>{{ row.price }}</td>
-                    <td>
-                        <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span>{{ 'DETAIL' | translate }}</button>
-                    </td>
+                    <td><qrcode data='{{row._id}}' download></qrcode><td>
+                    <td><qrcode data='{{row._id}}' download></qrcode><td>
                     <td>
                         <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
                     </td>

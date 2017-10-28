@@ -14,28 +14,24 @@
     <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
       <thead>
         <tr>
-          <th>{{ 'CREATION_DATE' | translate }}</th>
-          <th>{{ 'ITEM' | translate }}</th>
+          <th st-sort="creationDate">{{ 'CREATION_DATE' | translate }}</th>
+          <th st-sort="item.model">{{ 'ITEM' | translate }}</th>
           <th>{{ 'WAREHOUSE' | translate }}</th>
-          <th>{{ 'TYPE' | translate }}</th>
-          <th>{{ 'QUANTITY' | translate }}</th>
-          <th>{{ 'PRICE' | translate }}</th>
-          <th></th>
+          <th st-sort="type">{{ 'TYPE' | translate }}</th>
+          <th st-sort="quantity">{{ 'QUANTITY' | translate }}</th>
+          <th st-sort="price">{{ 'PRICE' | translate }}</th>
           <th></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="row in displayedCollection">
-          <td>{{row.creationDate}}</td>
-          <td>{{row.item}}</td>
-          <td>{{row.warehouse}}</td>
-          <td>{{row.type}}</td>
-          <td>{{row.qty}}</td>
-          <th>{{row.price}}</th>
-          <td>
-            <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span>{{ 'DETAIL' | translate }}</button>
-          </td>
+          <td>{{ row.creationDate | date:'yyyy-MM-dd HH:mm' }}</td>
+          <td>{{ row.item.model | uppercase }}</td>
+          <td>{{ row.warehouse.name }}</td>
+          <td>{{ row.type | translate }}</td>
+          <td>{{ row.quantity }}</td>
+          <td>{{ row.price }}</td>
           <td>
             <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
           </td>

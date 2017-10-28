@@ -4,18 +4,28 @@ angular.module('ItemService', []);
 
 angular.module('ItemService').factory('ItemService', ['$http', function($http) {
 
-  return {
-    get: function() {
-      return $http.get('/api/item');
-    },
+    var BASE_PATH = '/api/item';
 
-    create: function(itemData) {
-      return $http.post('/api/item', itemData);
-    },
+    return {
+        get: function() {
+            return $http.get(BASE_PATH);
+        },
 
-    delete: function(id) {
-      return $http.delete('/api/item/' + id);
+        getById: function(id) {
+            return $http.get(BASE_PATH + '/' + id);
+        },
+
+        create: function(itemData) {
+            return $http.post(BASE_PATH, itemData);
+        },
+
+        delete: function(id) {
+            return $http.delete(BASE_PATH + '/' + id);
+        },
+
+        update: function(itemData) {
+            return $http.put(BASE_PATH, itemData);
+        }
     }
-  }
 
 }]);

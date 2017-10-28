@@ -24,8 +24,9 @@ angular.module('warehouse.addOperation')
         'OperationTypeService',
         'ItemService',
         'WarehouseService',
+        'OperationService',
         '$location',
-        function($scope, OperationTypeService, ItemService, WarehouseService, $location) {
+        function($scope, OperationTypeService, ItemService, WarehouseService, OperationService, $location) {
 
             //angular functions
             $scope.createOperation = function() {
@@ -39,7 +40,12 @@ angular.module('warehouse.addOperation')
             };
 
             $scope.hasChanged = function() {
-                $scope.addDisabled = !$scope.operation.creationDate || !$scope.warehouse._id || !$scope.item._id || !$scope.operation.price || !$scope.operation.quantity;
+                $scope.addDisabled = !$scope.operation.creationDate ||
+                !$scope.operationType ||
+                !$scope.warehouse._id ||
+                !$scope.item._id ||
+                !$scope.operation.price ||
+                !$scope.operation.quantity;
             };
 
             $scope.hasChangedWarehouse = function() {
@@ -56,6 +62,10 @@ angular.module('warehouse.addOperation')
             $scope.hasChangedQuantity = function() {
                 adjustPrice();
                 $scope.hasChanged();
+            };
+
+            $scope.hasChangedType = function() {
+                $scope.operation.type = $scope.operationType.id;
             };
 
             //private functions
@@ -100,6 +110,7 @@ angular.module('warehouse.addOperation')
             $scope.item = {};
 
             $scope.operationTypes = [];
+            $scope.operationType = {};
 
             $scope.addDisabled = true;
 

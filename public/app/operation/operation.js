@@ -22,15 +22,27 @@ angular.module('warehouse.operation')
         'OperationService',
         '$location',
         function($scope, OperationService, $location) {
+
             //angular functions
             $scope.add = function() {
                 $location.path('/add-operation');
             };
 
+            $scope.remove = function(row) {
+                var id = row._id;
+                OperationService.delete(id).then(function successCallback(response) {
+                    var index = $scope.rowCollection.indexOf(row);
+                    if (index !== -1) {
+                        $scope.rowCollection.splice(index, 1);
+                    }
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+            }
+
             //private functions
             var retrieveOperation = function() {
                 OperationService.get().then(function successCallback(response) {
-                    console.log(response.data);
                     $scope.rowCollection = response.data
                 }, function errorCallback(response) {
                     console.log(response);
@@ -39,7 +51,6 @@ angular.module('warehouse.operation')
 
 
             //init controller
-            console.log('init OperationCtrl');
             $scope.rowCollection = [];
             retrieveOperation();
         }
