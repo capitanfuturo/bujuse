@@ -2,63 +2,71 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <base href="/">
-    <title>Bujuse</title>
+  <meta charset="UTF-8">
+  <base href="/">
+  <title>Bujuse</title>
 
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body ng-app="app" ng-controller="ApplicationCtrl">
+
+  <!-- Header -->
+  <nav class="navbar navbar-default">
     <div class="container">
-        <!-- Header -->
-        <nav class="navbar">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#!/warehouse"><i class="fa fa-shopping-bag fa-3"></i> Bujuse - {{ 'WAREHOUSE' | translate }}</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="#!/warehouse">{{ 'WAREHOUSE' | translate }}</a></li>
-                <li><a href="#!/item">{{ 'ITEM' | translate }}</a></li>
-                <li><a href="#!/operation">{{ 'MOVEMENT' | translate }}</a></li>
-            </ul>
-        </nav>
-
-        <!-- Angular app -->
-        <div ng-view></div>
-
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#!/warehouse"><i class="fa fa-shopping-bag fa-3"></i> Bujuse - {{ 'WAREHOUSE' | translate }}</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#!/warehouse">{{ 'WAREHOUSE' | translate }}</a></li>
+          <li><a href="#!/item">{{ 'ITEM' | translate }}</a></li>
+          <li><a href="#!/operation">{{ 'MOVEMENT' | translate }}</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- Vendor JS -->
-    <script src="libs/angular/angular.js"></script>
-    <script src="libs/angular-route/angular-route.js"></script>
-    <script src="libs/angular-smart-table/dist/smart-table.js"></script>
-    <script src="libs/angular-translate/angular-translate.js"></script>
-    <script src="libs/qrcode-generator/js/qrcode.js"></script>
-    <script src="libs/qrcode-generator/js/qrcode_UTF8.js"></script>
-    <script src="libs/angular-qrcode/angular-qrcode.js"></script>
+  <!-- Angular app -->
+  <div ng-view autoscroll="true"></div>
 
-    <!-- Custom JS -->
-    <script src="app/services/enumService.js"></script>
-    <script src="app/services/itemService.js"></script>
-    <script src="app/services/operationService.js"></script>
-    <script src="app/services/warehouseService.js"></script>
+  <!-- Vendor JS -->
+  <script src="libs/angular/angular.min.js"></script>
+  <script src="libs/angular-route/angular-route.min.js"></script>
+  <script src="libs/angular-smart-table/dist/smart-table.min.js"></script>
+  <script src="libs/angular-translate/angular-translate.min.js"></script>
+  <script src="libs/qrcode-generator/js/qrcode.js"></script>
+  <script src="libs/qrcode-generator/js/qrcode_UTF8.js"></script>
+  <script src="libs/angular-qrcode/angular-qrcode.js"></script>
 
-    <script src="app/item/item.js"></script>
-    <script src="app/item/add-item.js"></script>
-    <script src="app/item/edit-item.js"></script>
+  <!-- Custom JS -->
+  <script src="app/services/enumService.js"></script>
+  <script src="app/services/itemService.js"></script>
+  <script src="app/services/operationService.js"></script>
+  <script src="app/services/warehouseService.js"></script>
 
-    <script src="app/operation/operation.js"></script>
-    <script src="app/operation/add-operation.js"></script>
+  <script src="app/item/item.js"></script>
+  <script src="app/item/add-item.js"></script>
+  <script src="app/item/edit-item.js"></script>
 
-    <script src="app/warehouse/warehouse.js"></script>
-    <script src="app/warehouse/add-warehouse.js"></script>
+  <script src="app/operation/operation.js"></script>
+  <script src="app/operation/add-operation.js"></script>
 
-    <script src="app/app.js"></script>
-    <script src="app/languages.js"></script>
+  <script src="app/warehouse/warehouse.js"></script>
+  <script src="app/warehouse/add-warehouse.js"></script>
+
+  <script src="app/app.js"></script>
+  <script src="app/languages.js"></script>
 </body>
 
 </html>

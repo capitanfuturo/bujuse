@@ -41,11 +41,11 @@ angular.module('warehouse.addOperation')
 
             $scope.hasChanged = function() {
                 $scope.addDisabled = !$scope.operation.creationDate ||
-                !$scope.operationType ||
-                !$scope.warehouse._id ||
-                !$scope.item._id ||
-                !$scope.operation.price ||
-                !$scope.operation.quantity;
+                    !$scope.operationType ||
+                    !$scope.warehouse._id ||
+                    !$scope.item._id ||
+                    !$scope.operation.price ||
+                    !$scope.operation.quantity;
             };
 
             $scope.hasChangedWarehouse = function() {
@@ -72,7 +72,13 @@ angular.module('warehouse.addOperation')
             var retrieveWarehouses = function() {
                 WarehouseService.get().then(function successCallback(response) {
                     $scope.warehouses = response.data;
-                    $scope.warehouses.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} );
+                    if ($scope.warehouses && $scope.warehouses.length) {
+                      $scope.warehouse = $scope.warehouses[0];
+                    } else {
+                        $scope.warehouses.sort(function(a, b) {
+                            return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
+                        });
+                    }
                 }, function errorCallback(response) {
                     console.log(response);
                 });
@@ -81,7 +87,9 @@ angular.module('warehouse.addOperation')
             var retrieveItems = function() {
                 ItemService.get().then(function successCallback(response) {
                     $scope.items = response.data;
-                    $scope.items.sort(function(a,b) {return (a.model > b.model) ? 1 : ((b.model > a.model) ? -1 : 0);} );
+                    $scope.items.sort(function(a, b) {
+                        return (a.model > b.model) ? 1 : ((b.model > a.model) ? -1 : 0);
+                    });
                 }, function errorCallback(response) {
                     console.log(response);
                 });

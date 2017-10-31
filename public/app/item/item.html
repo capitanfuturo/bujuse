@@ -1,48 +1,54 @@
-<!-- Title -->
-<h1>{{ 'ITEM' | translate }}</h1>
-<!-- /Title -->
-<!-- Buttons -->
-<div class="row">
+<div class="container">
+  <!-- Title -->
+  <h1>{{ 'ITEM' | translate }}</h1>
+  <!-- /Title -->
+  <!-- Buttons -->
+  <div class="row">
     <div class="col-md-2">
-        <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+      <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
     </div>
-</div>
-<!-- /Buttons -->
-<!-- Content -->
-<div class="row">
+  </div>
+  <!-- /Buttons -->
+  <!-- Content -->
+  <div class="row">
     <div class="col-md-12">
-        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
-            <thead>
-                <tr>
-                    <th st-sort="model">{{ 'MODEL' | translate }}</th>
-                    <th>{{ 'CATEGORY' | translate }}</th>
-                    <th>{{ 'GENDER' | translate }}</th>
-                    <th>{{ 'SIZE' | translate }}</th>
-                    <th st-sort="price">{{ 'PRICE' | translate }}</th>
-                    <th>{{ 'I' | translate }}</th>
-                    <th>{{ 'O' | translate }}</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in displayedCollection">
-                    <td>{{ row.model | uppercase }}</td>
-                    <td>{{ row.category | translate }}</td>
-                    <td>{{ row.gender | translate }}</td>
-                    <td>{{ row.size | translate }}</td>
-                    <td>{{ row.price }}</td>
-                    <td><qrcode data='{{row._id}}' download></qrcode><td>
-                    <td><qrcode data='{{row._id}}' download></qrcode><td>
+      <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+        <thead>
+          <tr>
+            <th st-sort="model">{{ 'MODEL' | translate }}</th>
+            <th>{{ 'CATEGORY' | translate }}</th>
+            <th>{{ 'GENDER' | translate }}</th>
+            <th>{{ 'SIZE' | translate }}</th>
+            <th st-sort="price">{{ 'PRICE' | translate }}</th>
+            <th>{{ 'I' | translate }}</th>
+            <th>{{ 'O' | translate }}</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in displayedCollection">
+            <td>{{ row.model | uppercase }}</td>
+            <td>{{ row.category | translate }}</td>
+            <td>{{ row.gender | translate }}</td>
+            <td>{{ row.size | translate }}</td>
+            <td>{{ row.price }}</td>
+            <td>
+              <qrcode data='{{ baseUrl }}' download></qrcode>
+              <td>
+                <td>
+                  <qrcode data='{{ baseUrl }}' download></qrcode>
+                  <td>
                     <td>
-                        <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
+                      <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
                     </td>
                     <td>
-                        <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
+                      <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
                     </td>
-                </tr>
-            </tbody>
-        </table>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+  <!-- /Content -->
 </div>
-<!-- /Content -->

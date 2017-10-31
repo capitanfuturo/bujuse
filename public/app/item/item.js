@@ -58,5 +58,10 @@ angular.module('warehouse.item')
             //init controller
             $scope.rowCollection = [];
             retrieveItem();
+
+            var protocol = $location.protocol();
+            var host = $location.host();
+            var port = $location.port();
+            $scope.baseUrl = protocol + '://' + host + ':' + port +  '#!/add-operation';
         }
     ]);

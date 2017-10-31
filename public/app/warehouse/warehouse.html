@@ -1,38 +1,40 @@
-<!-- Title -->
-<h1>{{ 'WAREHOUSE' | translate }}</h1>
-<!-- /Title -->
-<!-- Buttons -->
-<div class="row">
-  <div class="col-md-2">
-    <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+<div class="container">
+  <!-- Title -->
+  <h1>{{ 'WAREHOUSE' | translate }}</h1>
+  <!-- /Title -->
+  <!-- Buttons -->
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+    </div>
   </div>
-</div>
-<!-- /Buttons -->
-<!-- Content -->
-<div class="row">
-  <div class="col-md-12">
-    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
-      <thead>
-        <tr>
-          <th>{{ 'NAME' | translate }}</th>
-          <th>{{ 'DESCRIPTION' | translate }}</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="row in displayedCollection">
-          <td>{{ row.name | uppercase }}</td>
-          <td>{{ row.description }}</td>
-          <td>
-            <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
-          </td>
-          <td>
-            <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- /Buttons -->
+  <!-- Content -->
+  <div class="row">
+    <div class="col-md-12">
+      <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'NAME' | translate }}</th>
+            <th>{{ 'DESCRIPTION' | translate }}</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in displayedCollection">
+            <td>{{ row.name | uppercase }}</td>
+            <td>{{ row.description }}</td>
+            <td>
+              <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
+            </td>
+            <td>
+              <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  <!-- /Content -->
 </div>
-<!-- /Content -->
