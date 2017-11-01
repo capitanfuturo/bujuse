@@ -87,6 +87,17 @@ angular.module('warehouse.editItem')
             //init controller
             var itemId = $routeParams.itemId;
 
+            $scope.category = {};
+            $scope.categories = [];
+            $scope.gender = {};
+            $scope.genders = [];
+            $scope.size = {};
+            $scope.sizes = [];
+            $scope.addDisabled = true;
+
+            retrieveCategories();
+            retrieveGenders();
+
             ItemService.getById(itemId).then(function successCallback(response) {
                 $scope.item = response.data;
                 $scope.category = searchById($scope.item.category, $scope.categories);
@@ -98,17 +109,5 @@ angular.module('warehouse.editItem')
             }, function errorCallback(response) {
                 console.log(response);
             });
-
-
-            $scope.category = {};
-            $scope.categories = [];
-            $scope.gender = {};
-            $scope.genders = [];
-            $scope.size = {};
-            $scope.sizes = [];
-            $scope.addDisabled = true;
-
-            retrieveCategories();
-            retrieveGenders();
         }
     ]);

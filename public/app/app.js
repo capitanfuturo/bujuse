@@ -11,6 +11,7 @@ angular.module('app', [
   'WarehouseService',
   'warehouse.warehouse',
   'warehouse.addWarehouse',
+  'warehouse.editWarehouse',
   'warehouse.item',
   'warehouse.addItem',
   'warehouse.editItem',

@@ -28,6 +28,11 @@ angular.module('warehouse.warehouse')
                 $location.path('/add-warehouse');
             };
 
+            $scope.edit = function(row) {
+              var warehouseId = row._id;
+              $location.path('/edit-warehouse/' + warehouseId);
+            };
+
             $scope.remove = function(row) {
                 var id = row._id;
                 WarehouseService.delete(id).then(function successCallback(response) {
@@ -38,7 +43,7 @@ angular.module('warehouse.warehouse')
                 }, function errorCallback(response) {
                     console.log(response);
                 });
-            }
+            };
 
             //private functions
             var retrieveWarehouses = function() {
@@ -48,7 +53,6 @@ angular.module('warehouse.warehouse')
                     console.log(response);
                 });
             };
-
 
             //init controller
             $scope.rowCollection = [];

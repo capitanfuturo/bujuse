@@ -23,7 +23,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
-            <td>{{ row.name | uppercase }}</td>
+            <td>{{ row.name }}</td>
             <td>{{ row.description }}</td>
             <td>
               <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>

@@ -31,7 +31,7 @@ angular.module('app').config(function($translateProvider) {
         NAME: 'Nome',
         O: 'Scarico',
         PAN: 'Pantolone',
-        PRICE: 'Prezzo',
+        PRICE: 'Prezzo [€]',
         QUANTITY: 'Quantità',
         S_1: '1-2 anni',
         S_3: '3-4 anni',

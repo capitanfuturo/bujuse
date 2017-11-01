@@ -1,9 +1,9 @@
 <div class="container">
   <!-- Title -->
-  <h1>{{ 'ITEM' | translate }}</h1>
+  <h1 hidden-print>{{ 'ITEM' | translate }}</h1>
   <!-- /Title -->
   <!-- Buttons -->
-  <div class="row">
+  <div class="row hidden-print">
     <div class="col-md-2">
       <button class="btn btn-default" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
     </div>
@@ -15,34 +15,34 @@
       <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
         <thead>
           <tr>
-            <th st-sort="model">{{ 'MODEL' | translate }}</th>
+            <th st-sort="model" st-sort-default="true">{{ 'MODEL' | translate }}</th>
             <th>{{ 'CATEGORY' | translate }}</th>
             <th>{{ 'GENDER' | translate }}</th>
             <th>{{ 'SIZE' | translate }}</th>
             <th st-sort="price">{{ 'PRICE' | translate }}</th>
             <th>{{ 'I' | translate }}</th>
             <th>{{ 'O' | translate }}</th>
-            <th></th>
-            <th></th>
+            <th class='hidden-print'></th>
+            <th class='hidden-print'></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
-            <td>{{ row.model | uppercase }}</td>
+            <td>{{ row.model }}</td>
             <td>{{ row.category | translate }}</td>
             <td>{{ row.gender | translate }}</td>
             <td>{{ row.size | translate }}</td>
             <td>{{ row.price }}</td>
             <td>
-              <qrcode data='{{ baseLoadUrl + row._id }}' download></qrcode>
+              <qrcode data='{{ baseLoadUrl + row._id }}'></qrcode>
             </td>
             <td>
-              <qrcode data='{{ baseDonwloadUrl + row._id }}' download></qrcode>
+              <qrcode data='{{ baseDonwloadUrl + row._id }}'></qrcode>
             </td>
-            <td>
+            <td class='hidden-print'>
               <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
             </td>
-            <td>
+            <td class='hidden-print'>
               <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
             </td>
           </tr>

@@ -2,19 +2,29 @@
 
 angular.module('WarehouseService', []);
 
-angular.module('WarehouseService').factory('WarehouseService', ['$http', function($http) {
+angular.module('WarehouseService').factory('WarehouseService', ['$http', function ($http) {
+
+  var BASE_PATH = '/api/warehouse';
 
   return {
-    get: function() {
-      return $http.get('/api/warehouse');
+    get: function () {
+      return $http.get(BASE_PATH);
     },
 
-    create: function(warehouseData) {
-      return $http.post('/api/warehouse', warehouseData);
+    getById: function (id) {
+      return $http.get(BASE_PATH + '/' + id);
     },
 
-    delete: function(id) {
-      return $http.delete('/api/warehouse/' + id);
+    create: function (warehouseData) {
+      return $http.post(BASE_PATH, warehouseData);
+    },
+
+    delete: function (id) {
+      return $http.delete(BASE_PATH + '/' + id);
+    },
+
+    update: function (warehouseData) {
+      return $http.put(BASE_PATH, warehouseData);
     }
   }
 

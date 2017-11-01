@@ -76,6 +76,7 @@ angular.module('warehouse.addOperation')
           $scope.warehouses = response.data;
           if ($scope.warehouses && $scope.warehouses.length) {
             $scope.warehouse = $scope.warehouses[0];
+            $scope.hasChangedWarehouse();
           } else {
             $scope.warehouses.sort(function (a, b) {
               return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
@@ -104,7 +105,7 @@ angular.module('warehouse.addOperation')
 
       var retrieveTypes = function () {
         $scope.operationTypes = OperationTypeService.get();
-      }
+      };
 
       var adjustPrice = function () {
         if ($scope.item.price && $scope.operation.quantity) {

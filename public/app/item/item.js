@@ -31,7 +31,7 @@ angular.module('warehouse.item')
             $scope.edit = function(row) {
               var itemId = row._id;
               $location.path('/edit-item/' + itemId);
-            }
+            };
 
             $scope.remove = function(row) {
                 var id = row._id;
@@ -43,7 +43,7 @@ angular.module('warehouse.item')
                 }, function errorCallback(response) {
                     console.log(response);
                 });
-            }
+            };
 
             //private functions
             var retrieveItem = function() {
