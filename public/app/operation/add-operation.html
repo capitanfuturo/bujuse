@@ -31,10 +31,11 @@
       <input ng-model="operation.price" type="number" class="form-control" id="inputPrice" ng-change="hasChanged()">
     </div>
   </div>
-  <!-- Add button -->
+  <!-- Buttons -->
   <div class="row">
     <div class="col-md-12">
-      <button ng-disabled='addDisabled' class="btn btn-default" type="submit" ng-click="createOperation()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+      <button ng-disabled='addDisabled' class="btn btn-default" type="submit" ng-click="createOperation()"><span class="fa fa-times"></span>  {{ 'OK' | translate }}</button>
+      <button class="btn btn-default" type="submit" ng-click="cancel()"><span class="fa fa-check"></span>  {{ 'CANCEL' | translate }}</button>
     </div>
   </div>
   <!-- /Content -->

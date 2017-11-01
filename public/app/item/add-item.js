@@ -61,11 +61,11 @@ angular.module('warehouse.addItem')
             var retrieveGenders = function() {
                 $scope.genders = ItemGenderService.get();
                 $scope.genders.sort(compareEnum);
-            }
+            };
 
             var retrieveSizes = function(gender) {
                 $scope.sizes = ItemSizeService.get(gender);
-            }
+            };
 
             var compareEnum = function(a, b) {
                 if (a.key < b.key)
@@ -73,7 +73,11 @@ angular.module('warehouse.addItem')
                 if (a.key > b.key)
                     return 1;
                 return 0;
-            }
+            };
+
+            $scope.cancel = function(){
+              $location.path('/item');
+            };
 
             //init controller
             $scope.item = {};

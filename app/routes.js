@@ -11,7 +11,8 @@ module.exports = function (app) {
   var reqLogger = function (req, res, next) {
     var method = req.method;
     var url = req.originalUrl;
-    console.log('--> ' + method + ' ' + url);
+    //uncomment for debug
+    //console.log('--> ' + method + ' ' + url);
     next();
   }
 

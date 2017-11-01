@@ -70,6 +70,10 @@ angular.module('warehouse.addOperation')
         $scope.operation.type = $scope.operationType.id;
       };
 
+      $scope.cancel = function(){
+        $location.path('/operation');
+      };
+
       //private functions
       var retrieveWarehouses = function () {
         WarehouseService.get().then(function successCallback(response) {

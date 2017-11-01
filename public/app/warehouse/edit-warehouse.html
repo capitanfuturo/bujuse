@@ -13,7 +13,8 @@
   <!-- Add button -->
   <div class="row">
     <div class="col-md-12">
-      <button ng-disabled="!warehouse.name" class="btn btn-default" type="submit" ng-click="editWarehouse()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+      <button ng-disabled="!warehouse.name" class="btn btn-default" type="submit" ng-click="editWarehouse()"><span class="fa fa-times"></span>  {{ 'OK' | translate }}</button>
+      <button class="btn btn-default" type="submit" ng-click="cancel()"><span class="fa fa-check"></span>  {{ 'CANCEL' | translate }}</button>
     </div>
   </div>
 </div>

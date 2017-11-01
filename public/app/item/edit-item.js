@@ -84,6 +84,10 @@ angular.module('warehouse.editItem')
                 }
             };
 
+            $scope.cancel = function(){
+              $location.path('/item');
+            };
+
             //init controller
             var itemId = $routeParams.itemId;
 

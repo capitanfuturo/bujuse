@@ -31,6 +31,10 @@ angular.module('warehouse.editWarehouse')
           });
       };
 
+      $scope.cancel = function(){
+        $location.path('/warehouse');
+      };
+
       //private functions
 
       //init controller

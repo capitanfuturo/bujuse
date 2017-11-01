@@ -5,6 +5,7 @@ angular.module('app').config(function($translateProvider) {
     $translateProvider.translations('it', {
         ADD: 'Aggiungi',
         BAG: 'Borsa',
+        CANCEL: 'Annulla',
         CAP: 'Cappello',
         CATEGORY: 'Categoria',
         CREATION_DATE: 'Data creazione',
@@ -30,7 +31,8 @@ angular.module('app').config(function($translateProvider) {
         MOVEMENT: 'Movimento',
         NAME: 'Nome',
         O: 'Scarico',
-        PAN: 'Pantolone',
+        OK: 'Ok',
+        PAN: 'Pantalone',
         PRICE: 'Prezzo [€]',
         QUANTITY: 'Quantità',
         S_1: '1-2 anni',
