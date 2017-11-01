@@ -62,6 +62,7 @@ angular.module('warehouse.item')
             var protocol = $location.protocol();
             var host = $location.host();
             var port = $location.port();
-            $scope.baseUrl = protocol + '://' + host + ':' + port +  '#!/add-operation';
+            $scope.baseLoadUrl = protocol + '://' + host + ':' + port +  '#!/add-operation?type=I&itemId=';
+            $scope.baseDonwloadUrl = protocol + '://' + host + ':' + port +  '#!/add-operation?type=O&itemId=';
         }
     ]);

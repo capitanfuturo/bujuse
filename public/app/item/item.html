@@ -34,17 +34,17 @@
             <td>{{ row.size | translate }}</td>
             <td>{{ row.price }}</td>
             <td>
-              <qrcode data='{{ baseUrl }}' download></qrcode>
-              <td>
-                <td>
-                  <qrcode data='{{ baseUrl }}' download></qrcode>
-                  <td>
-                    <td>
-                      <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
-                    </td>
-                    <td>
-                      <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
-                    </td>
+              <qrcode data='{{ baseLoadUrl + row._id }}' download></qrcode>
+            </td>
+            <td>
+              <qrcode data='{{ baseDonwloadUrl + row._id }}' download></qrcode>
+            </td>
+            <td>
+              <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
+            </td>
+            <td>
+              <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
+            </td>
           </tr>
         </tbody>
       </table>
