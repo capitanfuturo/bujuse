@@ -15,12 +15,13 @@
       <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
         <thead>
           <tr>
+            <th>{{ 'I' | translate }}</th>
             <th st-sort="model" st-sort-default="true">{{ 'MODEL' | translate }}</th>
+            <th>{{ 'NOTE' | translate }}</th>
             <th>{{ 'CATEGORY' | translate }}</th>
             <th>{{ 'GENDER' | translate }}</th>
             <th>{{ 'SIZE' | translate }}</th>
             <th st-sort="price">{{ 'PRICE' | translate }}</th>
-            <th>{{ 'I' | translate }}</th>
             <th>{{ 'O' | translate }}</th>
             <th class='hidden-print'></th>
             <th class='hidden-print'></th>
@@ -28,14 +29,15 @@
         </thead>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
+            <td>
+              <qrcode data='{{ baseLoadUrl + row._id }}'></qrcode>
+            </td>
             <td>{{ row.model }}</td>
+            <td>{{ row.note }}</td>
             <td>{{ row.category | translate }}</td>
             <td>{{ row.gender | translate }}</td>
             <td>{{ row.size | translate }}</td>
             <td>{{ row.price }}</td>
-            <td>
-              <qrcode data='{{ baseLoadUrl + row._id }}'></qrcode>
-            </td>
             <td>
               <qrcode data='{{ baseDonwloadUrl + row._id }}'></qrcode>
             </td>

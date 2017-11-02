@@ -81,6 +81,10 @@ angular.module('EnumService').factory('ItemCategoryService', function() {
                 {
                     id: 'SCI',
                     key: 'Sciarpa'
+                },
+                {
+                    id: 'JAC',
+                    key: 'Giacca'
                 }
             ];
         }
@@ -92,6 +96,43 @@ angular.module('EnumService').factory('ItemSizeService', function() {
 
     return {
         get: function(gender) {
+            if(!gender){
+              return [{
+                  id: 'S_1',
+                  key: '1-2 anni'
+              }, {
+                  id: 'S_3',
+                  key: '3-4 anni'
+              }, {
+                  id: 'S_5',
+                  key: '5-6 anni'
+              }, {
+                  id: 'S_7',
+                  key: '7-8 anni'
+              }, {
+                  id: 'S_9',
+                  key: '9-10 anni'
+              }, {
+                  id: 'S_11',
+                  key: '11-12 anni'
+              },{
+                  id: 'S_X',
+                  key: 'Extra Small'
+              },{
+                  id: 'S_S',
+                  key: 'Small'
+              }, {
+                  id: 'S_M',
+                  key: 'Medium'
+              }, {
+                  id: 'S_L',
+                  key: 'Large'
+              }, {
+                  id: 'S_U',
+                  key: 'Unisize'
+              }];
+            }
+
             if (gender == 'G_BM' || gender == 'G_BF' || gender == 'G_BU') {
                 return [{
                     id: 'S_1',
@@ -114,6 +155,9 @@ angular.module('EnumService').factory('ItemSizeService', function() {
                 }];
             } else {
                 return [{
+                    id: 'S_X',
+                    key: 'Extra Small'
+                },{
                     id: 'S_S',
                     key: 'Small'
                 }, {

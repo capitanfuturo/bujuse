@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-md-2"><label class="control-label">{{ 'ITEM' | translate }}*</label></div>
     <div class="col-md-4">
-      <select ng-model="item" ng-options="item.model for item in items" class="form-control" ng-change="hasChangedItem()"></select>
+      <select ng-model="item" ng-options="item.fullname for item in items" class="form-control" ng-change="hasChangedItem()"></select>
     </div>
     <div class="col-md-2"><label class="control-label">{{ 'WAREHOUSE' | translate }}*</label></div>
     <div class="col-md-4">

@@ -51,7 +51,7 @@
           <tbody>
             <tr ng-repeat="row in displayedCollection">
               <td>{{ row.creationDate | date:'yyyy-MM-dd HH:mm' }}</td>
-              <td>{{ row.item.model }}</td>
+              <td>{{ row.item.model }} - {{ row.item.gender | translate }} - {{ row.item.size | translate }}</td>
               <td>{{ row.warehouse.name }}</td>
               <td>{{ row.type | translate }}</td>
               <td>{{ row.quantity }}</td>

@@ -100,6 +100,7 @@ module.exports = function (app) {
     var item = new Item;
 
     item.model = data.model;
+    item.note = data.note;
     item.category = data.category;
     item.gender = data.gender;
     item.size = data.size;
@@ -170,6 +171,7 @@ module.exports = function (app) {
         res.send(err);
       } else {
         item.model = data.model;
+        item.note = data.note;
         item.category = data.category;
         item.gender = data.gender;
         item.size = data.size;

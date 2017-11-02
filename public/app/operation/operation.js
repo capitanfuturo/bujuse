@@ -45,11 +45,13 @@ angular.module('warehouse.operation')
       $scope.$watchCollection('displayedCollection', function (newRows, oldRows) {
         var qtyAmount = 0;
         var amount = 0;
-        var size = $scope.displayedCollection.length;
-        for (var i = 0; i < size; i++) {
-          var operation = $scope.displayedCollection[i];
-          qtyAmount = qtyAmount + operation.quantity;
-          amount = amount + operation.price;
+        if($scope.displayedCollection && $scope.displayedCollection.length){
+          var size = $scope.displayedCollection.length;
+          for (var i = 0; i < size; i++) {
+            var operation = $scope.displayedCollection[i];
+            qtyAmount = qtyAmount + operation.quantity;
+            amount = amount + operation.price;
+          }
         }
         $scope.qtyAmount = qtyAmount;
         $scope.amount = amount;

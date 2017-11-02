@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 
 var ItemSchema = new mongoose.Schema({
   model: String,
+  note: String,
   category: {
     type: String,
-    enum: ['CSP', 'TOP', 'VES', 'PAN', 'TUT', 'GON', 'GIL', 'FEL', 'TRI', 'CAP', 'BAG', 'SCI']
+    enum: ['CSP', 'TOP', 'VES', 'PAN', 'TUT', 'GON', 'GIL', 'FEL', 'TRI', 'CAP', 'BAG', 'SCI', 'JAC']
   },
   gender: {
     type: String,
@@ -12,7 +13,7 @@ var ItemSchema = new mongoose.Schema({
   },
   size: {
     type: String,
-    enum: ['S_S', 'S_M', 'S_L', 'S_U', 'S_1', 'S_3', 'S_5', 'S_7', 'S_9', 'S_11']
+    enum: ['S_S', 'S_M', 'S_L', 'S_U', 'S_X', 'S_1', 'S_3', 'S_5', 'S_7', 'S_9', 'S_11']
   },
   price: Number
 });

@@ -26,7 +26,9 @@ angular.module('warehouse.addOperation')
     'WarehouseService',
     'OperationService',
     '$location',
-    function ($scope, OperationTypeService, ItemService, WarehouseService, OperationService, $location) {
+    'ItemSizeService',
+    'ItemGenderService',
+    function ($scope, OperationTypeService, ItemService, WarehouseService, OperationService, $location,ItemSizeService,ItemGenderService) {
 
       var init = true;
 
@@ -102,6 +104,12 @@ angular.module('warehouse.addOperation')
             initSelection();
           }
 
+          var size = $scope.items.length;
+          for (var i = 0; i < size; i++) {
+            var item = $scope.items[i];
+            $scope.items[i].fullname = getFullname(item);
+          }
+
         }, function errorCallback(response) {
           console.log(response);
         });
@@ -136,12 +144,37 @@ angular.module('warehouse.addOperation')
               var item = $scope.items[i];
               if (searchObject.itemId == item._id) {
                 $scope.item = item;
+                $scope.item.fullname = getFullname(item);
                 $scope.hasChangedItem();
               }
             }
           }
         }
         init = false;
+      };
+
+      var getFullname = function (item){
+        var gender = item.gender;
+        var size = item.size;
+        for(var i = 0; i < $scope.genders.length; i++){
+          if(gender == $scope.genders[i].id){
+            gender = $scope.genders[i].key;
+          }
+        }
+        for(var i = 0; i < $scope.sizes.length; i++){
+          if(size == $scope.sizes[i].id){
+            size = $scope.sizes[i].key;
+          }
+        }
+        return item.model + " - " + gender + " - " + size;
+      };
+
+      var retrieveGenders = function() {
+          $scope.genders = ItemGenderService.get();
+      };
+
+      var retrieveSizes = function(gender) {
+          $scope.sizes = ItemSizeService.get(gender);
       };
 
       //init controller
@@ -160,8 +193,10 @@ angular.module('warehouse.addOperation')
 
       $scope.addDisabled = true;
 
+      retrieveSizes();
+      retrieveGenders();
       retrieveWarehouses();
-      retrieveItems();
       retrieveTypes();
+      retrieveItems();
     }
   ]);
