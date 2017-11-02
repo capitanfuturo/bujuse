@@ -5,7 +5,7 @@ var ItemSchema = new mongoose.Schema({
   note: String,
   category: {
     type: String,
-    enum: ['CSP', 'TOP', 'VES', 'PAN', 'TUT', 'GON', 'GIL', 'FEL', 'TRI', 'CAP', 'BAG', 'SCI', 'JAC']
+    enum: ['CSP', 'TOP', 'VES', 'PAN', 'TUT', 'GON', 'GIL', 'FEL', 'TRI', 'CAP', 'BAG', 'SCI', 'JAC', 'BEL']
   },
   gender: {
     type: String,

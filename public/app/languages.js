@@ -5,6 +5,7 @@ angular.module('app').config(function($translateProvider) {
     $translateProvider.translations('it', {
         ADD: 'Aggiungi',
         BAG: 'Borsa',
+        BEL: 'Cintura',
         CANCEL: 'Annulla',
         CAP: 'Cappello',
         CATEGORY: 'Categoria',

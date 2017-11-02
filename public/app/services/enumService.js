@@ -85,6 +85,10 @@ angular.module('EnumService').factory('ItemCategoryService', function() {
                 {
                     id: 'JAC',
                     key: 'Giacca'
+                },
+                {
+                    id: 'BEL',
+                    key: 'Cintura'
                 }
             ];
         }
