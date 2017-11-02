@@ -57,6 +57,9 @@
               <td>{{ row.quantity }}</td>
               <td>{{ row.price }}</td>
               <td class='hidden-print'>
+                <button type="button" ng-click="edit(row)" class="btn btn-sm btn-default"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
+              </td>
+              <td class='hidden-print'>
                 <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
               </td>
             </tr>

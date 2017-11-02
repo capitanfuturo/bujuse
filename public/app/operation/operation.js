@@ -30,6 +30,11 @@ angular.module('warehouse.operation')
         $location.path('/add-operation');
       };
 
+      $scope.edit = function(row) {
+        var operationId = row._id;
+        $location.path('/edit-operation/' + operationId);
+      };
+
       $scope.remove = function (row) {
         var id = row._id;
         OperationService.delete(id).then(function successCallback(response) {

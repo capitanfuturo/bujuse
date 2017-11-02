@@ -29,7 +29,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#!/warehouse"><i class="fa fa-shopping-bag fa-3"></i> Bujuse - {{ 'WAREHOUSE' | translate }}</a>
+        <a class="navbar-brand" href="#!/operation"><i class="fa fa-shopping-bag fa-3"></i> Bujuse - {{ 'WAREHOUSE' | translate }}</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -45,9 +45,9 @@
   <div ng-view autoscroll="true"></div>
 
   <!-- Vendor JS -->
-  <script src="libs/jQuery/jquery.min.js"></script>
-  <script src="libs/bootstrap/dist/bootstrap.min.js"></script>
-  <script src="libs/angular/angular.min.js"></script>
+  <script src="libs/jQuery/dist/jquery.min.js"></script>
+  <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="libs/angular/angular.js"></script>
   <script src="libs/angular-route/angular-route.min.js"></script>
   <script src="libs/angular-smart-table/dist/smart-table.min.js"></script>
   <script src="libs/angular-translate/angular-translate.min.js"></script>
@@ -67,6 +67,7 @@
 
   <script src="app/operation/operation.js"></script>
   <script src="app/operation/add-operation.js"></script>
+  <script src="app/operation/edit-operation.js"></script>
 
   <script src="app/warehouse/warehouse.js"></script>
   <script src="app/warehouse/add-warehouse.js"></script>

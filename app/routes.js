@@ -78,6 +78,22 @@ module.exports = function (app) {
       });
   });
 
+  app.get('/api/operation/:id', function (req, res) {
+    var id = req.params.id;
+    Operation.findOne({
+        _id: id
+      })
+      .populate('item')
+      .populate('warehouse')
+      .exec(function (err, data) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(data);
+        }
+      });
+  });
+
   // route to handle creating goes here (app.post)
   app.post('/api/warehouse', function (req, res) {
     var data = req.body;
@@ -182,6 +198,34 @@ module.exports = function (app) {
             res.send(err);
           } else {
             return res.send(item._id);
+          }
+        });
+      }
+    });
+  });
+
+  app.put('/api/operation', function (req, res) {
+    var data = req.body;
+    var id = data._id;
+
+    Operation.findOne({
+      _id: id
+    }, function (err, operation) {
+      if (err) {
+        res.send(err);
+      } else {
+        operation.creationDate = data.creationDate;
+        operation.type = data.type;
+        operation.quantity = data.quantity;
+        operation.item = data.item;
+        operation.warehouse = data.warehouse;
+        operation.price = data.price;
+
+        operation.save(function (err) {
+          if (err) {
+            res.send(err);
+          } else {
+            return res.send(operation._id);
           }
         });
       }

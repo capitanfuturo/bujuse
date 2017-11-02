@@ -16,7 +16,8 @@ angular.module('app', [
   'warehouse.addItem',
   'warehouse.editItem',
   'warehouse.operation',
-  'warehouse.addOperation'
+  'warehouse.addOperation',
+  'warehouse.editOperation'
 ]);
 
 angular.module('app').config(['$routeProvider',
