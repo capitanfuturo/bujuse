@@ -102,6 +102,21 @@ angular.module('EnumService').factory('ItemSizeService', function() {
         get: function(gender) {
             if(!gender){
               return [{
+                  id: 'S_1M',
+                  key: '1-2 mesi'
+              }, {
+                  id: 'S_3M',
+                  key: '3 mesi'
+              }, {
+                  id: 'S_6M',
+                  key: '6 mesi'
+              }, {
+                  id: 'S_9M',
+                  key: '9 mesi'
+              }, {
+                  id: 'S_12M',
+                  key: '12 mesi'
+              },{
                   id: 'S_1',
                   key: '1-2 anni'
               }, {
@@ -139,6 +154,21 @@ angular.module('EnumService').factory('ItemSizeService', function() {
 
             if (gender == 'G_BM' || gender == 'G_BF' || gender == 'G_BU') {
                 return [{
+                    id: 'S_1M',
+                    key: '1-2 mesi'
+                }, {
+                    id: 'S_3M',
+                    key: '3 mesi'
+                }, {
+                    id: 'S_6M',
+                    key: '6 mesi'
+                }, {
+                    id: 'S_9M',
+                    key: '9 mesi'
+                }, {
+                    id: 'S_12M',
+                    key: '12 mesi'
+                },{
                     id: 'S_1',
                     key: '1-2 anni'
                 }, {

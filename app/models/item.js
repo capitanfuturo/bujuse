@@ -13,7 +13,7 @@ var ItemSchema = new mongoose.Schema({
   },
   size: {
     type: String,
-    enum: ['S_S', 'S_M', 'S_L', 'S_U', 'S_X', 'S_1', 'S_3', 'S_5', 'S_7', 'S_9', 'S_11']
+    enum: ['S_S', 'S_M', 'S_L', 'S_U', 'S_X', 'S_1M', 'S_3M', 'S_6M', 'S_9M', 'S_12M', 'S_1', 'S_3', 'S_5', 'S_7', 'S_9', 'S_11']
   },
   price: Number
 });

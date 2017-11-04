@@ -9,6 +9,7 @@ angular.module('app', [
   'ItemService',
   'OperationService',
   'WarehouseService',
+  'ReportService',
   'warehouse.warehouse',
   'warehouse.addWarehouse',
   'warehouse.editWarehouse',
@@ -17,7 +18,8 @@ angular.module('app', [
   'warehouse.editItem',
   'warehouse.operation',
   'warehouse.addOperation',
-  'warehouse.editOperation'
+  'warehouse.editOperation',
+  'warehouse.stock'
 ]);
 
 angular.module('app').config(['$routeProvider',
