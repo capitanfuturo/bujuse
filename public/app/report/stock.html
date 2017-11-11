@@ -16,6 +16,16 @@
             <th>{{ 'QUANTITY' | translate }}</th>
           </tr>
         </thead>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ qtyAmount }}</td>
+          </tr>
+        </tfoot>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
             <td>{{ row.warehouse }}</td>

@@ -28,7 +28,16 @@ angular.module('warehouse.stock')
       //private functions
       var retrieveStocks = function () {
         ReportService.getStock().then(function successCallback(response) {
-          $scope.rowCollection = response.data
+          $scope.rowCollection = response.data;
+          var qtyAmount = 0;
+          if($scope.rowCollection && $scope.rowCollection.length){
+            var size = $scope.rowCollection.length;
+            for (var i = 0; i < size; i++) {
+              var operation = $scope.rowCollection[i];
+              qtyAmount = qtyAmount + operation.quantity;
+            }
+          }
+          $scope.qtyAmount = qtyAmount;
         }, function errorCallback(response) {
           console.log(response);
         });

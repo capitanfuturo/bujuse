@@ -11,7 +11,7 @@ controller.getMonthlySales = function (req, res) {
       creationDate: {
         $gt: cutoff
       },
-      type: 'I'
+      type: 'O'
     })
     .populate('item')
     .populate('warehouse')
