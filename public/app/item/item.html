@@ -30,7 +30,11 @@
             <th></th>
             <th><input st-search="model" class="input-sm form-control" type="search" /></th>
             <th></th>
-            <th></th>
+            <th>
+              <select st-search="category" ng-model="category" class="form-control" ng-options="category as category.key for category in categories track by category.id">
+                <option value=""></option>
+              </select>
+            </th>
             <th></th>
             <th></th>
             <th></th>
