@@ -5,11 +5,12 @@ angular.module('app', [
   'monospaced.qrcode',
   'pascalprecht.translate',
   'smart-table',
+  'AuthenticationService',
   'EnumService',
   'ItemService',
   'OperationService',
-  'WarehouseService',
   'ReportService',
+  'WarehouseService',
   'warehouse.warehouse',
   'warehouse.addWarehouse',
   'warehouse.editWarehouse',
@@ -19,11 +20,13 @@ angular.module('app', [
   'warehouse.operation',
   'warehouse.addOperation',
   'warehouse.editOperation',
-  'warehouse.stock'
+  'warehouse.login',
+  'warehouse.stock',
+  'warehouse.monthlySales'
 ]);
 
 angular.module('app').config(['$routeProvider',
-  function($routeProvider) {
+  function ($routeProvider) {
     $routeProvider.otherwise({
       redirectTo: '/operation'
     });
@@ -31,6 +34,17 @@ angular.module('app').config(['$routeProvider',
 ]);
 
 angular.module('app').controller('ApplicationCtrl',
-  function($rootScope, $scope, $location) {
-
+  function ($rootScope, AuthenticationService) {
+    $rootScope.isLoggedIn = AuthenticationService.isLoggedIn();
+    $rootScope.currentUser = AuthenticationService.currentUser();
   });
+
+angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
+  function ($rootScope, $location, AuthenticationService) {
+    $rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
+      if ($location.path() != '/login' && !AuthenticationService.isLoggedIn()) {
+        $location.path('/login');
+      }
+    });
+  }
+]);

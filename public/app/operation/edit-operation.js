@@ -47,7 +47,6 @@ angular.module('warehouse.editOperation')
           !$scope.operationType ||
           !$scope.warehouse._id ||
           !$scope.item._id ||
-          !$scope.operation.price ||
           !$scope.operation.quantity;
       };
 

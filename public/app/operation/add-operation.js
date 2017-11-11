@@ -36,7 +36,6 @@ angular.module('warehouse.addOperation')
       $scope.createOperation = function () {
         console.log($scope.operation);
         OperationService.create($scope.operation).then(function successCallback(response) {
-          console.log('return to operation');
           $location.path('/operation');
         }, function errorCallback(response) {
           console.log(response);
@@ -48,7 +47,6 @@ angular.module('warehouse.addOperation')
           !$scope.operationType ||
           !$scope.warehouse._id ||
           !$scope.item._id ||
-          !$scope.operation.price ||
           !$scope.operation.quantity;
       };
 

@@ -6,17 +6,16 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var passport = require('passport');
 
 // configuration ===========================================
 
 // config files
-var db = require('./config/db');
+require('./config/db');
+require('./config/passport');
 
 // set our port
 var port = process.env.PORT || 9000;
-
-// connect to our mongoDB database
-mongoose.connect(db.url);
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json
@@ -39,13 +38,39 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
-require('./app/routes')(app); // configure our routes
+var authenticationRoutes = require('./app/authentication/authentication.routes');
+var warehouseRoutes = require('./app/warehouse/warehouse.routes');
+var itemRoutes = require('./app/item/item.routes');
+var operationRoutes = require('./app/operation/operation.routes');
+var reportRoutes = require('./app/report/report.routes');
+
+app.use('/api', authenticationRoutes);
+app.use('/api', warehouseRoutes);
+app.use('/api', itemRoutes);
+app.use('/api', operationRoutes);
+app.use('/api', reportRoutes);
+
+app.get('*', function (req, res) {
+  res.sendfile('./public/index.html'); // load our public/index.html file
+});
+
+// error handlers
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
 
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);
-
-// shoutout to the user
 console.log('Bujuse server on  ' + port);
 
 // expose app

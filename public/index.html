@@ -36,7 +36,17 @@
           <li><a href="#!/warehouse">{{ 'WAREHOUSE' | translate }}</a></li>
           <li><a href="#!/item">{{ 'ITEM' | translate }}</a></li>
           <li><a href="#!/operation">{{ 'MOVEMENT' | translate }}</a></li>
-          <li><a href="#!/stock">{{ 'STOCK' | translate }}</a></li>
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'REPORT' | translate }} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#!/stock">{{ 'STOCK' | translate }}</a></li>
+              <li><a href="#!/monthly-sales">{{ 'MONTHLY_SALES' | translate }}</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li ng-hide="isLoggedIn"><a href="#!/login">{{ 'SIGN_IN' | translate }}</a></li>
+          <li ng-show="isLoggedIn"><a href="">{{ currentUser.name }}</a></li>
         </ul>
       </div>
     </div>
@@ -57,11 +67,14 @@
   <script src="libs/angular-qrcode/angular-qrcode.js"></script>
 
   <!-- Custom JS -->
+  <script src="app/services/authenticationService.js"></script>
   <script src="app/services/enumService.js"></script>
   <script src="app/services/itemService.js"></script>
   <script src="app/services/operationService.js"></script>
   <script src="app/services/reportService.js"></script>
   <script src="app/services/warehouseService.js"></script>
+
+  <script src="app/auth/login.js"></script>
 
   <script src="app/item/item.js"></script>
   <script src="app/item/add-item.js"></script>
@@ -71,7 +84,8 @@
   <script src="app/operation/add-operation.js"></script>
   <script src="app/operation/edit-operation.js"></script>
 
-  <script src="app/stock/stock.js"></script>
+  <script src="app/report/stock.js"></script>
+  <script src="app/report/monthly-sales.js"></script>
 
   <script src="app/warehouse/warehouse.js"></script>
   <script src="app/warehouse/add-warehouse.js"></script>
