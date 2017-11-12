@@ -33,11 +33,11 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#!/warehouse">{{ 'WAREHOUSE' | translate }}</a></li>
-          <li><a href="#!/item">{{ 'ITEM' | translate }}</a></li>
-          <li><a href="#!/operation">{{ 'MOVEMENT' | translate }}</a></li>
+          <li><a href="#!/warehouse"><i class='fa fa-archive'></i> {{ 'WAREHOUSE' | translate }}</a></li>
+          <li><a href="#!/item"><i class='fa fa-tags'></i> {{ 'ITEM' | translate }}</a></li>
+          <li><a href="#!/operation"><i class='fa fa-barcode'></i> {{ 'MOVEMENT' | translate }}</a></li>
           <li class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'REPORT' | translate }} <span class="caret"></span></a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='fa fa-line-chart'></i> {{ 'REPORT' | translate }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#!/stock">{{ 'STOCK' | translate }}</a></li>
               <li><a href="#!/monthly-sales">{{ 'MONTHLY_SALES' | translate }}</a></li>
@@ -45,8 +45,8 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li ng-hide="isLoggedIn"><a href="#!/login">{{ 'SIGN_IN' | translate }}</a></li>
-          <li ng-show="isLoggedIn"><a href="">{{ currentUser.name }}</a></li>
+          <li ng-hide="isLoggedIn"><a href="#!/login"><i class='fa fa-user-circle'></i> {{ 'SIGN_IN' | translate }}</a></li>
+          <li ng-show="isLoggedIn"><a href=""><i class='fa fa-user-circle'></i> {{ currentUser.name }}</a></li>
         </ul>
       </div>
     </div>
