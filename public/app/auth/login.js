@@ -25,7 +25,6 @@ angular.module('warehouse.login')
       //angular functions
       $scope.onSubmit = function(){
         AuthenticationService.login($scope.credentials);
-        $location.path('/operation');
       }
 
       //private functions

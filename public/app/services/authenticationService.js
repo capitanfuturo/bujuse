@@ -2,7 +2,7 @@
 
 angular.module('AuthenticationService', []);
 
-angular.module('AuthenticationService').service('AuthenticationService', ['$http', '$window', function ($http, $window) {
+angular.module('AuthenticationService').service('AuthenticationService', ['$http', '$window', '$location', function ($http, $window,$location) {
 
   var TOKEN_NAME = 'bujuse-token';
 
@@ -45,6 +45,7 @@ angular.module('AuthenticationService').service('AuthenticationService', ['$http
   var login = function (user) {
     return $http.post('/api/login', user).then(function successCallback(response) {
       saveToken(response.data.token);
+      $location.path('/operation');
     }, function errorCallback(response) {
       console.log(response);
     });

@@ -43,6 +43,7 @@ process.on('SIGTERM', function() {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
+require('../app/customer/customer.model');
 require('../app/item/item.model');
 require('../app/operation/operation.model');
 require('../app/warehouse/warehouse.model');

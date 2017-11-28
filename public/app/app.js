@@ -20,6 +20,9 @@ angular.module('app', [
   'warehouse.operation',
   'warehouse.addOperation',
   'warehouse.editOperation',
+  'warehouse.customer',
+  'warehouse.addCustomer',
+  'warehouse.editCustomer',
   'warehouse.login',
   'warehouse.stock',
   'warehouse.monthlySales'
