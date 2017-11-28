@@ -1,0 +1,53 @@
+<div class="container">
+  <h1><i class='fa fa-address-book-o fa-3'></i> {{ 'EDIT' | translate }} {{ 'ITEM' | translate }}</h1>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'NAME' | translate }}*</label></div>
+    <div class="col-md-2">
+      <input ng-model="customer.name" type="text" class="form-control" ng-change="hasChanged()" />
+    </div>
+    <div class="col-md-2"><label class="control-label">{{ 'PHONE' | translate }}</label></div>
+    <div class="col-md-2">
+      <input ng-model="customer.phone" type="tel" class="form-control" />
+    </div>
+    <label class="col-md-2 control-label">{{ 'EMAIL' | translate }}</label>
+    <div class="col-md-2">
+      <input ng-model="customer.email" type="email" class="form-control" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'ADDRESS' | translate }}</label></div>
+    <div class="col-md-2">
+      <input ng-model="customer.address" type="text" class="form-control" ng-change="hasChanged()" />
+    </div>
+    <div class="col-md-2"><label class="control-label">{{ 'BREAST' | translate }} [cm]</label></div>
+    <div class="col-md-2">
+      <input ng-model="customer.breast" type="number" class="form-control" />
+    </div>
+    <label class="col-md-2 control-label">{{ 'WAIST' | translate }} [cm]</label>
+    <div class="col-md-2">
+      <input ng-model="customer.waist" type="number" class="form-control" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'HIP' | translate }} [cm]</label></div>
+    <div class="col-md-2">
+      <input ng-model="customer.hip" type="number" class="form-control" ng-change="hasChanged()" />
+    </div>
+    <div class="col-md-2"><label class="control-label">{{ 'LEG_LENGTH' | translate }} [cm]</label></div>
+    <div class="col-md-2">
+      <input ng-model="customer.legLength" type="number" class="form-control" />
+    </div>
+    <label class="col-md-2 control-label">{{ 'SHOULDER' | translate }} [cm]</label>
+    <div class="col-md-2">
+      <input ng-model="customer.shoulder" type="number" class="form-control" />
+    </div>
+  </div>
+
+  <!-- Add button -->
+  <div class="row">
+    <div class="col-md-12">
+      <button ng-disabled='addDisabled' class="btn btn-primary" type="submit" ng-click="editCustomer()"><span class="fa fa-times"></span>  {{ 'OK' | translate }}</button>
+      <button class="btn btn-default" type="submit" ng-click="cancel()"><span class="fa fa-check"></span>  {{ 'CANCEL' | translate }}</button>
+    </div>
+  </div>
+</div>
