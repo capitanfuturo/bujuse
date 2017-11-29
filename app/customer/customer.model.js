@@ -1,10 +1,23 @@
 var mongoose = require('mongoose');
 
 var CustomerSchema = new mongoose.Schema({
-  name: String,
-  phone: String,
-  email: String,
-  address: String,
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  phone: {
+    type: String,
+    trim: true
+  },
+  email: {
+    type: String,
+    trim: true
+  },
+  address: {
+    type: String,
+    trim: true
+  },
   breast: Number,
   waist: Number,
   hip: Number,

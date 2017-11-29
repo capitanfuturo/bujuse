@@ -14,6 +14,7 @@ angular.module('app').config(function($translateProvider) {
         CREATION_DATE: 'Data creazione',
         CSP: 'Capospalla',
         CUSTOMER: 'Cliente',
+        CUSTOMERS: 'Clienti',
         DELETE: 'Elimina',
         DESCRIPTION: 'Descrizione',
         DETAIL: 'Dettaglio',
@@ -34,15 +35,19 @@ angular.module('app').config(function($translateProvider) {
         HIP: 'Fianchi',
         I: 'Carico',
         ITEM: 'Articolo',
+        ITEMS: 'Articoli',
         JAC: 'Giacca',
-        LEG_LENGTH: 'Lunghezza Gamba',
+        LEG_LENGTH: 'Lung. Gamba',
         MODEL: 'Modello',
         MONTHLY_SALES: 'Vendite 30 giorni',
         MOVEMENT: 'Movimento',
+        MOVEMENTS: 'Movimenti',
         NAME: 'Nome',
         NOTE: 'Note',
         O: 'Scarico',
         OK: 'Ok',
+        ORDER: 'Ordine',
+        ORDERS: 'Ordini',
         PAN: 'Pantalone',
         PASSWORD: 'Password',
         PRICE: 'Prezzo [€]',
@@ -78,6 +83,7 @@ angular.module('app').config(function($translateProvider) {
         VES: 'Vestito',
         WAIST: 'Vita',
         WAREHOUSE: 'Magazzino',
+        WAREHOUSES: 'Magazzini'
     });
     $translateProvider.translations('en', {});
 

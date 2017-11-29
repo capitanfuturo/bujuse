@@ -1,5 +1,5 @@
 <div class="container">
-  <h1><i class='fa fa-address-book-o fa-3'></i> {{ 'EDIT' | translate }} {{ 'ITEM' | translate }}</h1>
+  <h1><i class='fa fa-address-book-o fa-3'></i> {{ 'EDIT' | translate }} {{ 'CUSTOMER' | translate }}</h1>
   <div class="row">
     <div class="col-md-2"><label class="control-label">{{ 'NAME' | translate }}*</label></div>
     <div class="col-md-2">
@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-md-2"><label class="control-label">{{ 'ADDRESS' | translate }}</label></div>
     <div class="col-md-2">
-      <input ng-model="customer.address" type="text" class="form-control" ng-change="hasChanged()" />
+      <input ng-model="customer.address" type="text" class="form-control"/>
     </div>
     <div class="col-md-2"><label class="control-label">{{ 'BREAST' | translate }} [cm]</label></div>
     <div class="col-md-2">
@@ -31,7 +31,7 @@
   <div class="row">
     <div class="col-md-2"><label class="control-label">{{ 'HIP' | translate }} [cm]</label></div>
     <div class="col-md-2">
-      <input ng-model="customer.hip" type="number" class="form-control" ng-change="hasChanged()" />
+      <input ng-model="customer.hip" type="number" class="form-control"/>
     </div>
     <div class="col-md-2"><label class="control-label">{{ 'LEG_LENGTH' | translate }} [cm]</label></div>
     <div class="col-md-2">

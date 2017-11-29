@@ -32,6 +32,13 @@ controller.create = function (req, res) {
 
   customer.name = data.name;
   customer.phone = data.phone;
+  customer.email = data.email;
+  customer.address = data.address;
+  customer.breast = data.breast;
+  customer.waist = data.waist;
+  customer.hip = data.hip;
+  customer.legLength = data.legLength;
+  customer.shoulder = data.shoulder;
 
   customer.save(function (err) {
     if (err) {
@@ -66,8 +73,16 @@ controller.edit = function (req, res) {
     if (err) {
       res.send(err);
     } else {
+      
       customer.name = data.name;
       customer.phone = data.phone;
+      customer.email = data.email;
+      customer.address = data.address;
+      customer.breast = data.breast;
+      customer.waist = data.waist;
+      customer.hip = data.hip;
+      customer.legLength = data.legLength;
+      customer.shoulder = data.shoulder;
 
       customer.save(function (err) {
         if (err) {
