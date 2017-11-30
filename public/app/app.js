@@ -28,7 +28,7 @@ angular.module('app', [
   'warehouse.order',
   'warehouse.stock',
   'warehouse.warehouse',
-  //'warehouse.addOrder',
+  'warehouse.addOrder',
   //'warehouse.editOrder',
 ]);
 

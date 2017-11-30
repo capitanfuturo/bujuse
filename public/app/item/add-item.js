@@ -28,14 +28,11 @@ angular.module('warehouse.addItem')
 
             //angular functions
             $scope.createItem = function() {
-                console.log($scope.item);
-
                 $scope.item.gender = $scope.gender.id;
                 $scope.item.size = $scope.size.id;
                 $scope.item.category = $scope.category.id;
 
                 ItemService.create($scope.item).then(function successCallback(response) {
-                    console.log('return to item');
                     $location.path('/item');
                 }, function errorCallback(response) {
                     console.log(response);

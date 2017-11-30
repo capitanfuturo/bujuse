@@ -13,6 +13,10 @@ var OrderSchema = new mongoose.Schema({
     type: Date
   },
   deposit: Number,
+  state : {
+    type: String,
+    enum: ['NEW', 'WORKING', 'DONE', 'CLOSED']
+  },
   elements: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'OrderElement'

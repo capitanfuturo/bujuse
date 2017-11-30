@@ -3,8 +3,6 @@ var mongoose = require('mongoose');
 var ItemSchema = new mongoose.Schema({
   model: {
     type: String,
-    required: true,
-    unique: true,
     trim: true
   },
   note: {
