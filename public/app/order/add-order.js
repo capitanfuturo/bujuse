@@ -32,7 +32,18 @@ angular.module('warehouse.addOrder')
       //angular functions
       $scope.createOrder = function () {
         $scope.order.customer = $scope.customer._id;
-        $scope.order.elements = $scope.elements;
+
+        var size = $scope.elements.length;
+        for (var i = 0; i < size; i++) {
+          var element = $scope.elements[i];
+          var orderElement = {};
+          orderElement.itemId = element.item._id;
+          orderElement.itemFullName = getFullname(element.item);
+          orderElement.fabric = element.fabric;
+          orderElement.quantity = element.quantity;
+          orderElement.note = element.note;
+          $scope.order.elements.push(orderElement);
+        }
 
         OrderService.create($scope.order).then(function successCallback(response) {
           $location.path('/order');

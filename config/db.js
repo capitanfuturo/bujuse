@@ -47,6 +47,5 @@ require('../app/customer/customer.model');
 require('../app/item/item.model');
 require('../app/operation/operation.model');
 require('../app/warehouse/warehouse.model');
-require('../app/order/OrderElement.model');
 require('../app/order/Order.model');
 require('../app/user/user.model');

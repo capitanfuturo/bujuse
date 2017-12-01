@@ -29,7 +29,7 @@
   <h2>{{ 'ADD' | translate }} {{ 'ITEM' | translate }}</h2>
   <div class="form-group">
     <div class="row">
-      <div class="col-md-2"><label class="control-label">{{ 'ITEM' | translate }}</label></div>
+      <div class="col-md-2"><label class="control-label">{{ 'ITEM' | translate }} *</label></div>
       <div class="col-md-2">
         <select ng-model="element.item" ng-options="item.fullname for item in items" class="form-control"></select>
       </div>
@@ -63,7 +63,6 @@
         <th>{{ 'ITEM' | translate }}</th>
         <th>{{ 'FABRIC' | translate }}</th>
         <th>{{ 'QUANTITY' | translate }}</th>
-        <th>{{ 'NOTE' | translate }}</th>
         <th>{{ 'NOTE' | translate }}</th>
         <th></th>
       </tr>

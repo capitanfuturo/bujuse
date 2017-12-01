@@ -1,21 +1,32 @@
 var mongoose = require('mongoose');
 var Order = mongoose.model('Order');
-var OrderElement = mongoose.model('OrderElement');
-
 var controller = {};
 
 controller.getAll = function (req, res) {
-  Order.find(function (err, data) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(data);
-    }
-  });
+  Order.find()
+    .populate('customer')
+    .exec(function (err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(data);
+      }
+    });
 };
 
 controller.getById = function (req, res) {
-  //TODO
+  var id = req.params.id;
+  Order.findOne({
+      _id: id
+    })
+    .populate('customer')
+    .exec(function (err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(data);
+      }
+    });
 };
 
 controller.create = function (req, res) {
@@ -27,46 +38,36 @@ controller.create = function (req, res) {
   order.deposit = data.deposit;
   order.customer = data.customer;
   order.state = "NEW";
-  order.elements = [];
+  order.elements = data.elements;
 
-  var size = data.elements.length;
-  for (var i = 0; i < size; i++) {
-    var dataElement = data.elements[i];
-    var element = new OrderElement;
-
-    element.item = dataElement.item;
-    element.fabric = dataElement.fabric;
-    element.quantity = dataElement.quantity;
-    element.note = dataElement.note;
-
-    element.save(function (err) {
-      order.elements.push(element._id);
-    });
-  }
-
-  var wait = true;
-  while(wait){
-    if(order.elements.length == size){
-      wait = false;
-      console(wait);
-      order.save(function (err) {
-        if (err) {
-          res.send(err);
-        } else {
-          return res.send(order._id);
-        }
-      });
+  order.save(function (err) {
+    if (err) {
+      res.send(err);
+    } else {
+      return res.send(order._id);
     }
-  }
+  });
 
 };
 
 controller.delete = function (req, res) {
-  //TODO
+  var id = req.params.id;
+
+  Order.find({
+    _id: id
+  }).remove(function (err) {
+    if (err) {
+      res.send(err);
+    } else {
+      return res.send(id);
+    }
+  });
 };
 
-controller.edit = function (req, res) {
-  //TODO
+controller.changeState = function (req, res) {
+  var id = req.params.id;
+  var state = req.body;
+  console.console.log(id + ' ' + state);
 };
 
 module.exports = controller;

@@ -29,7 +29,7 @@ angular.module('app', [
   'warehouse.stock',
   'warehouse.warehouse',
   'warehouse.addOrder',
-  //'warehouse.editOrder',
+  'warehouse.viewOrder',
 ]);
 
 angular.module('app').config(['$routeProvider',

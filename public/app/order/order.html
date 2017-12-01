@@ -15,18 +15,31 @@
       <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
         <thead>
           <tr>
-            <th>{{ 'NAME' | translate }}</th>
-            <th>{{ 'DESCRIPTION' | translate }}</th>
+            <th>{{ 'CREATION_DATE' | translate }}</th>
+            <th>{{ 'STATE' | translate }}</th>
+            <th>{{ 'DELIVERY_DATE' | translate }}</th>
+            <th>{{ 'CUSTOMER' | translate }}</th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
-            <td>{{ row.name }}</td>
-            <td>{{ row.description }}</td>
+            <td>{{ row.creationDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ row.state | translate }}</td>
+            <td>{{ row.deliveryDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ row.customer.name }}</td>
             <td>
-              <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
+              <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> {{ 'DETAIL' | translate }}</button>
+            </td>
+            <td>
+              <button type="button" ng-click="changeState(row)" class="btn btn-sm btn-warning">
+                <span ng-if='row.state == "NEW"'><span class="fa fa-pencil"></span> {{ 'WORKING' | translate }}</span>
+                <span ng-if='row.state == "WORKING"'><span class="fa fa-pencil"></span> {{ 'READY' | translate }}</span>
+                <span ng-if='row.state == "READY"'><span class="fa fa-pencil"></span> {{ 'DELIVERED' | translate }}</span>
+              </button>
             </td>
             <td>
               <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>

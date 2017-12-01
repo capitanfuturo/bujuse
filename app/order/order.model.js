@@ -1,5 +1,27 @@
 var mongoose = require('mongoose');
 
+var OrderElementSchema = new mongoose.Schema({
+  itemId: {
+    type: String,
+    trim: true
+  },
+  itemFullName: {
+      type: String,
+      trim: true
+  },
+  fabric:{
+    type: String,
+    trim: true
+  },
+  quantity: Number,
+  note: {
+    type: String,
+    trim: true
+  }
+});
+
+module.exports = mongoose.model('OrderElementSchema', OrderElementSchema);
+
 var OrderSchema = new mongoose.Schema({
   creationDate: {
     type: Date,
@@ -15,12 +37,9 @@ var OrderSchema = new mongoose.Schema({
   deposit: Number,
   state : {
     type: String,
-    enum: ['NEW', 'WORKING', 'DONE', 'CLOSED']
+    enum: ['NEW', 'WORKING', 'READY', 'DELIVERED']
   },
-  elements: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'OrderElement'
-  }]
+  elements: [OrderElementSchema]
 });
 
 module.exports = mongoose.model('Order', OrderSchema);

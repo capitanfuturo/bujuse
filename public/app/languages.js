@@ -16,10 +16,12 @@ angular.module('app').config(function($translateProvider) {
         CUSTOMER: 'Cliente',
         CUSTOMERS: 'Clienti',
         DELETE: 'Elimina',
+        DELIVERED: 'Consegnato',
         DELIVERY_DATE: 'Data consegna',
         DEPOSIT: 'Anticipo',
         DESCRIPTION: 'Descrizione',
         DETAIL: 'Dettaglio',
+        READY: 'Pronto',
         DOWNLOAD: 'Scarico',
         EDIT: 'Modifica',
         EMAIL: 'Email',
@@ -46,6 +48,7 @@ angular.module('app').config(function($translateProvider) {
         MOVEMENT: 'Movimento',
         MOVEMENTS: 'Movimenti',
         NAME: 'Nome',
+        NEW: 'Nuovo',
         NOTE: 'Note',
         O: 'Scarico',
         OK: 'Ok',
@@ -76,6 +79,7 @@ angular.module('app').config(function($translateProvider) {
         SHOULDER: 'Spalla',
         SIGN_IN: 'Accedi',
         SIZE: 'Taglia',
+        STATE: 'Stato',
         STOCK: 'Giacenze',
         TYPE: 'Tipo',
         TOP: 'Top',
@@ -87,7 +91,8 @@ angular.module('app').config(function($translateProvider) {
         VIEW: 'Vista',
         WAIST: 'Vita',
         WAREHOUSE: 'Magazzino',
-        WAREHOUSES: 'Magazzini'
+        WAREHOUSES: 'Magazzini',
+        WORKING: 'In lavorazione'
     });
     $translateProvider.translations('en', {});
 
