@@ -27,8 +27,8 @@
           </tr>
         </tfoot>
         <tbody>
-          <tr ng-class='{warning: row.quantity==1, danger: row.quantity<=0, info: row.quantity==2, success: row.quantity>2 }' ng-repeat="row in displayedCollection">
-            <td >{{ row.warehouse }}</td>
+          <tr ng-class='{warning: row.quantity==1, danger: row.quantity<=0, active: row.quantity==2, success: row.quantity>2 }' ng-repeat="row in displayedCollection">
+            <td>{{ row.warehouse }}</td>
             <td>{{ row.item }}</td>
             <td>{{ row.category | translate }}</td>
             <td>{{ row.gender | translate }}</td>

@@ -1,12 +1,22 @@
 <div class="container">
   <!-- Title -->
-  <h1><i class='fa fa-barcode fa-3'></i> {{ 'MOVEMENT' | translate }}</h1>
+  <h1><i class='fa fa-barcode fa-3'></i> {{ 'MOVEMENTS' | translate }}</h1>
   <!-- /Title -->
   <!-- Buttons -->
   <div class="row hidden-print">
     <div class="col-md-2">
       <button class="btn btn-primary" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
     </div>
+    <!--
+    <div class="col-md-2">{{ 'VIEW' | translate }}</div>
+    <div class="col-md-8">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default">Left</button>
+        <button type="button" class="btn btn-default">Middle</button>
+        <button type="button" class="btn btn-default">Right</button>
+      </div>
+    </div>
+  -->
   </div>
   <!-- /Buttons -->
   <!-- Content -->
@@ -18,6 +28,7 @@
             <tr>
               <th st-sort="creationDate" st-sort-default="reverse">{{ 'CREATION_DATE' | translate }}</th>
               <th st-sort="item.model">{{ 'ITEM' | translate }}</th>
+              <th>{{ 'CATEGORY' | translate }}</th>
               <th>{{ 'WAREHOUSE' | translate }}</th>
               <th st-sort="type">{{ 'TYPE' | translate }}</th>
               <th st-sort="quantity">{{ 'QUANTITY' | translate }}</th>
@@ -28,6 +39,7 @@
             <tr>
               <th><input st-search="creationDate" class="input-sm form-control" type="search" /></th>
               <th><input st-search="item.model" class="input-sm form-control" type="search" /></th>
+              <th></th>
               <th></th>
               <th>
                 <select st-search="type" ng-model="operationType" class="form-control" ng-options="type as type.key for type in operationTypes track by type.id">
@@ -42,6 +54,7 @@
           </thead>
           <tfoot>
             <tr>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -61,15 +74,16 @@
             <tr ng-repeat="row in displayedCollection">
               <td>{{ row.creationDate | date:'yyyy-MM-dd HH:mm' }}</td>
               <td>{{ row.item.model }} - {{ row.item.gender | translate }} - {{ row.item.size | translate }}</td>
+              <td>{{ row.item.category | translate }}</td>
               <td>{{ row.warehouse.name }}</td>
               <td>{{ row.type | translate }}</td>
               <td>{{ row.quantity }}</td>
               <td>{{ row.price }}</td>
               <td class='hidden-print'>
-                <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
+                <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
               </td>
               <td class='hidden-print'>
-                <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
+                <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>
               </td>
             </tr>
           </tbody>

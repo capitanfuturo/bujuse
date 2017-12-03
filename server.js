@@ -39,16 +39,20 @@ app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
 var authenticationRoutes = require('./app/authentication/authentication.routes');
+var customerRoutes = require('./app/customer/customer.routes');
 var warehouseRoutes = require('./app/warehouse/warehouse.routes');
 var itemRoutes = require('./app/item/item.routes');
 var operationRoutes = require('./app/operation/operation.routes');
 var reportRoutes = require('./app/report/report.routes');
+var orderRoutes = require('./app/order/order.routes');
 
 app.use('/api', authenticationRoutes);
+app.use('/api', customerRoutes);
 app.use('/api', warehouseRoutes);
 app.use('/api', itemRoutes);
 app.use('/api', operationRoutes);
 app.use('/api', reportRoutes);
+app.use('/api', orderRoutes);
 
 app.get('*', function (req, res) {
   res.sendfile('./public/index.html'); // load our public/index.html file

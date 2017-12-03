@@ -1,8 +1,14 @@
 var mongoose = require('mongoose');
 
 var ItemSchema = new mongoose.Schema({
-  model: String,
-  note: String,
+  model: {
+    type: String,
+    trim: true
+  },
+  note: {
+    type: String,
+    trim: true
+  },
   category: {
     type: String,
     enum: ['CSP', 'TOP', 'VES', 'PAN', 'TUT', 'GON', 'GIL', 'FEL', 'TRI', 'CAP', 'BAG', 'SCI', 'JAC', 'BEL']

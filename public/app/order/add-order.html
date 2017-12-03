@@ -1,0 +1,91 @@
+<div class='container'>
+  <!-- Content -->
+  <h1><i class='fa fa-shopping-cart fa-3'></i> {{ 'ADD' | translate }} {{ 'ORDER' | translate }}</h1>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-2"><label class="control-label">{{ 'CREATION_DATE' | translate }}*</label></div>
+      <div class="col-md-4">
+        <input ng-model="order.creationDate" type="date" class="form-control" ng-change="hasChanged()" />
+      </div>
+      <div class="col-md-2"><label class="control-label">{{ 'DELIVERY_DATE' | translate }}</label></div>
+      <div class="col-md-4">
+        <input ng-model="order.deliveryDate" type="date" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-2"><label class="control-label">{{ 'CUSTOMER' | translate }}*</label></div>
+      <div class="col-md-4">
+        <select ng-model="customer" ng-options="customer.name for customer in customers" class="form-control" ng-change="hasChangedCustomer()"></select>
+      </div>
+      <div class="col-md-2"><label class="control-label">{{ 'DEPOSIT' | translate }} [€]</label></div>
+      <div class="col-md-4">
+        <input ng-model="order.deposit" type="number" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <hr>
+  <h2>{{ 'ADD' | translate }} {{ 'ITEM' | translate }}</h2>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-2"><label class="control-label">{{ 'ITEM' | translate }} *</label></div>
+      <div class="col-md-2">
+        <select ng-model="element.item" ng-options="item.fullname for item in items" class="form-control"></select>
+      </div>
+      <div class="col-md-2"><label class="control-label">{{ 'FABRIC' | translate }}</label></div>
+      <div class="col-md-2">
+        <input ng-model="element.fabric" type="text" class="form-control" id="inputFabric">
+      </div>
+      <div class="col-md-2"><label class="control-label">{{ 'QUANTITY' | translate }}</label></div>
+      <div class="col-md-2">
+        <input ng-model="element.quantity" type="number" class="form-control" id="inputQty">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-2"><label class="control-label">{{ 'NOTE' | translate }}</label></div>
+      <div class="col-md-10">
+        <textarea ng-model="element.note" class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button ng-disabled='!element.item.fullname' class="btn btn-primary" type="submit" ng-click="addOrderElement()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }} {{ 'ITEM' | translate }}</button>
+    </div>
+  </div>
+  <h2>{{ 'ITEMS' | translate }}: {{ elements.length }}</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{ 'ITEM' | translate }}</th>
+        <th>{{ 'FABRIC' | translate }}</th>
+        <th>{{ 'QUANTITY' | translate }}</th>
+        <th>{{ 'NOTE' | translate }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="element in elements track by $index">
+        <td>{{ element.item.fullname }}</td>
+        <td>{{ element.fabric }}</td>
+        <td>{{ element.quantity }}</td>
+        <td>{{ element.note }}</td>
+        <td>
+          <button type="button" ng-click="removeOrderElement($index)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Buttons -->
+  <div class="row">
+    <div class="col-md-12">
+      <button ng-disabled='addDisabled' class="btn btn-primary" type="submit" ng-click="createOrder()"><span class="fa fa-check"></span>  {{ 'OK' | translate }}</button>
+      <button class="btn btn-default" type="submit" ng-click="cancel()"><span class="fa fa-times"></span>  {{ 'CANCEL' | translate }}</button>
+    </div>
+  </div>
+  <!-- /Content -->
+</div>

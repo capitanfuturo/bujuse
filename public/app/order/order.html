@@ -1,0 +1,53 @@
+<div class="container">
+  <!-- Title -->
+  <h1><i class='fa fa-shopping-cart fa-3'></i> {{ 'ORDERS' | translate }}</h1>
+  <!-- /Title -->
+  <!-- Buttons -->
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-primary" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+    </div>
+  </div>
+  <!-- /Buttons -->
+  <!-- Content -->
+  <div class="row">
+    <div class="col-md-12">
+      <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'CREATION_DATE' | translate }}</th>
+            <th>{{ 'STATE' | translate }}</th>
+            <th>{{ 'DELIVERY_DATE' | translate }}</th>
+            <th>{{ 'CUSTOMER' | translate }}</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in displayedCollection">
+            <td>{{ row.creationDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ row.state | translate }}</td>
+            <td>{{ row.deliveryDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ row.customer.name }}</td>
+            <td>
+              <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> {{ 'DETAIL' | translate }}</button>
+            </td>
+            <td>
+              <button type="button" ng-click="changeState(row)" class="btn btn-sm btn-warning">
+                <span ng-if='row.state == "NEW"'><span class="fa fa-pencil"></span> {{ 'WORKING' | translate }}</span>
+                <span ng-if='row.state == "WORKING"'><span class="fa fa-pencil"></span> {{ 'READY' | translate }}</span>
+                <span ng-if='row.state == "READY"'><span class="fa fa-pencil"></span> {{ 'DELIVERED' | translate }}</span>
+              </button>
+            </td>
+            <td>
+              <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- /Content -->
+</div>

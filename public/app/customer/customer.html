@@ -1,6 +1,6 @@
 <div class="container">
   <!-- Title -->
-  <h1 hidden-print><i class='fa fa-tags fa-3'></i> {{ 'ITEMS' | translate }}</h1>
+  <h1 hidden-print><i class='fa fa-address-book-o fa-3'></i> {{ 'CUSTOMERS' | translate }}</h1>
   <!-- /Title -->
   <!-- Buttons -->
   <div class="row hidden-print">
@@ -15,26 +15,24 @@
       <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
         <thead>
           <tr>
-            <th>{{ 'I' | translate }}</th>
-            <th st-sort="model" st-sort-default="true">{{ 'MODEL' | translate }}</th>
-            <th>{{ 'NOTE' | translate }}</th>
-            <th>{{ 'CATEGORY' | translate }}</th>
-            <th>{{ 'GENDER' | translate }}</th>
-            <th>{{ 'SIZE' | translate }}</th>
-            <th st-sort="price">{{ 'PRICE' | translate }}</th>
-            <th>{{ 'O' | translate }}</th>
+            <th st-sort="name" st-sort-default="true">{{ 'NAME' | translate }}</th>
+            <th>{{ 'PHONE' | translate }}</th>
+            <th>{{ 'EMAIL' | translate }}</th>
+            <th>{{ 'ADDRESS' | translate }}</th>
+            <th>{{ 'BREAST' | translate }}</th>
+            <th>{{ 'WAIST' | translate }}</th>
+            <th>{{ 'HIP' | translate }}</th>
+            <th>{{ 'LEG_LENGTH' | translate }}</th>
+            <th>{{ 'SHOULDER' | translate }}</th>
             <th class='hidden-print'></th>
             <th class='hidden-print'></th>
           </tr>
           <tr>
+            <th><input st-search="name" class="input-sm form-control" type="search" /></th>
             <th></th>
-            <th><input st-search="model" class="input-sm form-control" type="search" /></th>
             <th></th>
-            <th>
-              <select st-search="category" ng-model="category" class="form-control" ng-options="category as category.key for category in categories track by category.id">
-                <option value=""></option>
-              </select>
-            </th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -45,18 +43,15 @@
         </thead>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
-            <td>
-              <qrcode data='{{ baseLoadUrl + row._id }}'></qrcode>
-            </td>
-            <td>{{ row.model }}</td>
-            <td>{{ row.note }}</td>
-            <td>{{ row.category | translate }}</td>
-            <td>{{ row.gender | translate }}</td>
-            <td>{{ row.size | translate }}</td>
-            <td>{{ row.price }}</td>
-            <td>
-              <qrcode data='{{ baseDownloadUrl + row._id }}'></qrcode>
-            </td>
+            <td>{{ row.name }}</td>
+            <td>{{ row.phone }}</td>
+            <td><a ng-href="mailto:{{row.email}}">{{ row.email }}</a></td>
+            <td>{{ row.address }}</td>
+            <td>{{ row.breast }} cm</td>
+            <td>{{ row.waist }} cm</td>
+            <td>{{ row.hip }} cm</td>
+            <td>{{ row.legLength }} cm</td>
+            <td>{{ row.shoulder }} cm</td>
             <td class='hidden-print'>
               <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
             </td>

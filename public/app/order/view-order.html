@@ -1,0 +1,63 @@
+<div class='container'>
+  <!-- Content -->
+  <h1><i class='fa fa-shopping-cart fa-3'></i> {{ 'DETAIL' | translate }} {{ 'ORDER' | translate }}</h1>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'CREATION_DATE' | translate }}</label></div>
+    <div class="col-md-4">{{ order.creationDate | date:'yyyy-MM-dd' }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'DELIVERY_DATE' | translate }}</label></div>
+    <div class="col-md-4">{{ order.deliveryDate | date:'yyyy-MM-dd' }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'NAME' | translate }}*</label></div>
+    <div class="col-md-2">{{ order.customer.name }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'PHONE' | translate }}</label></div>
+    <div class="col-md-2">{{ order.customer.phone }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'EMAIL' | translate }}</label></div>
+    <div class="col-md-2">{{ order.customer.email }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'ADDRESS' | translate }}</label></div>
+    <div class="col-md-2">{{ order.customer.address }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'BREAST' | translate }} [cm]</label></div>
+    <div class="col-md-2">{{ order.customer.breast }}</div>
+    <label class="col-md-2 control-label">{{ 'WAIST' | translate }} [cm]</label>
+    <div class="col-md-2">{{ order.customer.waist }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'HIP' | translate }} [cm]</label></div>
+    <div class="col-md-2">{{ order.customer.hip }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'LEG_LENGTH' | translate }} [cm]</label></div>
+    <div class="col-md-2">{{ order.customer.legLength }}</div>
+    <label class="col-md-2 control-label">{{ 'SHOULDER' | translate }} [cm]</label>
+    <div class="col-md-2">{{ order.customer.shoulder }}</div>
+  </div>
+
+  <hr>
+  <h2>{{ 'ITEMS' | translate }}: {{ order.elements.length }}</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{ 'ITEM' | translate }}</th>
+        <th>{{ 'FABRIC' | translate }}</th>
+        <th>{{ 'QUANTITY' | translate }}</th>
+        <th>{{ 'NOTE' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='element in order.elements'>
+        <td>{{ element.itemFullName }}</td>
+        <td>{{ element.fabric }}</td>
+        <td>{{ element.quantity }}</td>
+        <td>{{ element.note }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Buttons -->
+  <div class="row">
+    <div class="col-md-12">
+      <button ng-disabled='addDisabled' class="btn btn-primary" type="submit" ng-click="goBack()"><span class="fa fa-check"></span>  {{ 'OK' | translate }}</button>
+    </div>
+  </div>
+  <!-- /Content -->
+</div>

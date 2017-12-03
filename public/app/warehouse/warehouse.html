@@ -1,6 +1,6 @@
 <div class="container">
   <!-- Title -->
-  <h1><i class='fa fa-archive fa-3'></i> {{ 'WAREHOUSE' | translate }}</h1>
+  <h1><i class='fa fa-archive fa-3'></i> {{ 'WAREHOUSEs' | translate }}</h1>
   <!-- /Title -->
   <!-- Buttons -->
   <div class="row">
@@ -26,10 +26,10 @@
             <td>{{ row.name }}</td>
             <td>{{ row.description }}</td>
             <td>
-              <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span>{{ 'EDIT' | translate }}</button>
+              <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
             </td>
             <td>
-              <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span>{{ 'DELETE' | translate }}</button>
+              <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>
             </td>
           </tr>
         </tbody>
