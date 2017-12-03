@@ -15,12 +15,7 @@ router.get(BASE_PATH + '/:id', auth, controller.getById);
 
 router.post(BASE_PATH, auth, controller.create);
 
-router.put(BASE_PATH + '/:id/state', auth, function (req, res) {
-  console.log(req);
-  var id = req.params.id;
-  var state = req.body;
-  res.json('{result: "ok"}');
-});
+router.put(BASE_PATH, auth, controller.edit);
 
 router.delete(BASE_PATH + '/:id', auth, controller.delete);
 

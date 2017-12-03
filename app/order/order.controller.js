@@ -64,10 +64,32 @@ controller.delete = function (req, res) {
   });
 };
 
-controller.changeState = function (req, res) {
-  var id = req.params.id;
-  var state = req.body;
-  console.console.log(id + ' ' + state);
+controller.edit = function (req, res) {
+  var data = req.body;
+  var id = data._id;
+
+  Order.findOne({
+    _id: id
+  }, function (err, order) {
+    if (err) {
+      res.send(err);
+    } else {
+      order.creationDate = data.creationDate;
+      order.deliveryDate = data.deliveryDate;
+      order.deposit = data.deposit;
+      order.customer = data.customer;
+      order.state = data.state;
+      order.elements = data.elements;
+
+      order.save(function (err) {
+        if (err) {
+          res.send(err);
+        } else {
+          return res.send(order._id);
+        }
+      });
+    }
+  });
 };
 
 module.exports = controller;

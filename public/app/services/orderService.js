@@ -28,8 +28,8 @@ angular.module('OrderService').factory('OrderService', ['$http', 'Authentication
       return $http.delete(BASE_PATH + '/' + id, HEADERS);
     },
 
-    changeState: function (id, state) {
-      return $http.put(BASE_PATH + '/' + id + '/state', state, HEADERS);
+    edit: function (orderData) {
+      return $http.put(BASE_PATH, orderData, HEADERS);
     }
   }
 

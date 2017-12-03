@@ -29,19 +29,17 @@ angular.module('warehouse.order')
       };
 
       $scope.changeState = function (row) {
-        var orderId = row._id;
         var actualState = row.state;
-        var state = '';
 
         if (actualState == 'NEW') {
-          state = 'WORKING';
+          row.state = 'WORKING';
         } else if (actualState == 'WORKING') {
-          state = 'READY';
+          row.state = 'READY';
         } else if (actualState == 'READY') {
-          state = 'DELIVERED';
+          row.state = 'DELIVERED';
         }
 
-        OrderService.changeState(orderId, state).then(function successCallback(response) {
+        OrderService.edit(row).then(function successCallback(response) {
           retrieveOrders();
         }, function errorCallback(response) {
           console.log(response);
@@ -62,7 +60,7 @@ angular.module('warehouse.order')
 
       $scope.view = function(row){
         var id = row._id;
-        $location.path('/view-order');
+        $location.path('/view-order/' + id);
       }
 
       //private functions
