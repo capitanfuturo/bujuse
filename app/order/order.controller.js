@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 var Order = mongoose.model('Order');
+var Operation = mongoose.model('Operation');
 var controller = {};
 
 controller.getAll = function (req, res) {
   Order.find()
     .populate('customer')
+    .populate('warehouse')
     .exec(function (err, data) {
       if (err) {
         res.send(err);
@@ -20,6 +22,7 @@ controller.getById = function (req, res) {
       _id: id
     })
     .populate('customer')
+    .populate('warehouse')
     .exec(function (err, data) {
       if (err) {
         res.send(err);
@@ -37,6 +40,8 @@ controller.create = function (req, res) {
   order.deliveryDate = data.deliveryDate;
   order.deposit = data.deposit;
   order.customer = data.customer;
+  order.customerName = data.customerName;
+  order.warehouse = data.warehouse;
   order.state = "NEW";
   order.elements = data.elements;
 
@@ -78,6 +83,41 @@ controller.edit = function (req, res) {
       order.deliveryDate = data.deliveryDate;
       order.deposit = data.deposit;
       order.customer = data.customer;
+      order.customerName = data.customerName;
+      order.warehouse = data.warehouse;
+
+      if (data.state == 'READY') {
+        // case upload to warehouse
+        var size = order.elements.length;
+        for (var i = 0; i < size; i++) {
+          var element = order.elements[i];
+          var operation = new Operation;
+          operation.creationDate = new Date();
+          operation.type = 'I';
+          operation.quantity = element.quantity;
+          operation.item = element.itemId;
+          operation.warehouse = order.warehouse;
+          operation.price = element.price;
+          operation.note = order.customerName;
+          operation.save();
+        }
+      } else if (data.state == 'DELIVERED') {
+        // case download to warehouse
+        var size = order.elements.length;
+        for (var i = 0; i < size; i++) {
+          var element = order.elements[i];
+          var operation = new Operation;
+          operation.creationDate = new Date();
+          operation.type = 'O';
+          operation.quantity = element.quantity;
+          operation.item = element.itemId;
+          operation.warehouse = order.warehouse;
+          operation.price = element.price;
+          operation.note = order.customerName;
+          operation.save();
+        }
+      }
+
       order.state = data.state;
       order.elements = data.elements;
 

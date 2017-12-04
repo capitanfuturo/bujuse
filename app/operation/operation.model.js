@@ -18,7 +18,11 @@ var OperationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Warehouse'
   },
-  price: Number
+  price: Number,
+  note: {
+    type: String,
+    trim: true
+  }
 });
 
 module.exports = mongoose.model('Operation', OperationSchema);

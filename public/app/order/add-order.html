@@ -25,13 +25,21 @@
       </div>
     </div>
   </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-2"><label class="control-label">{{ 'WAREHOUSE' | translate }}*</label></div>
+      <div class="col-md-4">
+        <select ng-model="warehouse" ng-options="warehouse.name for warehouse in warehouses track by warehouse._id" class="form-control" ng-change="hasChangedWarehouse()"></select>
+      </div>
+    </div>
+  </div>
   <hr>
   <h2>{{ 'ADD' | translate }} {{ 'ITEM' | translate }}</h2>
   <div class="form-group">
     <div class="row">
       <div class="col-md-2"><label class="control-label">{{ 'ITEM' | translate }} *</label></div>
       <div class="col-md-2">
-        <select ng-model="element.item" ng-options="item.fullname for item in items" class="form-control"></select>
+        <select ng-model="element.item" ng-options="item.fullname for item in items" class="form-control" ng-change="hasChangedItem()"></select>
       </div>
       <div class="col-md-2"><label class="control-label">{{ 'FABRIC' | translate }}</label></div>
       <div class="col-md-2">
@@ -45,8 +53,12 @@
   </div>
   <div class="form-group">
     <div class="row">
+      <div class="col-md-2"><label class="control-label">{{ 'PRICE' | translate }}</label></div>
+      <div class="col-md-4">
+        <input ng-model="element.price" type="number" class="form-control">
+      </div>
       <div class="col-md-2"><label class="control-label">{{ 'NOTE' | translate }}</label></div>
-      <div class="col-md-10">
+      <div class="col-md-4">
         <textarea ng-model="element.note" class="form-control" rows="3"></textarea>
       </div>
     </div>
@@ -63,6 +75,7 @@
         <th>{{ 'ITEM' | translate }}</th>
         <th>{{ 'FABRIC' | translate }}</th>
         <th>{{ 'QUANTITY' | translate }}</th>
+        <th>{{ 'PRICE' | translate }}</th>
         <th>{{ 'NOTE' | translate }}</th>
         <th></th>
       </tr>
@@ -72,6 +85,7 @@
         <td>{{ element.item.fullname }}</td>
         <td>{{ element.fabric }}</td>
         <td>{{ element.quantity }}</td>
+        <td>{{ element.price }}</td>
         <td>{{ element.note }}</td>
         <td>
           <button type="button" ng-click="removeOrderElement($index)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>

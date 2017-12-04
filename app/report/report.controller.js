@@ -19,7 +19,48 @@ controller.getMonthlySales = function (req, res) {
       if (err) {
         res.send(err);
       } else {
-        res.json(data);
+        var size = data.length;
+        // A map with key = warehouse._id + "|" + item.id
+        // and value {warehouse.name, item.model, item.category, item.gender, item.size, quantity, price}
+        var result = new Map();
+        for (var i = 0; i < size; i++) {
+          var row = data[i];
+          var key = row.item._id;
+          if (row.warehouse) {
+            key = row.warehouse._id + '|' + row.item._id;
+          }
+
+          if (result.has(key)) {
+            var value = result.get(key);
+            value.quantity = value.quantity + row.quantity;
+            value.price = value.price + row.price;
+            result.set(key, value);
+          } else {
+            var warehouse = '';
+            if (row.warehouse) {
+              warehouse = row.warehouse.name;
+            }
+            var quantity = row.quantity;
+            var price = row.price;
+
+            var newValue = {
+              "warehouse": warehouse,
+              "model": row.item.model,
+              "category": row.item.category,
+              "gender": row.item.gender,
+              "size": row.item.size,
+              "quantity": quantity,
+              "price": price
+            };
+            result.set(key, newValue);
+          }
+        } //end for
+
+        var arr = [];
+        result.forEach(function (item, key, mapObj) {
+          arr.push(item);
+        });
+        res.json(arr);
       }
     });
 };

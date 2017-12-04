@@ -19,11 +19,11 @@
             <th>{{ 'PHONE' | translate }}</th>
             <th>{{ 'EMAIL' | translate }}</th>
             <th>{{ 'ADDRESS' | translate }}</th>
-            <th>{{ 'BREAST' | translate }}</th>
-            <th>{{ 'WAIST' | translate }}</th>
-            <th>{{ 'HIP' | translate }}</th>
-            <th>{{ 'LEG_LENGTH' | translate }}</th>
-            <th>{{ 'SHOULDER' | translate }}</th>
+            <th>{{ 'BREAST' | translate }} [cm]</th>
+            <th>{{ 'WAIST' | translate }} [cm]</th>
+            <th>{{ 'HIP' | translate }} [cm]</th>
+            <th>{{ 'LEG_LENGTH' | translate }} [cm]</th>
+            <th>{{ 'SHOULDER' | translate }} [cm]</th>
             <th class='hidden-print'></th>
             <th class='hidden-print'></th>
           </tr>
@@ -47,11 +47,11 @@
             <td>{{ row.phone }}</td>
             <td><a ng-href="mailto:{{row.email}}">{{ row.email }}</a></td>
             <td>{{ row.address }}</td>
-            <td>{{ row.breast }} cm</td>
-            <td>{{ row.waist }} cm</td>
-            <td>{{ row.hip }} cm</td>
-            <td>{{ row.legLength }} cm</td>
-            <td>{{ row.shoulder }} cm</td>
+            <td>{{ row.breast }}</td>
+            <td>{{ row.waist }}</td>
+            <td>{{ row.hip }}</td>
+            <td>{{ row.legLength }}</td>
+            <td>{{ row.shoulder }}</td>
             <td class='hidden-print'>
               <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
             </td>

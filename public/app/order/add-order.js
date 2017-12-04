@@ -6,7 +6,8 @@ angular.module('warehouse.addOrder', [
   'EnumService',
   'ItemService',
   'OrderService',
-  'CustomerService'
+  'CustomerService',
+  'WarehouseService'
 ]);
 
 angular.module('warehouse.addOrder').config(['$routeProvider',
@@ -27,11 +28,13 @@ angular.module('warehouse.addOrder')
     'ItemGenderService',
     'ItemSizeService',
     'OrderService',
-    function ($scope, $location, ItemService, CustomerService, ItemGenderService, ItemSizeService, OrderService) {
+    'WarehouseService',
+    function ($scope, $location, ItemService, CustomerService, ItemGenderService, ItemSizeService, OrderService, WarehouseService) {
 
       //angular functions
       $scope.createOrder = function () {
         $scope.order.customer = $scope.customer._id;
+        $scope.order.customerName = $scope.customer.name;
 
         var size = $scope.elements.length;
         for (var i = 0; i < size; i++) {
@@ -41,6 +44,7 @@ angular.module('warehouse.addOrder')
           orderElement.itemFullName = getFullname(element.item);
           orderElement.fabric = element.fabric;
           orderElement.quantity = element.quantity;
+          orderElement.price = element.price;
           orderElement.note = element.note;
           $scope.order.elements.push(orderElement);
         }
@@ -55,6 +59,7 @@ angular.module('warehouse.addOrder')
       $scope.hasChanged = function () {
         $scope.addDisabled = !$scope.order.creationDate ||
           !$scope.order.customer ||
+          !$scope.order.warehouse ||
           $scope.elements.length == 0;
       };
 
@@ -68,11 +73,20 @@ angular.module('warehouse.addOrder')
         $scope.element = {};
         $scope.element.quantity = 1;
         $scope.hasChanged();
-      }
+      };
 
       $scope.removeOrderElement = function (index) {
         $scope.elements.splice(index, 1);
-      }
+      };
+
+      $scope.hasChangedWarehouse = function () {
+        $scope.order.warehouse = $scope.warehouse._id;
+        $scope.hasChanged();
+      };
+
+      $scope.hasChangedItem = function () {
+        $scope.element.price = $scope.element.quantity * $scope.element.item.price;
+      };
 
       //private functions
       var retrieveCustomers = function () {
@@ -124,6 +138,22 @@ angular.module('warehouse.addOrder')
         return item.model + " - " + gender + " - " + size;
       };
 
+      var retrieveWarehouses = function () {
+        WarehouseService.get().then(function successCallback(response) {
+          $scope.warehouses = response.data;
+          if ($scope.warehouses && $scope.warehouses.length) {
+            $scope.warehouse = $scope.warehouses[0];
+            $scope.hasChangedWarehouse();
+          } else {
+            $scope.warehouses.sort(function (a, b) {
+              return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
+            });
+          }
+        }, function errorCallback(response) {
+          console.log(response);
+        });
+      };
+
       //init controller
       $scope.order = {};
       $scope.order.creationDate = new Date();
@@ -131,6 +161,9 @@ angular.module('warehouse.addOrder')
 
       $scope.customers = [];
       $scope.customer = {};
+
+      $scope.warehouses = [];
+      $scope.warehouse = {};
 
       $scope.items = [];
 
@@ -144,5 +177,6 @@ angular.module('warehouse.addOrder')
       retrieveGenders();
       retrieveCustomers();
       retrieveItems();
+      retrieveWarehouses();
     }
   ]);

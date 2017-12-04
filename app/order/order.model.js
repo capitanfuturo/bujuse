@@ -17,7 +17,8 @@ var OrderElementSchema = new mongoose.Schema({
   note: {
     type: String,
     trim: true
-  }
+  },
+  price: Number,
 });
 
 module.exports = mongoose.model('OrderElementSchema', OrderElementSchema);
@@ -30,6 +31,14 @@ var OrderSchema = new mongoose.Schema({
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Customer'
+  },
+  customerName: {
+    type: String,
+    trim: true
+  },
+  warehouse: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Warehouse'
   },
   deliveryDate: {
     type: Date
