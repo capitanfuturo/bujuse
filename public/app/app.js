@@ -5,6 +5,7 @@ angular.module('app', [
   'monospaced.qrcode',
   'pascalprecht.translate',
   'smart-table',
+  'ui.bootstrap',
   'AuthenticationService',
   'EnumService',
   'ItemService',

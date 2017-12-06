@@ -19,6 +19,7 @@
     "angular-smart-table": "2.x",
     "angular-translate": "2.x",
     "font-awesome": "4.x",
-    "angular-qrcode": "7.x"
+    "angular-qrcode": "7.x",
+    "angular-bootstrap": "2.5.x"
   }
 }

@@ -20,6 +20,10 @@ angular.module('OperationService').factory('OperationService', ['$http', 'Authen
       return $http.get(BASE_PATH + '/' + id, HEADERS);
     },
 
+    getByDays: function (days) {
+      return $http.get(BASE_PATH + '/days/' + days, HEADERS);
+    },
+
     create: function (operationData) {
       return $http.post(BASE_PATH, operationData, HEADERS);
     },

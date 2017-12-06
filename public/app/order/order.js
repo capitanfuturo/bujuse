@@ -4,6 +4,7 @@ angular.module('warehouse.order', [
   'ngRoute',
   'pascalprecht.translate',
   'smart-table',
+  'ui.bootstrap',
   'OrderService'
 ]);
 
@@ -66,7 +67,9 @@ angular.module('warehouse.order')
       //private functions
       var retrieveOrders = function () {
         OrderService.get().then(function successCallback(response) {
-          $scope.rowCollection = response.data
+          var data = response.data;
+          //TODO add priority
+          $scope.rowCollection = data;
         }, function errorCallback(response) {
           console.log(response);
         });

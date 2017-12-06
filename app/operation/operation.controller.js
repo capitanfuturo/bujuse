@@ -16,6 +16,27 @@ controller.getAll = function (req, res) {
     });
 };
 
+controller.getByDays = function (req, res) {
+  var days = req.params.days;
+  var cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+
+  Operation.find({
+      creationDate: {
+        $gt: cutoff
+      }
+    })
+    .populate('item')
+    .populate('warehouse')
+    .exec(function (err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(data);
+      }
+    });
+};
+
 controller.getById = function (req, res) {
   var id = req.params.id;
   Operation.findOne({

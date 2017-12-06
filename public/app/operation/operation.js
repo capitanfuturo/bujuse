@@ -4,6 +4,7 @@ angular.module('warehouse.operation', [
   'ngRoute',
   'pascalprecht.translate',
   'smart-table',
+  'ui.bootstrap',
   'EnumService',
   'OperationService'
 ]);
@@ -25,15 +26,29 @@ angular.module('warehouse.operation')
     '$location',
     function ($scope, OperationTypeService, OperationService, $location) {
 
+      var ONE_MONTH = 30;
+
       //angular functions
       $scope.add = function () {
         $location.path('/add-operation');
       };
 
-      $scope.edit = function(row) {
+      $scope.edit = function (row) {
         var operationId = row._id;
         $location.path('/edit-operation/' + operationId);
       };
+
+      $scope.$watch('view.activeView', function (newValue, oldValue) {
+        if ($scope.view.activeView > 0) {
+          OperationService.getByDays($scope.view.activeView).then(function successCallback(response) {
+            $scope.rowCollection = response.data;
+          }, function errorCallback(response) {
+            console.log(response);
+          });
+        } else {
+          retrieveOperation();
+        }
+      });
 
       $scope.remove = function (row) {
         var id = row._id;
@@ -50,7 +65,7 @@ angular.module('warehouse.operation')
       $scope.$watchCollection('displayedCollection', function (newRows, oldRows) {
         var qtyAmount = 0;
         var amount = 0;
-        if($scope.displayedCollection && $scope.displayedCollection.length){
+        if ($scope.displayedCollection && $scope.displayedCollection.length) {
           var size = $scope.displayedCollection.length;
           for (var i = 0; i < size; i++) {
             var operation = $scope.displayedCollection[i];
@@ -80,6 +95,8 @@ angular.module('warehouse.operation')
       $scope.qtyAmount = 0;
       $scope.amount = 0;
       retrieveTypes();
-      retrieveOperation();
+
+      $scope.view = {};
+      $scope.view.activeView = ONE_MONTH;
     }
   ]);
