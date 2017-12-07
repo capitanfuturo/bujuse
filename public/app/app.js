@@ -54,7 +54,11 @@ angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
       if ($location.path() != '/login' && !AuthenticationService.isLoggedIn()) {
         $location.path('/login');
       }else{
-        //console.log(AuthenticationService.currentUser());
+        if(!$rootScope.currentUser){
+          var currentUser = AuthenticationService.currentUser();
+          $rootScope.currentUser = currentUser;
+        }
+        console.log($rootScope.currentUser);
       }
     });
   }
