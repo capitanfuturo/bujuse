@@ -29,6 +29,11 @@ angular.module('warehouse.order')
         $location.path('/add-order');
       };
 
+      $scope.edit = function (row) {
+        var orderId = row._id;
+        $location.path('/edit-order/' + orderId);
+      };
+
       $scope.changeState = function (row) {
         var actualState = row.state;
 

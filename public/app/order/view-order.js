@@ -37,6 +37,18 @@ angular.module('warehouse.viewOrder')
 
       OrderService.getById(orderId).then(function successCallback(response) {
         $scope.order = response.data;
+
+        // amount
+        var size = $scope.order.elements.length;
+        var amount = 0;
+        for (var i = 0; i < size; i++) {
+          var element = $scope.order.elements[i];
+          amount = amount + element.price;
+        }
+        $scope.amount = amount;
+        if ($scope.order.deposit) {
+          $scope.amount = amount - $scope.order.deposit;
+        }
       }, function errorCallback(response) {
         console.log(response);
       });

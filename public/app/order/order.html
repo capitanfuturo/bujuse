@@ -22,12 +22,12 @@
             <th>{{ 'WAREHOUSE' | translate }}</th>
             <th></th>
             <th></th>
-            <th></th>
+            <th>{{ 'CHANGE_TO' | translate }}</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="row in displayedCollection">
+          <tr ng-class='{success: row.state=="READY", warning: row.state=="WORKING", danger: row.state=="NEW" }' ng-repeat="row in displayedCollection">
             <td>{{ row.creationDate | date:'yyyy-MM-dd' }}</td>
             <td>{{ row.state | translate }}</td>
             <td>{{ row.deliveryDate | date:'yyyy-MM-dd' }}</td>
@@ -37,10 +37,13 @@
               <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> {{ 'DETAIL' | translate }}</button>
             </td>
             <td>
+              <button type="button" ng-if='row.state == "NEW" || row.state == "WORKING"' ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
+            </td>
+            <td>
               <button type="button" ng-click="changeState(row)" class="btn btn-sm btn-warning" ng-if='row.state != "DELIVERED"'>
-                <span ng-if='row.state == "NEW"'><span class="fa fa-pencil"></span> {{ 'WORKING' | translate }}</span>
-                <span ng-if='row.state == "WORKING"'><span class="fa fa-pencil"></span> {{ 'READY' | translate }}</span>
-                <span ng-if='row.state == "READY"'><span class="fa fa-pencil"></span> {{ 'DELIVERED' | translate }}</span>
+                <span ng-if='row.state == "NEW"'><span class="fa fa-refresh"></span> {{ 'WORKING' | translate }}</span>
+                <span ng-if='row.state == "WORKING"'><span class="fa fa-refresh"></span> {{ 'READY' | translate }}</span>
+                <span ng-if='row.state == "READY"'><span class="fa fa-refresh"></span> {{ 'DELIVERED' | translate }}</span>
               </button>
             </td>
             <td>

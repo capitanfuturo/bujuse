@@ -31,6 +31,7 @@ angular.module('app', [
   'warehouse.warehouse',
   'warehouse.addOrder',
   'warehouse.viewOrder',
+  'warehouse.editOrder',
 ]);
 
 angular.module('app').config(['$routeProvider',
@@ -52,6 +53,8 @@ angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
     $rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
       if ($location.path() != '/login' && !AuthenticationService.isLoggedIn()) {
         $location.path('/login');
+      }else{
+        //console.log(AuthenticationService.currentUser());
       }
     });
   }

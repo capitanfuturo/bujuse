@@ -1,38 +1,43 @@
 <div class='container'>
   <!-- Content -->
-  <h1><i class='fa fa-shopping-cart fa-3'></i> {{ 'ADD' | translate }} {{ 'ORDER' | translate }}</h1>
+  <h1><i class='fa fa-shopping-cart fa-3'></i> {{ 'EDIT' | translate }} {{ 'ORDER' | translate }}</h1>
+  <h2>{{ order.customer.name }}</h2>
+  <h3>{{ order.customer.phone }} {{ order.customer.email }}</h3>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'CREATION_DATE' | translate }}</label></div>
+    <div class="col-md-4">{{ order.creationDate | date:'yyyy-MM-dd' }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'WAREHOUSE' | translate }}</label></div>
+    <div class="col-md-4">{{ order.warehouse.name }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'ADDRESS' | translate }}</label></div>
+    <div class="col-md-2">{{ order.customer.address }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'BREAST' | translate }} [cm]</label></div>
+    <div class="col-md-2">{{ order.customer.breast }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'WAIST' | translate }} [cm]</label></div>
+    <div class="col-md-2">{{ order.customer.waist }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><label class="control-label">{{ 'HIP' | translate }} [cm]</label></div>
+    <div class="col-md-2">{{ order.customer.hip }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'LEG_LENGTH' | translate }} [cm]</label></div>
+    <div class="col-md-2">{{ order.customer.legLength }}</div>
+    <div class="col-md-2"><label class="control-label">{{ 'SHOULDER' | translate }} [cm]</label></div>
+    <div class="col-md-2">{{ order.customer.shoulder }}</div>
+  </div>
   <div class="form-group">
     <div class="row">
-      <div class="col-md-2"><label class="control-label">{{ 'CREATION_DATE' | translate }}*</label></div>
-      <div class="col-md-4">
-        <input ng-model="order.creationDate" type="date" class="form-control" ng-change="hasChanged()" />
-      </div>
       <div class="col-md-2"><label class="control-label">{{ 'DELIVERY_DATE' | translate }}</label></div>
       <div class="col-md-4">
         <input ng-model="order.deliveryDate" type="date" class="form-control" />
       </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-2"><label class="control-label">{{ 'CUSTOMER' | translate }}*</label></div>
+      <div class="col-md-2"><label class="control-label">{{ 'DEPOSIT' | translate }}</label></div>
       <div class="col-md-4">
-        <select ng-model="customer" ng-options="customer.name for customer in customers" class="form-control" ng-change="hasChangedCustomer()"></select>
-      </div>
-      <div class="col-md-2"><label class="control-label">{{ 'DEPOSIT' | translate }} [€]</label></div>
-      <div class="col-md-4">
-        <input ng-model="order.deposit" type="number" class="form-control" ng-change='hasChangedDeposit()'/>
+        <input ng-model="order.deposit" type="number" class="form-control" ng-change="hasChangedDeposit()" />
       </div>
     </div>
   </div>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-2"><label class="control-label">{{ 'WAREHOUSE' | translate }}*</label></div>
-      <div class="col-md-4">
-        <select ng-model="warehouse" ng-options="warehouse.name for warehouse in warehouses track by warehouse._id" class="form-control" ng-change="hasChangedWarehouse()"></select>
-      </div>
-    </div>
-  </div>
+
   <hr>
   <h2>{{ 'ADD' | translate }} {{ 'ITEM' | translate }}</h2>
   <div class="form-group">
@@ -69,9 +74,9 @@
     </div>
   </div>
 
-  <div class='row'>
-    <div class='col-md-12'>
-      <h2>{{ 'ITEMS' | translate }}: {{ elements.length }}</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{ 'ITEMS' | translate }}: {{ order.elements.length }}</h2>
       <table class="table">
         <thead>
           <tr>
@@ -84,8 +89,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="element in elements track by $index">
-            <td>{{ element.item.fullname }}</td>
+          <tr ng-repeat='element in elements'>
+            <td>{{ element.itemFullName }}</td>
             <td>{{ element.fabric }}</td>
             <td>{{ element.quantity }}</td>
             <td>{{ element.price }}</td>
@@ -108,7 +113,7 @@
   <!-- Buttons -->
   <div class="row">
     <div class="col-md-12">
-      <button ng-disabled='addDisabled' class="btn btn-primary" type="submit" ng-click="createOrder()"><span class="fa fa-check"></span>  {{ 'OK' | translate }}</button>
+      <button ng-disabled='addDisabled' class="btn btn-primary" type="submit" ng-click="editOrder()"><span class="fa fa-check"></span>  {{ 'OK' | translate }}</button>
       <button class="btn btn-default" type="submit" ng-click="cancel()"><span class="fa fa-times"></span>  {{ 'CANCEL' | translate }}</button>
     </div>
   </div>

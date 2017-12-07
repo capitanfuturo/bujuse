@@ -14,6 +14,10 @@ var userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  role: {
+    type: String,
+    enum: ['ADMIN', 'CONTRIBUTOR']
+  },
   hash: String,
   salt: String
 });

@@ -27,6 +27,7 @@ angular.module('warehouse.operation')
     function ($scope, OperationTypeService, OperationService, $location) {
 
       var ONE_MONTH = 30;
+      var ONE_WEEK = 7;
 
       //angular functions
       $scope.add = function () {
@@ -97,6 +98,6 @@ angular.module('warehouse.operation')
       retrieveTypes();
 
       $scope.view = {};
-      $scope.view.activeView = ONE_MONTH;
+      $scope.view.activeView = ONE_WEEK;
     }
   ]);

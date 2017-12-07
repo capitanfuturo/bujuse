@@ -7,9 +7,9 @@
     <div class="col-md-2">
       <button class="btn btn-primary" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
     </div>
-    <div class="col-md-10">
-      <span>{{ 'VIEW' | translate }}</span>
+    <div class="col-md-8">
       <div class="btn-group">
+        <label class="btn btn-primary" ng-model="view.activeView" uib-btn-radio="7">{{ 'VIEW_1WEEK' | translate}}</label>
         <label class="btn btn-primary" ng-model="view.activeView" uib-btn-radio="30">{{ 'VIEW_1MONTH' | translate}}</label>
         <label class="btn btn-primary" ng-model="view.activeView" uib-btn-radio="60">{{ 'VIEW_3MONTH' | translate}}</label>
         <label class="btn btn-primary" ng-model="view.activeView" uib-btn-radio="-1">{{ 'VIEW_ALL' | translate}}</label>
@@ -66,7 +66,7 @@
               <td class='hidden-print'></td>
             </tr>
             <tr>
-              <td colspan="8" class="text-center hidden-print">
+              <td colspan="10" class="text-center hidden-print">
                 <div st-pagination="" st-items-by-page="25" st-displayed-pages="7"></div>
               </td>
             </tr>

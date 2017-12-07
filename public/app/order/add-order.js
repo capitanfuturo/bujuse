@@ -73,10 +73,16 @@ angular.module('warehouse.addOrder')
         $scope.element = {};
         $scope.element.quantity = 1;
         $scope.hasChanged();
+        adjustAmount();
+      };
+
+      $scope.hasChangedDeposit = function () {
+        adjustAmount();
       };
 
       $scope.removeOrderElement = function (index) {
         $scope.elements.splice(index, 1);
+        adjustAmount();
       };
 
       $scope.hasChangedWarehouse = function () {
@@ -88,14 +94,44 @@ angular.module('warehouse.addOrder')
         $scope.element.price = $scope.element.quantity * $scope.element.item.price;
       };
 
+      $scope.hasChangedQty = function() {
+        $scope.element.price = $scope.element.quantity * $scope.element.item.price;
+      };
+
+      $scope.cancel = function () {
+        $location.path('/order');
+      };
+
       //private functions
+      var adjustAmount = function () {
+        var size = $scope.elements.length;
+        var amount = 0;
+        for (var i = 0; i < size; i++) {
+          var element = $scope.elements[i];
+          amount = amount + element.price;
+        }
+        $scope.amount = amount;
+        if ($scope.order.deposit) {
+          $scope.amount = amount - $scope.order.deposit;
+        }
+      };
+
       var retrieveCustomers = function () {
         CustomerService.get().then(function successCallback(response) {
           $scope.customers = response.data;
+          $scope.customers.sort(compareCustomers);
         }, function errorCallback(response) {
           console.log(response);
         });
-      }
+      };
+
+      var compareCustomers = function(a, b) {
+          if (a.name < b.name)
+              return -1;
+          if (a.name > b.name)
+              return 1;
+          return 0;
+      };
 
       var retrieveGenders = function () {
         $scope.genders = ItemGenderService.get();
