@@ -60,8 +60,8 @@ angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
         }
         if(!$rootScope.currentUser || !$rootScope.currentUser.role || $rootScope.currentUser.role != 'ADMIN'){
           var path = $location.path();
-          if(path == '/order' || path == '/warehouse' || path == '/monthly-sales' || path == '/stock'){
-            $location.path('/login');
+          if(path == '/operation' || path == '/warehouse' || path == '/monthly-sales' || path == '/stock'){
+            $location.path('/order');
           }
         }
         return;
