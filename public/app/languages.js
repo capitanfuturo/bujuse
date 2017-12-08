@@ -45,6 +45,7 @@ angular.module('app').config(function($translateProvider) {
         ITEMS: 'Articoli',
         JAC: 'Giacca',
         LEG_LENGTH: 'Lung. Gamba',
+        LOGOUT: 'Logout',
         MODEL: 'Modello',
         MONTHLY_SALES: 'Vendite 30 giorni',
         MOVEMENT: 'Movimento',

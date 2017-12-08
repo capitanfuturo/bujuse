@@ -43,21 +43,27 @@ angular.module('app').config(['$routeProvider',
 ]);
 
 angular.module('app').controller('ApplicationCtrl',
-  function ($rootScope, AuthenticationService) {
+  function ($rootScope, $scope, AuthenticationService, $location) {
     $rootScope.isLoggedIn = AuthenticationService.isLoggedIn();
     $rootScope.currentUser = AuthenticationService.currentUser();
+
+    $scope.logout = function () {
+      AuthenticationService.logout();
+      $location.path('/login');
+    };
+
+    $rootScope.isCollapsed = true;
   });
 
 angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
   function ($rootScope, $location, AuthenticationService) {
     $rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
+      $rootScope.isCollapsed = true;
+
       if ($location.path() != '/login' && !AuthenticationService.isLoggedIn()) {
         $location.path('/login');
         return;
       }else{
-        if(!$rootScope.currentUser){
-          $rootScope.currentUser = AuthenticationService.currentUser();
-        }
         if(!$rootScope.currentUser || !$rootScope.currentUser.role || $rootScope.currentUser.role != 'ADMIN'){
           var path = $location.path();
           if(path == '/operation' || path == '/warehouse' || path == '/monthly-sales' || path == '/stock'){
@@ -68,4 +74,5 @@ angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
       }
     });
   }
+
 ]);
