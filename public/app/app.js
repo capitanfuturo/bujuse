@@ -53,12 +53,18 @@ angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
     $rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
       if ($location.path() != '/login' && !AuthenticationService.isLoggedIn()) {
         $location.path('/login');
+        return;
       }else{
         if(!$rootScope.currentUser){
-          var currentUser = AuthenticationService.currentUser();
-          $rootScope.currentUser = currentUser;
+          $rootScope.currentUser = AuthenticationService.currentUser();
         }
-        console.log($rootScope.currentUser);
+        if(!$rootScope.currentUser || !$rootScope.currentUser.role || $rootScope.currentUser.role != 'ADMIN'){
+          var path = $location.path();
+          if(path == '/order' || path == '/warehouse' || path == '/monthly-sales' || path == '/stock'){
+            $location.path('/login');
+          }
+        }
+        return;
       }
     });
   }
