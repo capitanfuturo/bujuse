@@ -64,7 +64,11 @@ angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
         $location.path('/login');
         return;
       }else{
-        if(!$rootScope.currentUser || !$rootScope.currentUser.role || $rootScope.currentUser.role != 'ADMIN'){
+        if(!$rootScope.currentUser){
+          $rootScope.currentUser = AuthenticationService.currentUser();
+        }
+
+        if(!$rootScope.currentUser.role || $rootScope.currentUser.role != 'ADMIN'){
           var path = $location.path();
           if(path == '/operation' || path == '/warehouse' || path == '/monthly-sales' || path == '/stock'){
             $location.path('/order');
