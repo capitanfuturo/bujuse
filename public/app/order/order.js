@@ -64,7 +64,7 @@ angular.module('warehouse.order')
         });
       };
 
-      $scope.view = function(row){
+      $scope.view = function (row) {
         var id = row._id;
         $location.path('/view-order/' + id);
       }
@@ -74,6 +74,25 @@ angular.module('warehouse.order')
         OrderService.get().then(function successCallback(response) {
           var data = response.data;
           //TODO add priority
+          // amount
+          var dataSize = data.length;
+          for (var e = 0; e < dataSize; e++) {
+            var order = data[e];
+            if (order.state != 'DELIVERED') {
+              var size = order.elements.length;
+              var amount = 0;
+              for (var i = 0; i < size; i++) {
+                var element = order.elements[i];
+                amount = amount + element.price;
+              }
+              if (order.deposit) {
+                amount = amount - order.deposit;
+              }
+              data[e].amount = amount;
+            }
+
+          }
+
           $scope.rowCollection = data;
         }, function errorCallback(response) {
           console.log(response);
