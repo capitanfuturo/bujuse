@@ -67,11 +67,15 @@ angular.module('warehouse.order')
       $scope.view = function (row) {
         var id = row._id;
         $location.path('/view-order/' + id);
-      }
+      };
+
+      $scope.toggleDelivered = function () {
+        retrieveOrders($scope.view.showDelivered);
+      };
 
       //private functions
-      var retrieveOrders = function () {
-        OrderService.get().then(function successCallback(response) {
+      var retrieveOrders = function (showDelivered) {
+        OrderService.get(showDelivered).then(function successCallback(response) {
           var data = response.data;
           //TODO add priority
           // amount
@@ -101,6 +105,8 @@ angular.module('warehouse.order')
 
       //init controller
       $scope.rowCollection = [];
+      $scope.view = {};
+      $scope.view.showDelivered = false;
       retrieveOrders();
     }
   ]);

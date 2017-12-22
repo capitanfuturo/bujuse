@@ -7,6 +7,11 @@
     <div class="col-md-2">
       <button class="btn btn-primary" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
     </div>
+    <div class="col-md-8">
+      <button class="btn btn-primary" ng-model="view.showDelivered" uib-btn-checkbox ng-click="toggleDelivered()">
+        {{ view.showDelivered ?  'HIDE_DELIVERED' : 'SHOW_DELIVERED' | translate}}
+      </button>
+    </div>
   </div>
   <!-- /Buttons -->
   <!-- Content -->
@@ -50,7 +55,7 @@
             <td>
               <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>
             </td>
-            <td>{{ row.amount }}</td>
+            <td>{{ row.amount }} [€]</td>
           </tr>
         </tbody>
       </table>

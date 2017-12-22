@@ -12,8 +12,12 @@ angular.module('OrderService').factory('OrderService', ['$http', 'Authentication
   };
 
   return {
-    get: function () {
-      return $http.get(BASE_PATH, HEADERS);
+    get: function (showDelivered) {
+      if(showDelivered){
+        return $http.get(BASE_PATH + '/?showDelivered=true', HEADERS);
+      }else {
+        return $http.get(BASE_PATH + '/?showDelivered=false', HEADERS);
+      }
     },
 
     getById: function (id) {

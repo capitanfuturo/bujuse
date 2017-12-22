@@ -4,16 +4,35 @@ var Operation = mongoose.model('Operation');
 var controller = {};
 
 controller.getAll = function (req, res) {
-  Order.find()
-    .populate('customer')
-    .populate('warehouse')
-    .exec(function (err, data) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json(data);
-      }
-    });
+  var showDelivered = req.query.showDelivered;
+  if (showDelivered && showDelivered=='true') {
+    Order.find()
+      .populate('customer')
+      .populate('warehouse')
+      .exec(function (err, data) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(data);
+        }
+      });
+  } else {
+    Order.find({
+        'state': {
+          $in: ['NEW', 'WORKING', 'READY']
+        }
+      })
+      .populate('customer')
+      .populate('warehouse')
+      .exec(function (err, data) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(data);
+        }
+      });
+  }
+
 };
 
 controller.getById = function (req, res) {
