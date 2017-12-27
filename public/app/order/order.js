@@ -64,7 +64,7 @@ angular.module('warehouse.order')
         });
       };
 
-      $scope.view = function (row) {
+      $scope.detail = function (row) {
         var id = row._id;
         $location.path('/view-order/' + id);
       };

@@ -29,7 +29,7 @@
             <th></th>
             <th>{{ 'CHANGE_TO' | translate }}</th>
             <th></th>
-            <th>{{ 'TOTAL' | translate }}</th>
+            <th>{{ 'TOTAL' | translate }} [€]</th>
           </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
             <td>{{ row.customer.name }}</td>
             <td>{{ row.warehouse.name }}</td>
             <td>
-              <button type="button" ng-click="view(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> {{ 'DETAIL' | translate }}</button>
+              <button type="button" ng-click="detail(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> {{ 'DETAIL' | translate }}</button>
             </td>
             <td>
               <button type="button" ng-if='row.state == "NEW" || row.state == "WORKING"' ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
@@ -55,7 +55,7 @@
             <td>
               <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>
             </td>
-            <td>{{ row.amount }} [€]</td>
+            <td>{{ row.amount }}</td>
           </tr>
         </tbody>
       </table>
