@@ -3,9 +3,9 @@ var Operation = mongoose.model('Operation');
 
 var controller = {};
 
-controller.getMonthlySales = function (req, res) {
+var getSales = function (req, res, days) {
   var cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - 30);
+  cutoff.setDate(cutoff.getDate() - days);
 
   Operation.find({
       creationDate: {
@@ -67,6 +67,14 @@ controller.getMonthlySales = function (req, res) {
     });
 };
 
+controller.getMonthlySales = function (req, res) {
+  getSales(req, res, 30);
+};
+
+controller.getQuarterlySales = function (req, res) {
+  getSales(req, res, 90);
+};
+
 controller.getStock = function (req, res) {
   Operation.find()
     .populate('item')
@@ -93,8 +101,10 @@ controller.getStock = function (req, res) {
               var type = row.type;
               if ('I' == type) {
                 value.quantity = value.quantity + row.quantity;
+                value.price = value.price + row.price;
               } else {
                 value.quantity = value.quantity - row.quantity;
+                value.price = value.price - row.price;
               }
               result.set(key, value);
             } else {
@@ -103,11 +113,14 @@ controller.getStock = function (req, res) {
                 warehouse = row.warehouse.name;
               }
               var quantity = 0;
+              var price = 0;
               var type = row.type;
               if ('I' == type) {
                 quantity = row.quantity;
+                price = row.price;
               } else {
                 quantity = -row.quantity;
+                price = -row.price;
               }
 
               var newValue = {
@@ -116,7 +129,8 @@ controller.getStock = function (req, res) {
                 "category": row.item.category,
                 "gender": row.item.gender,
                 "size": row.item.size,
-                "quantity": quantity
+                "quantity": quantity,
+                "price": price
               };
               result.set(key, newValue);
             }

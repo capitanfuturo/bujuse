@@ -25,6 +25,7 @@ angular.module('app', [
   'warehouse.item',
   'warehouse.login',
   'warehouse.monthlySales',
+  'warehouse.quarterlySales',
   'warehouse.operation',
   'warehouse.order',
   'warehouse.stock',
@@ -68,12 +69,17 @@ angular.module('app').run(['$rootScope', '$location', 'AuthenticationService',
           $rootScope.currentUser = AuthenticationService.currentUser();
         }
 
-        if(!$rootScope.currentUser.role || $rootScope.currentUser.role != 'ADMIN'){
+        if($rootScope.currentUser && $rootScope.currentUser.role){
+          if($rootScope.currentUser.role == 'ADMIN'){
+            return;
+          }
+        }else{
           var path = $location.path();
-          if(path == '/operation' || path == '/warehouse' || path == '/monthly-sales' || path == '/stock'){
+          if(path == '/operation' || path == '/warehouse' || path == '/quarterly-sales' || path == '/monthly-sales' || path == '/stock'){
             $location.path('/order');
           }
         }
+
         return;
       }
     });

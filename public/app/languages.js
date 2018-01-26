@@ -63,6 +63,7 @@ angular.module('app').config(function($translateProvider) {
         PRICE: 'Prezzo [€]',
         REPORT: 'Report',
         QUANTITY: 'Quantità',
+        QUARTERLY_SALES: 'Vendite 90 giorni',
         S_1M: '1-2 mesi',
         S_3M: '3 mesi',
         S_6M: '6 mesi',

@@ -14,6 +14,7 @@
             <th>{{ 'GENDER' | translate }}</th>
             <th>{{ 'SIZE' | translate }}</th>
             <th>{{ 'QUANTITY' | translate }}</th>
+            <th st-sort="price">{{ 'PRICE' | translate }}</th>
           </tr>
         </thead>
         <tfoot>
@@ -23,7 +24,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td>{{ qtyAmount }}</td>
+            <td class="text-right">{{ qtyAmount }}</td>
+            <td class="text-right">{{ amount }}</td>
           </tr>
         </tfoot>
         <tbody>
@@ -33,7 +35,8 @@
             <td>{{ row.category | translate }}</td>
             <td>{{ row.gender | translate }}</td>
             <td>{{ row.size | translate }}</td>
-            <td>{{ row.quantity }}</td>
+            <td class="text-right">{{ row.quantity }}</td>
+            <td class="text-right">{{ row.price }}</td>
           </tr>
         </tbody>
       </table>
