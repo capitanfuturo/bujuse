@@ -75,7 +75,7 @@ angular.module('warehouse.operation')
           }
         }
         $scope.qtyAmount = qtyAmount;
-        $scope.amount = amount;
+        $scope.amount = Math.round(amount * 100) / 100;
       });
 
       //private functions

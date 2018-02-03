@@ -40,7 +40,7 @@ angular.module('warehouse.quarterlySales')
             }
           }
           $scope.qtyAmount = qtyAmount;
-          $scope.amount = amount;
+          $scope.amount = Math.round(amount * 100) / 100;
         }, function errorCallback(response) {
           console.log(response);
         });
