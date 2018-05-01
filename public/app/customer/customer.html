@@ -24,11 +24,13 @@
             <th>{{ 'HIP' | translate }} [cm]</th>
             <th>{{ 'LEG_LENGTH' | translate }} [cm]</th>
             <th>{{ 'SHOULDER' | translate }} [cm]</th>
+            <th>{{ 'NOTE' | translate }}</th>
             <th class='hidden-print'></th>
             <th class='hidden-print'></th>
           </tr>
           <tr>
             <th><input st-search="name" class="input-sm form-control" type="search" /></th>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -52,6 +54,7 @@
             <td>{{ row.hip }}</td>
             <td>{{ row.legLength }}</td>
             <td>{{ row.shoulder }}</td>
+            <td>{{ row.note }}</td>
             <td class='hidden-print'>
               <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
             </td>

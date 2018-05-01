@@ -17,6 +17,10 @@ var CustomerSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  note: {
+    type: String,
+    trim: true
+  },
   breast: Number,
   waist: Number,
   hip: Number,
