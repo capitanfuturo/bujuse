@@ -65,7 +65,7 @@
         grunt.loadNpmTasks('grunt-contrib-copy');
         grunt.loadNpmTasks('grunt-nodemon');
         grunt.loadNpmTasks('grunt-concurrent');
-        
+
         grunt.registerTask('default', ['clean', 'concurrent']);
 
     };

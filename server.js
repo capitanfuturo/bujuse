@@ -1,5 +1,8 @@
 // server.js
 
+console.log('Bujuse');
+
+console.log('loading modules');
 // modules =================================================
 var express = require('express');
 var app = express();
@@ -7,9 +10,13 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require('passport');
+const debug = require('debug')
+const appName = 'Bujuse'
+debug('booting %s', appName)
 
 // configuration ===========================================
 
+console.log('loading configuration');
 // config files
 require('./config/db');
 require('./config/passport');
@@ -38,6 +45,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
+console.log('registering routes');
 var authenticationRoutes = require('./app/authentication/authentication.routes');
 var customerRoutes = require('./app/customer/customer.routes');
 var warehouseRoutes = require('./app/warehouse/warehouse.routes');
