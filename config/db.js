@@ -6,20 +6,20 @@ mongoose.connect(dbURI);
 
 // CONNECTION EVENTS
 mongoose.connection.on('connected', function() {
-  console.log('Mongoose connected to ' + dbURI);
+  console.log('[BUJUSE] Mongoose connected to ' + dbURI);
 });
 mongoose.connection.on('error', function(err) {
-  console.log('Mongoose connection error: ' + err);
+  console.log('[BUJUSE] Mongoose connection error: ' + err);
 });
 mongoose.connection.on('disconnected', function() {
-  console.log('Mongoose disconnected');
+  console.log('[BUJUSE] Mongoose disconnected');
 });
 
 // CAPTURE APP TERMINATION / RESTART EVENTS
 // To be called when process is restarted or terminated
 gracefulShutdown = function(msg, callback) {
   mongoose.connection.close(function() {
-    console.log('Mongoose disconnected with message ' + msg);
+    console.log('[BUJUSE] Mongoose disconnected with message ' + msg);
     callback();
   });
 };
@@ -43,6 +43,7 @@ process.on('SIGTERM', function() {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
+require('../app/season/season.model');
 require('../app/customer/customer.model');
 require('../app/item/item.model');
 require('../app/operation/operation.model');

@@ -34,6 +34,42 @@
     </div>
   </div>
 
+  <hr>
+  <h2>{{ 'ADD' | translate }} {{ 'SEASON' | translate }}</h2>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-2"><label class="control-label">{{ 'SEASON' | translate }}*</label></div>
+      <div class="col-md-2">
+        <select ng-model="season" class="form-control" ng-options="season as season.fullname for season in seasons track by season._id" ng-change="hasChangedSeason()"></select>
+      </div>
+      <div class="col-md-8">
+        <button ng-disabled='!season.name' class="btn btn-primary" type="submit" ng-click="addSeason()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }} {{ 'SEASON' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{ 'SEASONS' | translate }}</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{{ 'SEASON' | translate }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='element in elements'>
+            <td>{{ getFullname(element) }}</td>
+            <td>
+              <button type="button" ng-click="removeSeasonElement($index)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- Add button -->
   <div class="row">
     <div class="col-md-12">

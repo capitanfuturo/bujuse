@@ -21,8 +21,9 @@ angular.module('warehouse.item')
     '$scope',
     'ItemService',
     '$location',
+    'SeasonNameService',
     'ItemCategoryService',
-    function ($scope, ItemService, $location, ItemCategoryService) {
+    function ($scope, ItemService, $location, SeasonNameService, ItemCategoryService) {
 
       //angular functions
       $scope.add = function () {
@@ -46,10 +47,32 @@ angular.module('warehouse.item')
         });
       };
 
+      $scope.renderSeasons = function (row) {
+        var seasons = row.seasons;
+        var size = seasons.length;
+        var toDisplay = "";
+        for (var i = 0; i < size; i++) {
+            var season = seasons[i];
+            var translated = "";
+            for(var j = 0; j < translatedSeasonNames.length; j++){
+              var name = season.name;
+              if(name == translatedSeasonNames[j].id){
+                translated = translatedSeasonNames[j].key;
+              }
+            }
+            if(size == 1 || i == size-1){
+              toDisplay = toDisplay + translated + " " + season.year;
+            }else {
+              toDisplay = toDisplay + translated + " " + season.year + ", ";
+            }
+        }
+        return toDisplay;
+      };
+
       //private functions
       var retrieveItem = function () {
         ItemService.get().then(function successCallback(response) {
-          $scope.rowCollection = response.data
+          $scope.rowCollection = response.data;
         }, function errorCallback(response) {
           console.log(response);
         });
@@ -61,17 +84,26 @@ angular.module('warehouse.item')
         if (a.key > b.key)
           return 1;
         return 0;
-      }
+      };
 
       var retrieveCategories = function () {
         var categories = ItemCategoryService.get();
         categories.sort(compareEnums);
         $scope.categories = categories;
+      };
+
+      var retrieveSeasonsNames = function () {
+         translatedSeasonNames = SeasonNameService.get();
       }
+
 
       //init controller
       $scope.rowCollection = [];
+      var translatedSeasonNames = {};
+
       retrieveCategories();
+      retrieveSeasonsNames();
+
       retrieveItem();
 
       var protocol = $location.protocol();

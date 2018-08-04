@@ -18,6 +18,7 @@
             <th>{{ 'I' | translate }}</th>
             <th st-sort="model" st-sort-default="true">{{ 'MODEL' | translate }}</th>
             <th>{{ 'NOTE' | translate }}</th>
+            <th>{{ 'SEASON' | translate }}</th>
             <th>{{ 'CATEGORY' | translate }}</th>
             <th>{{ 'GENDER' | translate }}</th>
             <th>{{ 'SIZE' | translate }}</th>
@@ -29,6 +30,7 @@
           <tr>
             <th></th>
             <th><input st-search="model" class="input-sm form-control" type="search" /></th>
+            <th></th>
             <th></th>
             <th>
               <select st-search="category" ng-model="category" class="form-control" ng-options="category as category.key for category in categories track by category.id">
@@ -50,6 +52,7 @@
             </td>
             <td>{{ row.model }}</td>
             <td>{{ row.note }}</td>
+            <td>{{ renderSeasons(row) }}</td>
             <td>{{ row.category | translate }}</td>
             <td>{{ row.gender | translate }}</td>
             <td>{{ row.size | translate }}</td>

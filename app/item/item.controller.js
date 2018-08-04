@@ -1,10 +1,13 @@
 var mongoose = require('mongoose');
 var Item = mongoose.model('Item');
+var Season = mongoose.model('Season');
 
 var controller = {};
 
 controller.getAll = function (req, res) {
-  Item.find(function (err, data) {
+  Item.find()
+  .populate('seasons')
+  .exec(function (err, data) {
     if (err) {
       res.send(err);
     } else {
@@ -15,9 +18,9 @@ controller.getAll = function (req, res) {
 
 controller.getById = function (req, res) {
   var id = req.params.id;
-  Item.findOne({
-    _id: id
-  }, function (err, data) {
+  Item.findOne({_id: id})
+  .populate('seasons')
+  .exec( function (err, data) {
     if (err) {
       res.send(err);
     } else {
@@ -36,6 +39,13 @@ controller.create = function (req, res) {
   item.gender = data.gender;
   item.size = data.size;
   item.price = data.price;
+
+  var seasons = [];
+  var size = data.seasons.length;
+  for (var i = 0; i < size; i++) {
+    seasons.push(data.seasons[i]._id);
+  }
+  item.seasons = seasons;
 
   item.save(function (err) {
     if (err) {
@@ -76,6 +86,13 @@ controller.edit = function (req, res) {
       item.gender = data.gender;
       item.size = data.size;
       item.price = data.price;
+
+      var seasons = [];
+      var size = data.seasons.length;
+      for (var i = 0; i < size; i++) {
+        seasons.push(data.seasons[i]._id);
+      }
+      item.seasons = seasons;
 
       item.save(function (err) {
         if (err) {

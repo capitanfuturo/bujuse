@@ -23,14 +23,24 @@ angular.module('warehouse.addItem')
         'ItemSizeService',
         'ItemCategoryService',
         'ItemGenderService',
+        'SeasonService',
+        'SeasonNameService',
         '$location',
-        function($scope, ItemService, ItemSizeService, ItemCategoryService, ItemGenderService, $location) {
+        function($scope,
+          ItemService,
+          ItemSizeService,
+          ItemCategoryService,
+          ItemGenderService,
+          SeasonService,
+          SeasonNameService,
+          $location) {
 
             //angular functions
             $scope.createItem = function() {
                 $scope.item.gender = $scope.gender.id;
                 $scope.item.size = $scope.size.id;
                 $scope.item.category = $scope.category.id;
+                $scope.item.seasons = $scope.elements;
 
                 ItemService.create($scope.item).then(function successCallback(response) {
                     $location.path('/item');
@@ -47,6 +57,32 @@ angular.module('warehouse.addItem')
                 $scope.hasChanged();
                 $scope.item.gender = $scope.gender.id;
                 retrieveSizes($scope.item.gender);
+            };
+
+            $scope.getFullname = function (season) {
+              var seasonName = season.name;
+              for (var i = 0; i < seasonNames.length; i++) {
+                if (seasonName == seasonNames[i].id) {
+                  seasonName = seasonNames[i].key;
+                }
+              }
+              return seasonName + " " + season.year;
+            };
+
+            $scope.addSeason = function () {
+              $scope.element.seasonFullName = $scope.getFullname($scope.season);
+              $scope.element._id = $scope.season._id;
+              $scope.element.name = $scope.season.name;
+              $scope.element.year = $scope.season.year;
+
+              $scope.elements.push($scope.element);
+              $scope.element = {};
+
+              $scope.hasChanged();
+            };
+
+            $scope.removeSeasonElement = function (index) {
+              $scope.elements.splice(index, 1);
             };
 
             //private functions
@@ -76,14 +112,41 @@ angular.module('warehouse.addItem')
               $location.path('/item');
             };
 
+            var retrieveSeasonNames = function () {
+              seasonNames = SeasonNameService.get();
+            }
+
+            var retrieveSeasons = function () {
+               SeasonService.get().then(function successCallback(response) {
+                $scope.seasons = response.data;
+                var size = $scope.seasons.length;
+                for (var i = 0; i < size; i++) {
+                  var season = $scope.seasons[i];
+                  $scope.seasons[i].fullname = $scope.getFullname(season);
+                }
+              }, function errorCallback(response) {
+                console.log(response);
+              });
+            };
+
             //init controller
+            var seasonNames = [];
+
             $scope.item = {};
             $scope.category = {};
             $scope.gender = {};
             $scope.size = {};
             $scope.addDisabled = true;
 
+            $scope.season = {};
+            $scope.seasons = [];
+
+            $scope.elements = [];
+            $scope.element = {};
+
             retrieveCategories();
             retrieveGenders();
+            retrieveSeasonNames();
+            retrieveSeasons();
         }
     ]);

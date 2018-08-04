@@ -1,8 +1,8 @@
 // server.js
 
-console.log('Bujuse');
+console.log('[BUJUSE] starting the server...');
 
-console.log('loading modules');
+console.log('[BUJUSE] loading modules...');
 // modules =================================================
 var express = require('express');
 var app = express();
@@ -13,10 +13,11 @@ var passport = require('passport');
 const debug = require('debug')
 const appName = 'Bujuse'
 debug('booting %s', appName)
+console.log('[BUJUSE] modules loaded.');
 
 // configuration ===========================================
 
-console.log('loading configuration');
+console.log('[BUJUSE] loading configuration...');
 // config files
 require('./config/db');
 require('./config/passport');
@@ -44,8 +45,10 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
 
+console.log('[BUJUSE] configuration loaded.');
+
 // routes ==================================================
-console.log('registering routes');
+console.log('[BUJUSE] routes registering...');
 var authenticationRoutes = require('./app/authentication/authentication.routes');
 var customerRoutes = require('./app/customer/customer.routes');
 var warehouseRoutes = require('./app/warehouse/warehouse.routes');
@@ -53,6 +56,7 @@ var itemRoutes = require('./app/item/item.routes');
 var operationRoutes = require('./app/operation/operation.routes');
 var reportRoutes = require('./app/report/report.routes');
 var orderRoutes = require('./app/order/order.routes');
+var seasonRoutes = require('./app/season/season.routes')
 
 app.use('/api', authenticationRoutes);
 app.use('/api', customerRoutes);
@@ -61,10 +65,13 @@ app.use('/api', itemRoutes);
 app.use('/api', operationRoutes);
 app.use('/api', reportRoutes);
 app.use('/api', orderRoutes);
+app.use('/api', seasonRoutes);
 
 app.get('*', function (req, res) {
   res.sendfile('./public/index.html'); // load our public/index.html file
 });
+
+console.log('[BUJUSE] Routes registered.')
 
 // error handlers
 app.use(function(req, res, next) {
@@ -83,7 +90,8 @@ app.use(function (err, req, res, next) {
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);
-console.log('Bujuse server on  ' + port);
+console.log('[BUJUSE] listening on port:  ' + port);
 
 // expose app
 exports = module.exports = app;
+console.log('[BUJUSE] Server started. Good work!')

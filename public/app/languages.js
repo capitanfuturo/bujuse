@@ -12,6 +12,7 @@ angular.module('app').config(function($translateProvider) {
         CAP: 'Cappello',
         CATEGORY: 'Categoria',
         CHANGE_TO: 'Passa a',
+        CONFIGURATION: 'Configurazione',
         CONTACTS: 'Contatti',
         CREATION_DATE: 'Data creazione',
         CSP: 'Capospalla',
@@ -29,6 +30,7 @@ angular.module('app').config(function($translateProvider) {
         EMAIL: 'Email',
         FABRIC: 'Tessuto',
         FEL: 'Felpa',
+        FW: 'A/I',
         G_BF: 'Bimba',
         G_BM: 'Bimbo',
         G_BU: 'Bimbo unisex',
@@ -62,6 +64,8 @@ angular.module('app').config(function($translateProvider) {
         PASSWORD: 'Password',
         PRICE: 'Prezzo [€]',
         REPORT: 'Report',
+        SEASONS: 'Stagioni',
+        SEASON: 'Stagione',
         QUANTITY: 'Quantità',
         QUARTERLY_SALES: 'Vendite 90 giorni',
         S_1M: '1-2 mesi',
@@ -85,6 +89,7 @@ angular.module('app').config(function($translateProvider) {
         SHOW_DELIVERED: 'Mostra consegnati',
         SIGN_IN: 'Accedi',
         SIZE: 'Taglia',
+        SS: 'P/E',
         STATE: 'Stato',
         STOCK: 'Giacenze',
         TYPE: 'Tipo',
@@ -103,7 +108,8 @@ angular.module('app').config(function($translateProvider) {
         WAIST: 'Vita',
         WAREHOUSE: 'Magazzino',
         WAREHOUSES: 'Magazzini',
-        WORKING: 'In lavorazione'
+        WORKING: 'In lavorazione',
+        YEAR: 'Anno'
     });
     $translateProvider.translations('en', {});
 

@@ -12,6 +12,7 @@ angular.module('app', [
   'OperationService',
   'OrderService',
   'ReportService',
+  'SeasonService',
   'WarehouseService',
   'warehouse.addCustomer',
   'warehouse.addItem',
@@ -33,6 +34,8 @@ angular.module('app', [
   'warehouse.addOrder',
   'warehouse.viewOrder',
   'warehouse.editOrder',
+  'warehouse.season',
+  'warehouse.addSeason'
 ]);
 
 angular.module('app').config(['$routeProvider',

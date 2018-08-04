@@ -2,6 +2,7 @@
 
 angular.module('EnumService', []);
 
+// Gender
 angular.module('EnumService').factory('ItemGenderService', function() {
 
     return {
@@ -30,6 +31,7 @@ angular.module('EnumService').factory('ItemGenderService', function() {
 
 });
 
+// Category
 angular.module('EnumService').factory('ItemCategoryService', function() {
 
     return {
@@ -96,6 +98,7 @@ angular.module('EnumService').factory('ItemCategoryService', function() {
 
 });
 
+// Size
 angular.module('EnumService').factory('ItemSizeService', function() {
 
     return {
@@ -209,6 +212,7 @@ angular.module('EnumService').factory('ItemSizeService', function() {
     }
 });
 
+// Operation Type
 angular.module('EnumService').factory('OperationTypeService', function() {
 
     return {
@@ -219,6 +223,23 @@ angular.module('EnumService').factory('OperationTypeService', function() {
             }, {
                 id: 'O',
                 key: 'Scarico'
+            }];
+        }
+    }
+
+});
+
+// Season Name
+angular.module('EnumService').factory('SeasonNameService', function() {
+
+    return {
+        get: function() {
+            return [{
+                id: 'FW',
+                key: 'A/I'
+            }, {
+                id: 'SS',
+                key: 'P/E'
             }];
         }
     }
