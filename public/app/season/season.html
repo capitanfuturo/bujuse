@@ -1,0 +1,36 @@
+<div class="container">
+  <!-- Title -->
+  <h1><i class='fa fa-calendar fa-3'></i> {{ 'SEASONS' | translate }}</h1>
+  <!-- /Title -->
+  <!-- Buttons -->
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-primary" type="submit" ng-click="add()"><span class="fa fa-plus"></span>  {{ 'ADD' | translate }}</button>
+    </div>
+  </div>
+  <!-- /Buttons -->
+  <!-- Content -->
+  <div class="row">
+    <div class="col-md-12">
+      <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'NAME' | translate }}</th>
+            <th>{{ 'YEAR' | translate }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in displayedCollection">
+            <td>{{ row.name | translate }}</td>
+            <td>{{ row.year }}</td>
+            <td>
+              <button type="button" ng-click="remove(row)" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> {{ 'DELETE' | translate }}</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- /Content -->
+</div>
