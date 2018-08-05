@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Operation = mongoose.model('Operation');
+var Item = mongoose.model('Item');
 
 var controller = {};
 
@@ -73,6 +74,69 @@ controller.getMonthlySales = function (req, res) {
 
 controller.getQuarterlySales = function (req, res) {
   getSales(req, res, 90);
+};
+
+controller.getTarget = function (req, res) {
+  var seasonId = req.params.seasonId;
+  Item.find()
+    .exec(function (err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        var size = data.length;
+        // A map with key = item.model + "|" + item.category + "|" + item.gender
+        // and value {item.model, item.category, item.gender, sizes, item.price, item.taget}
+        var result = new Map();
+
+        for (var i = 0; i < size; i++) {
+          var row = data[i];
+          var seasons = row.seasons;
+          var filter = false;
+          for(var j=0; j<seasons.length; j++){
+            if(seasons[j] == seasonId){
+              filter = true;
+            }
+          }
+
+          if (filter && row.model && row.category && row.gender) {
+            var key = row.model + '|' + row.category + '|' + row.gender;
+
+            if (result.has(key)) {
+              var value = result.get(key);
+              value.sizes.push(row.size);
+              if(row.price != value.price){
+                value.price = 'ERROR';
+              }
+              if(row.target != value.target){
+                value.target = 'ERROR';
+              }
+              result.set(key, value);
+            } else {
+              var sizes = [];
+              sizes.push(row.size);
+
+              var newValue = {
+                "model": row.model,
+                "category": row.category,
+                "gender": row.gender,
+                "sizes": sizes,
+                "note": row.note,
+                "price": row.price,
+                "target": row.target
+              };
+              result.set(key, newValue);
+            }
+          }
+
+        } //end for
+
+        var arr = [];
+        result.forEach(function (item, key, mapObj) {
+          arr.push(item);
+        });
+        res.json(arr);
+      }
+    });
 };
 
 controller.getStock = function (req, res) {

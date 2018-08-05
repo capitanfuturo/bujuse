@@ -4,6 +4,7 @@ angular.module('warehouse.editItem', [
   'ngRoute',
   'pascalprecht.translate',
   'EnumService',
+  'UtilService',
   'ItemService'
 ]);
 
@@ -25,6 +26,7 @@ angular.module('warehouse.editItem')
     'ItemGenderService',
     'SeasonService',
     'SeasonNameService',
+    'TargetService',
     '$location',
     '$routeParams',
     function ($scope,
@@ -34,6 +36,7 @@ angular.module('warehouse.editItem')
       ItemGenderService,
       SeasonService,
       SeasonNameService,
+      TargetService,
       $location,
       $routeParams) {
 
@@ -60,6 +63,11 @@ angular.module('warehouse.editItem')
                             !$scope.gender.id ||
                             !$scope.size.id ||
                             !$scope.item.price;
+      };
+
+      $scope.hasChangedPrice = function () {
+        $scope.hasChanged();
+        $scope.item.target = TargetService.getTargetPrice($scope.item.price);
       };
 
       $scope.hasChangedGender = function () {
@@ -179,7 +187,9 @@ angular.module('warehouse.editItem')
         retrieveSizes($scope.gender.id);
         $scope.size = searchById($scope.item.size, $scope.sizes);
         $scope.elements = $scope.item.seasons;
-
+        if(!$scope.item.target){
+          $scope.item.target = TargetService.getTargetPrice($scope.item.price);
+        }
 
         $scope.hasChanged();
       }, function errorCallback(response) {

@@ -39,6 +39,7 @@ controller.create = function (req, res) {
   item.gender = data.gender;
   item.size = data.size;
   item.price = data.price;
+  item.target = data.target;
 
   var seasons = [];
   var size = data.seasons.length;
@@ -86,6 +87,7 @@ controller.edit = function (req, res) {
       item.gender = data.gender;
       item.size = data.size;
       item.price = data.price;
+      item.target = data.target;
 
       var seasons = [];
       var size = data.seasons.length;

@@ -4,6 +4,7 @@ angular.module('warehouse.addItem', [
     'ngRoute',
     'pascalprecht.translate',
     'EnumService',
+    'UtilService',
     'ItemService'
 ]);
 
@@ -25,6 +26,7 @@ angular.module('warehouse.addItem')
         'ItemGenderService',
         'SeasonService',
         'SeasonNameService',
+        'TargetService',
         '$location',
         function($scope,
           ItemService,
@@ -33,6 +35,7 @@ angular.module('warehouse.addItem')
           ItemGenderService,
           SeasonService,
           SeasonNameService,
+          TargetService,
           $location) {
 
             //angular functions
@@ -51,6 +54,11 @@ angular.module('warehouse.addItem')
 
             $scope.hasChanged = function() {
                 $scope.addDisabled = !$scope.item.model || !$scope.category.id || !$scope.gender.id || !$scope.size.id || !$scope.item.price;
+            };
+
+            $scope.hasChangedPrice = function () {
+              $scope.hasChanged();
+              $scope.item.target = TargetService.getTargetPrice($scope.item.price);
             };
 
             $scope.hasChangedGender = function() {
