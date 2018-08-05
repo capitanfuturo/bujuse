@@ -23,7 +23,9 @@ angular.module('warehouse.item')
     '$location',
     'SeasonNameService',
     'ItemCategoryService',
-    function ($scope, ItemService, $location, SeasonNameService, ItemCategoryService) {
+    '$translate',
+    '$window',
+    function ($scope, ItemService, $location, SeasonNameService, ItemCategoryService, $translate, $window) {
 
       //angular functions
       $scope.add = function () {
@@ -36,15 +38,23 @@ angular.module('warehouse.item')
       };
 
       $scope.remove = function (row) {
-        var id = row._id;
-        ItemService.delete(id).then(function successCallback(response) {
-          var index = $scope.rowCollection.indexOf(row);
-          if (index !== -1) {
-            $scope.rowCollection.splice(index, 1);
+        $translate('CONFIRM_DELETE_ITEM').then(function (confirmText) {
+          var confirmed = $window.confirm(confirmText);
+          if (confirmed) {
+            var id = row._id;
+            ItemService.delete(id).then(function successCallback(response) {
+              var index = $scope.rowCollection.indexOf(row);
+              if (index !== -1) {
+                $scope.rowCollection.splice(index, 1);
+              }
+            }, function errorCallback(response) {
+              console.log(response);
+            });
           }
-        }, function errorCallback(response) {
-          console.log(response);
+        }, function (translationId) {
+          console.log(translationId);
         });
+
       };
 
       $scope.renderSeasons = function (row) {

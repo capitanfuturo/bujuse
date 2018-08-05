@@ -22,7 +22,9 @@ angular.module('warehouse.order')
     '$scope',
     'OrderService',
     '$location',
-    function ($scope, OrderService, $location) {
+    '$window',
+    '$translate',
+    function ($scope, OrderService, $location, $window, $translate) {
 
       //angular functions
       $scope.add = function () {
@@ -39,17 +41,21 @@ angular.module('warehouse.order')
 
         if (actualState == 'NEW') {
           row.state = 'WORKING';
+          doEdit(row);
         } else if (actualState == 'WORKING') {
           row.state = 'READY';
+          doEdit(row);
         } else if (actualState == 'READY') {
-          row.state = 'DELIVERED';
+          $translate('CONFIRM_SENT_ORDER').then(function (confirmText) {
+            var confirmed = $window.confirm(confirmText);
+            if (confirmed) {
+              row.state = 'DELIVERED';
+              doEdit(row);
+            }
+          }, function (translationId) {
+            console.log(translationId);
+          });
         }
-
-        OrderService.edit(row).then(function successCallback(response) {
-          retrieveOrders();
-        }, function errorCallback(response) {
-          console.log(response);
-        });
       };
 
       $scope.remove = function (row) {
@@ -74,6 +80,14 @@ angular.module('warehouse.order')
       };
 
       //private functions
+      var doEdit = function (row) {
+        OrderService.edit(row).then(function successCallback(response) {
+          retrieveOrders();
+        }, function errorCallback(response) {
+          console.log(response);
+        });
+      }
+
       var retrieveOrders = function (showDelivered) {
         OrderService.get(showDelivered).then(function successCallback(response) {
           var data = response.data;
