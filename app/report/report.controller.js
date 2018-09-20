@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Operation = mongoose.model('Operation');
 var Item = mongoose.model('Item');
+var Order = mongoose.model('Order');
+var OrderElementSchema = mongoose.model('OrderElementSchema');
 
 var controller = {};
 
@@ -92,8 +94,8 @@ controller.getTarget = function (req, res) {
           var row = data[i];
           var seasons = row.seasons;
           var filter = false;
-          for(var j=0; j<seasons.length; j++){
-            if(seasons[j] == seasonId){
+          for (var j = 0; j < seasons.length; j++) {
+            if (seasons[j] == seasonId) {
               filter = true;
             }
           }
@@ -104,10 +106,10 @@ controller.getTarget = function (req, res) {
             if (result.has(key)) {
               var value = result.get(key);
               value.sizes.push(row.size);
-              if(row.price != value.price){
+              if (row.price != value.price) {
                 value.price = 'ERROR';
               }
-              if(row.target != value.target){
+              if (row.target != value.target) {
                 value.target = 'ERROR';
               }
               result.set(key, value);
@@ -201,6 +203,124 @@ controller.getStock = function (req, res) {
           }
 
         } //end for
+
+        var arr = [];
+        result.forEach(function (item, key, mapObj) {
+          arr.push(item);
+        });
+        res.json(arr);
+      }
+    });
+};
+
+controller.getCustomersTotalSales = function (req, res) {
+  Order.find({
+      state: 'DELIVERED'
+    }).populate('elements')
+    .exec(function (err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        var size = data.length;
+        // A map with key = customerName.toUpperCase
+        // and value {customer, quantity, amount}
+        var result = new Map();
+
+        for (var i = 0; i < size; i++) {
+          var row = data[i];
+          var name = row.customerName;
+          var key = name;
+          if (result.has(key)) {
+            var value = result.get(key);
+
+            var elements = row.elements;
+            var elementsSize = elements.length;
+
+            for (var x = 0; x < elementsSize; x++) {
+              var element = elements[x];
+              value.quantity = value.quantity + element.quantity;
+              value.amount = value.amount + (element.quantity * element.price);
+            }
+            result.set(key, value);
+          } else {
+            var customerName = row.customerName;
+            var quantity = 0;
+            var amount = 0;
+
+            var elements = row.elements;
+            var elementsSize = elements.length;
+
+            for (var x = 0; x < elementsSize; x++) {
+              var element = elements[x];
+              quantity = quantity + element.quantity;
+              amount = amount + (element.quantity * element.price);
+            }
+
+            var newValue = {
+              "customerName": customerName,
+              "quantity": quantity,
+              "amount": amount
+            };
+            result.set(key, newValue);
+          }
+        } //end for
+
+        var arr = [];
+        result.forEach(function (item, key, mapObj) {
+          arr.push(item);
+        });
+        res.json(arr);
+      }
+    });
+};
+
+controller.getCustomerSales = function (req, res) {
+  var customerId = req.params.customerId;
+  Order.find({
+      state: 'DELIVERED'
+    }).populate('elements')
+    .exec(function (err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        var size = data.length;
+        // A map with key = itemFullName
+        // and value {quantity, amount}
+        var result = new Map();
+
+        for (var i = 0; i < size; i++) {
+          var row = data[i];
+          var id = row.customer;
+          if (customerId == id) {
+            var elements = row.elements;
+            var elementsSize = elements.length;
+
+            for (var x = 0; x < elementsSize; x++) {
+              var element = elements[x];
+              var itemFullName = element.itemFullName;
+              var key = itemFullName;
+              if(result.has(key)){
+                var value = result.get(key);
+
+                value.quantity = value.quantity + element.quantity;
+                value.amount = value.amount + element.amount;
+
+                result.set(key, value);
+              } else{
+                var quantity = element.quantity;
+                var amount = element.price;
+
+                var newValue = {
+                  "itemFullName": itemFullName,
+                  "quantity": quantity,
+                  "amount": amount
+                };
+                result.set(key, newValue);
+              }  
+            }// end foreach element
+          }// end check customer name
+        } //end foreach orders
+        console.log(result);
 
         var arr = [];
         result.forEach(function (item, key, mapObj) {

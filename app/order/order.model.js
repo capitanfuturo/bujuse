@@ -48,6 +48,10 @@ var OrderSchema = new mongoose.Schema({
     type: String,
     enum: ['NEW', 'WORKING', 'READY', 'DELIVERED']
   },
+  isLoadOrder: {
+    type: Boolean,
+    default: false
+  },
   elements: [OrderElementSchema]
 });
 

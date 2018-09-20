@@ -14,5 +14,7 @@ router.get(BASE_PATH + '/stock', auth, controller.getStock);
 router.get(BASE_PATH + '/monthly-sales', auth, controller.getMonthlySales);
 router.get(BASE_PATH + '/quarterly-sales', auth, controller.getQuarterlySales);
 router.get(BASE_PATH + '/target/:seasonId', auth, controller.getTarget);
+router.get(BASE_PATH + '/customers-total-sales', auth, controller.getCustomersTotalSales);
+router.get(BASE_PATH + '/customer-sales/:customerId', auth, controller.getCustomerSales);
 
 module.exports = router;

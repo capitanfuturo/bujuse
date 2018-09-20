@@ -63,6 +63,7 @@ controller.create = function (req, res) {
   order.warehouse = data.warehouse;
   order.state = "NEW";
   order.elements = data.elements;
+  order.isLoadOrder = data.isLoadOrder;
 
   order.save(function (err) {
     if (err) {
@@ -104,6 +105,7 @@ controller.edit = function (req, res) {
       order.customer = data.customer;
       order.customerName = data.customerName;
       order.warehouse = data.warehouse;
+      order.isLoadOrder = data.isLoadOrder;
 
       if (data.state == 'READY') {
         // case upload to warehouse
@@ -138,6 +140,11 @@ controller.edit = function (req, res) {
       }
 
       order.state = data.state;
+      if(order.state == 'READY' && order.isLoadOrder){
+        // change to DELIVERED without download the warehouse
+        order.state = 'DELIVERED';
+      }
+
       order.elements = data.elements;
 
       order.save(function (err) {

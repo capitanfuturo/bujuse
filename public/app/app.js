@@ -37,7 +37,9 @@ angular.module('app', [
   'warehouse.viewOrder',
   'warehouse.editOrder',
   'warehouse.season',
-  'warehouse.addSeason'
+  'warehouse.addSeason',
+  'warehouse.customersTotalSales',
+  'warehouse.customerSales'
 ]);
 
 angular.module('app').config(['$routeProvider',

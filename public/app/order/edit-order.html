@@ -36,6 +36,12 @@
         <input ng-model="order.deposit" type="number" class="form-control" ng-change="hasChangedDeposit()" />
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-2"><label class="control-label">{{ 'IS_LOAD_ORDER' | translate }}</label></div>
+      <div class="col-md-4">
+        <input ng-model="order.isLoadOrder" type="checkbox" class="form-check-input" />
+      </div>
+    </div>
   </div>
 
   <hr>

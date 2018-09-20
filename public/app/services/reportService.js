@@ -23,7 +23,13 @@ angular.module('ReportService').factory('ReportService', ['$http', 'Authenticati
     },
     getTarget: function(seasonId) {
       return $http.get(BASE_PATH + '/target/' + seasonId, HEADERS);
-    }
+    },
+    getCustomersTotalSales: function () {
+      return $http.get(BASE_PATH + '/customers-total-sales', HEADERS);
+    },
+    getCustomerSales: function (customerId) {
+      return $http.get(BASE_PATH + '/customer-sales/' + customerId, HEADERS);
+    },
   }
 
 }]);

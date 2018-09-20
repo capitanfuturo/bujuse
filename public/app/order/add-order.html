@@ -31,6 +31,10 @@
       <div class="col-md-4">
         <select ng-model="warehouse" ng-options="warehouse.name for warehouse in warehouses track by warehouse._id" class="form-control" ng-change="hasChangedWarehouse()"></select>
       </div>
+      <div class="col-md-2"><label class="control-label">{{ 'IS_LOAD_ORDER' | translate }}</label></div>
+      <div class="col-md-4">
+        <input ng-model="order.isLoadOrder" type="checkbox" class="form-check-input" />
+      </div>
     </div>
   </div>
   <hr>

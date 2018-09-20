@@ -25,6 +25,7 @@
             <th>{{ 'DELIVERY_DATE' | translate }}</th>
             <th>{{ 'CUSTOMER' | translate }}</th>
             <th>{{ 'WAREHOUSE' | translate }}</th>
+            <th>{{ 'IS_LOAD_ORDER' | translate }}</th>
             <th></th>
             <th></th>
             <th>{{ 'CHANGE_TO' | translate }}</th>
@@ -39,6 +40,7 @@
             <td>{{ row.deliveryDate | date:'yyyy-MM-dd' }}</td>
             <td>{{ row.customer.name }}</td>
             <td>{{ row.warehouse.name }}</td>
+            <td><i class='fa' ng-class='{"fa-check-square-o": row.isLoadOrder==true, "fa-square-o": row.isLoadOrder==false }'></i></td>
             <td>
               <button type="button" ng-click="detail(row)" class="btn btn-sm btn-info"><span class="fa fa-search"></span> {{ 'DETAIL' | translate }}</button>
             </td>
