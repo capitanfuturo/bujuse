@@ -18,6 +18,10 @@ var OperationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Warehouse'
   },
+  customer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Customer'
+  },
   price: Number,
   note: {
     type: String,

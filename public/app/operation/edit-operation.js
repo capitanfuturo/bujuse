@@ -6,7 +6,8 @@ angular.module('warehouse.editOperation', [
   'EnumService',
   'ItemService',
   'OperationService',
-  'WarehouseService'
+  'WarehouseService',
+  'CustomerService'
 ]);
 
 angular.module('warehouse.editOperation').config(['$routeProvider',
@@ -29,8 +30,9 @@ angular.module('warehouse.editOperation')
     'ItemSizeService',
     'ItemGenderService',
     '$routeParams',
+    'CustomerService',
     function ($scope, OperationTypeService, ItemService, WarehouseService, OperationService,
-      $location, ItemSizeService, ItemGenderService, $routeParams) {
+      $location, ItemSizeService, ItemGenderService, $routeParams, CustomerService) {
       //angular functions
       $scope.editOperation = function () {
         console.log($scope.operation);
@@ -68,6 +70,10 @@ angular.module('warehouse.editOperation')
 
       $scope.hasChangedType = function () {
         $scope.operation.type = $scope.operationType.id;
+      };
+
+      $scope.hasChangedCustomer = function () {
+        $scope.operation.customer = $scope.customer._id;
       };
 
       $scope.cancel = function () {
@@ -193,6 +199,23 @@ angular.module('warehouse.editOperation')
         });
       };
 
+      var retrieveCustomers = function () {
+        CustomerService.get().then(function successCallback(response) {
+          $scope.customers = response.data;
+          $scope.customers.sort(compareCustomers);
+        }, function errorCallback(response) {
+          console.log(response);
+        });
+      };
+
+      var compareCustomers = function(a, b) {
+          if (a.name < b.name)
+              return -1;
+          if (a.name > b.name)
+              return 1;
+          return 0;
+      };
+
       //init controller
       $scope.operation = {};
       $scope.operation.creationDate = new Date();
@@ -204,6 +227,9 @@ angular.module('warehouse.editOperation')
       $scope.items = [];
       $scope.item = {};
 
+      $scope.customers = [];
+      $scope.customer ={};
+
       $scope.operationTypes = [];
       $scope.operationType = {};
 
@@ -214,5 +240,6 @@ angular.module('warehouse.editOperation')
       retrieveWarehouses();
       retrieveTypes();
       retrieveItems();
+      retrieveCustomers();
     }
   ]);

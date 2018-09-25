@@ -7,6 +7,7 @@ controller.getAll = function (req, res) {
   Operation.find()
     .populate('item')
     .populate('warehouse')
+    .populate('customer')
     .exec(function (err, data) {
       if (err) {
         res.send(err);
@@ -28,6 +29,7 @@ controller.getByDays = function (req, res) {
     })
     .populate('item')
     .populate('warehouse')
+    .populate('customer')
     .exec(function (err, data) {
       if (err) {
         res.send(err);
@@ -44,6 +46,7 @@ controller.getById = function (req, res) {
     })
     .populate('item')
     .populate('warehouse')
+    .populate('customer')
     .exec(function (err, data) {
       if (err) {
         res.send(err);
@@ -55,13 +58,14 @@ controller.getById = function (req, res) {
 
 controller.create = function (req, res) {
   var data = req.body;
-  var operation = new Operation;
+  var operation = new Operation();
 
   operation.creationDate = data.creationDate;
   operation.type = data.type;
   operation.quantity = data.quantity;
   operation.item = data.item;
   operation.warehouse = data.warehouse;
+  operation.customer = data.customer;
   operation.price = data.price;
 
   operation.save(function (err) {
@@ -102,6 +106,7 @@ controller.edit = function (req, res) {
       operation.quantity = data.quantity;
       operation.item = data.item;
       operation.warehouse = data.warehouse;
+      operation.customer = data.customer;
       operation.price = data.price;
 
       operation.save(function (err) {

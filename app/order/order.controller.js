@@ -134,7 +134,7 @@ controller.edit = function (req, res) {
           operation.item = element.itemId;
           operation.warehouse = order.warehouse;
           operation.price = element.price;
-          operation.note = order.customerName;
+          operation.customer = order.customer;
           operation.save();
         }
       }

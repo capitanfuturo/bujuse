@@ -6,7 +6,8 @@ angular.module('warehouse.addOperation', [
   'EnumService',
   'ItemService',
   'OperationService',
-  'WarehouseService'
+  'WarehouseService',
+  'CustomerService'
 ]);
 
 angular.module('warehouse.addOperation').config(['$routeProvider',
@@ -28,7 +29,12 @@ angular.module('warehouse.addOperation')
     '$location',
     'ItemSizeService',
     'ItemGenderService',
-    function ($scope, OperationTypeService, ItemService, WarehouseService, OperationService, $location,ItemSizeService,ItemGenderService) {
+    'CustomerService',
+    function ($scope, OperationTypeService, 
+      ItemService, WarehouseService, 
+      OperationService, $location, 
+      ItemSizeService, ItemGenderService,
+      CustomerService) {
 
       var init = true;
 
@@ -70,7 +76,11 @@ angular.module('warehouse.addOperation')
         $scope.operation.type = $scope.operationType.id;
       };
 
-      $scope.cancel = function(){
+      $scope.hasChangedCustomer = function () {
+        $scope.operation.customer = $scope.customer._id;
+      };
+
+      $scope.cancel = function () {
         $location.path('/operation');
       };
 
@@ -117,6 +127,23 @@ angular.module('warehouse.addOperation')
         $scope.operationTypes = OperationTypeService.get();
       };
 
+      var retrieveCustomers = function () {
+        CustomerService.get().then(function successCallback(response) {
+          $scope.customers = response.data;
+          $scope.customers.sort(compareCustomers);
+        }, function errorCallback(response) {
+          console.log(response);
+        });
+      };
+
+      var compareCustomers = function(a, b) {
+          if (a.name < b.name)
+              return -1;
+          if (a.name > b.name)
+              return 1;
+          return 0;
+      };
+
       var adjustPrice = function () {
         if ($scope.item.price && $scope.operation.quantity) {
           $scope.operation.price = $scope.item.price * $scope.operation.quantity;
@@ -151,28 +178,28 @@ angular.module('warehouse.addOperation')
         init = false;
       };
 
-      var getFullname = function (item){
+      var getFullname = function (item) {
         var gender = item.gender;
         var size = item.size;
-        for(var i = 0; i < $scope.genders.length; i++){
-          if(gender == $scope.genders[i].id){
+        for (var i = 0; i < $scope.genders.length; i++) {
+          if (gender == $scope.genders[i].id) {
             gender = $scope.genders[i].key;
           }
         }
-        for(var i = 0; i < $scope.sizes.length; i++){
-          if(size == $scope.sizes[i].id){
+        for (var i = 0; i < $scope.sizes.length; i++) {
+          if (size == $scope.sizes[i].id) {
             size = $scope.sizes[i].key;
           }
         }
         return item.model + " - " + gender + " - " + size;
       };
 
-      var retrieveGenders = function() {
-          $scope.genders = ItemGenderService.get();
+      var retrieveGenders = function () {
+        $scope.genders = ItemGenderService.get();
       };
 
-      var retrieveSizes = function(gender) {
-          $scope.sizes = ItemSizeService.get(gender);
+      var retrieveSizes = function (gender) {
+        $scope.sizes = ItemSizeService.get(gender);
       };
 
       //init controller
@@ -186,6 +213,9 @@ angular.module('warehouse.addOperation')
       $scope.items = [];
       $scope.item = {};
 
+      $scope.customers = [];
+      $scope.customer ={};
+
       $scope.operationTypes = [];
       $scope.operationType = {};
 
@@ -196,5 +226,6 @@ angular.module('warehouse.addOperation')
       retrieveWarehouses();
       retrieveTypes();
       retrieveItems();
+      retrieveCustomers();
     }
   ]);

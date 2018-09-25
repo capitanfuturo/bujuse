@@ -27,7 +27,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
-            <td>{{ row.itemFullName }}</td>
+            <td>{{ row.model }} - {{ row.gender | translate }} - {{ row.size | translate }}</td>
             <td>{{ row.quantity }}</td>
             <td>{{ row.amount }}</td>
           </tr>

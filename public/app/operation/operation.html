@@ -29,6 +29,7 @@
               <th>{{ 'CATEGORY' | translate }}</th>
               <th>{{ 'WAREHOUSE' | translate }}</th>
               <th st-sort="type">{{ 'TYPE' | translate }}</th>
+              <th st-sort="type">{{ 'CUSTOMER' | translate }}</th>
               <th>{{ 'NOTE' | translate }}</th>
               <th st-sort="quantity">{{ 'QUANTITY' | translate }}</th>
               <th st-sort="price">{{ 'PRICE' | translate }}</th>
@@ -48,12 +49,14 @@
               <th></th>
               <th></th>
               <th></th>
+              <th></th>
               <th class='hidden-print'></th>
               <th class='hidden-print'></th>
             </tr>
           </thead>
           <tfoot>
             <tr>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -78,6 +81,7 @@
               <td>{{ row.item.category | translate }}</td>
               <td>{{ row.warehouse.name }}</td>
               <td>{{ row.type | translate }}</td>
+              <td>{{ row.customer.name }}</td>
               <td>{{ row.note }}</td>
               <td>{{ row.quantity }}</td>
               <td>{{ row.price }}</td>

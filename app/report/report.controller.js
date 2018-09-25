@@ -214,9 +214,11 @@ controller.getStock = function (req, res) {
 };
 
 controller.getCustomersTotalSales = function (req, res) {
-  Order.find({
-      state: 'DELIVERED'
-    }).populate('elements')
+  Operation.find({
+      type: 'O'
+    })
+    .populate('item')
+    .populate('customer')
     .exec(function (err, data) {
       if (err) {
         res.send(err);
@@ -227,37 +229,30 @@ controller.getCustomersTotalSales = function (req, res) {
         var result = new Map();
 
         for (var i = 0; i < size; i++) {
-          var row = data[i];
-          var name = row.customerName;
+          var operation = data[i];
+          var customer = operation.customer;
+          var name = "";
+          if(customer && customer.name){
+            name = customer.name;
+          }
+
           var key = name;
           if (result.has(key)) {
             var value = result.get(key);
 
-            var elements = row.elements;
-            var elementsSize = elements.length;
+            value.quantity = value.quantity + operation.quantity;
+            value.amount = value.amount + (operation.quantity * operation.price);
 
-            for (var x = 0; x < elementsSize; x++) {
-              var element = elements[x];
-              value.quantity = value.quantity + element.quantity;
-              value.amount = value.amount + (element.quantity * element.price);
-            }
             result.set(key, value);
           } else {
-            var customerName = row.customerName;
             var quantity = 0;
             var amount = 0;
 
-            var elements = row.elements;
-            var elementsSize = elements.length;
-
-            for (var x = 0; x < elementsSize; x++) {
-              var element = elements[x];
-              quantity = quantity + element.quantity;
-              amount = amount + (element.quantity * element.price);
-            }
+            quantity = quantity + operation.quantity;
+            amount = amount + (operation.quantity * operation.price);
 
             var newValue = {
-              "customerName": customerName,
+              "customerName": name,
               "quantity": quantity,
               "amount": amount
             };
@@ -276,9 +271,12 @@ controller.getCustomersTotalSales = function (req, res) {
 
 controller.getCustomerSales = function (req, res) {
   var customerId = req.params.customerId;
-  Order.find({
-      state: 'DELIVERED'
-    }).populate('elements')
+  Operation
+    .find({
+      type: 'O',
+      customer: customerId
+    })
+    .populate('item')
     .exec(function (err, data) {
       if (err) {
         res.send(err);
@@ -289,42 +287,40 @@ controller.getCustomerSales = function (req, res) {
         var result = new Map();
 
         for (var i = 0; i < size; i++) {
-          var row = data[i];
-          var id = row.customer;
-          if (customerId == id) {
-            var elements = row.elements;
-            var elementsSize = elements.length;
+          var operation = data[i];
+          var model = operation.item.model;
+          var gender = operation.item.gender;
+          var size = operation.item.size;
+          var key = model + "|" + gender + "|" + size;
 
-            for (var x = 0; x < elementsSize; x++) {
-              var element = elements[x];
-              var itemFullName = element.itemFullName;
-              var key = itemFullName;
-              if(result.has(key)){
-                var value = result.get(key);
+          if (result.has(key)) {
+            var value = result.get(key);
 
-                value.quantity = value.quantity + element.quantity;
-                value.amount = value.amount + element.amount;
+            value.quantity = value.quantity + operation.quantity;
+            value.amount = value.amount + (operation.quantity * operation.price);
 
-                result.set(key, value);
-              } else{
-                var quantity = element.quantity;
-                var amount = element.price;
+            result.set(key, value);
+          } else {
+            var quantity = 0;
+            var amount = 0;
 
-                var newValue = {
-                  "itemFullName": itemFullName,
-                  "quantity": quantity,
-                  "amount": amount
-                };
-                result.set(key, newValue);
-              }  
-            }// end foreach element
-          }// end check customer name
+            quantity = quantity + operation.quantity;
+            amount = amount + (operation.quantity * operation.price);
+
+            var newValue = {
+              "model": model,
+              "gender": gender,
+              "size": size,
+              "quantity": quantity,
+              "amount": amount
+            };
+            result.set(key, newValue);
+          }
         } //end foreach orders
-        console.log(result);
 
         var arr = [];
-        result.forEach(function (item, key, mapObj) {
-          arr.push(item);
+        result.forEach(function (obj, key, mapObj) {
+          arr.push(obj);
         });
         res.json(arr);
       }
