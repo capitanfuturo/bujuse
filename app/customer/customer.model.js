@@ -25,7 +25,8 @@ var CustomerSchema = new mongoose.Schema({
   waist: Number,
   hip: Number,
   legLength: Number,
-  shoulder: Number
+  shoulder: Number,
+  birthday: Date
 });
 
 module.exports = mongoose.model('Customer', CustomerSchema);

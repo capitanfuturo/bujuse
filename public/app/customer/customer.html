@@ -18,6 +18,7 @@
             <th st-sort="name" st-sort-default="true">{{ 'NAME' | translate }}</th>
             <th>{{ 'PHONE' | translate }}</th>
             <th>{{ 'EMAIL' | translate }}</th>
+            <th>{{ 'BIRTHDAY' | translate }}</th>
             <th>{{ 'ADDRESS' | translate }}</th>
             <th>{{ 'BREAST' | translate }} [cm]</th>
             <th>{{ 'WAIST' | translate }} [cm]</th>
@@ -39,6 +40,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
             <th class='hidden-print'></th>
             <th class='hidden-print'></th>
           </tr>
@@ -48,6 +50,7 @@
             <td>{{ row.name }}</td>
             <td>{{ row.phone }}</td>
             <td><a ng-href="mailto:{{row.email}}">{{ row.email }}</a></td>
+            <td>{{ row.birthday | date:'dd/MM/yyyy' }}</td>
             <td>{{ row.address }}</td>
             <td>{{ row.breast }}</td>
             <td>{{ row.waist }}</td>

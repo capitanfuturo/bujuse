@@ -7,6 +7,7 @@ angular.module('app').config(function($translateProvider) {
         ADDRESS: 'Indirizzo',
         BAG: 'Borsa',
         BEL: 'Cintura',
+        BIRTHDAY: 'Compleanno',
         BREAST: 'Torace',
         CANCEL: 'Annulla',
         CAP: 'Cappello',
