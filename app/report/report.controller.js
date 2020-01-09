@@ -167,11 +167,10 @@ controller.getStock = function (req, res) {
               var type = row.type;
               if ('I' == type) {
                 value.quantity = value.quantity + row.quantity;
-                value.price = value.price + row.price;
               } else {
                 value.quantity = value.quantity - row.quantity;
-                value.price = value.price - row.price;
               }
+              value.price = value.quantity * row.item.price;
               result.set(key, value);
             } else {
               var warehouse = '';
@@ -183,11 +182,10 @@ controller.getStock = function (req, res) {
               var type = row.type;
               if ('I' == type) {
                 quantity = row.quantity;
-                price = row.price;
               } else {
                 quantity = -row.quantity;
-                price = -row.price;
               }
+              price = quantity * row.item.price;
 
               var newValue = {
                 "warehouse": warehouse,
@@ -196,7 +194,8 @@ controller.getStock = function (req, res) {
                 "gender": row.item.gender,
                 "size": row.item.size,
                 "quantity": quantity,
-                "price": price
+                "price": price,
+                "seasons": row.item.seasons
               };
               result.set(key, newValue);
             }
@@ -206,7 +205,10 @@ controller.getStock = function (req, res) {
 
         var arr = [];
         result.forEach(function (item, key, mapObj) {
-          arr.push(item);
+          //add only non zero quantity element
+          if(item.quantity != 0){
+            arr.push(item);
+          }
         });
         res.json(arr);
       }
@@ -271,8 +273,7 @@ controller.getCustomersTotalSales = function (req, res) {
 
 controller.getCustomerSales = function (req, res) {
   var customerId = req.params.customerId;
-  Operation
-    .find({
+  Operation.find({
       type: 'O',
       customer: customerId
     })
@@ -282,18 +283,33 @@ controller.getCustomerSales = function (req, res) {
         res.send(err);
       } else {
         var size = data.length;
+        console.log(size);
         // A map with key = itemFullName
         // and value {quantity, amount}
         var result = new Map();
 
         for (var i = 0; i < size; i++) {
+          console.log(i);
           var operation = data[i];
-          var model = operation.item.model;
-          var gender = operation.item.gender;
-          var size = operation.item.size;
-          var key = model + "|" + gender + "|" + size;
-
+          var model = "";
+          var gender = "";
+          var item_size = "";
+          var year = operation.creationDate.getFullYear();
+          if(operation.item){
+            if(operation.item.model){
+              model = operation.item.model;
+            }
+            if(operation.item.gender){
+              gender = operation.item.gender;
+            }
+            if(operation.item.size){
+              item_size = operation.item.size;
+            }
+          }
+          
+          var key = year + "|" + model + "|" + gender + "|" + item_size;
           if (result.has(key)) {
+            console.log("found");
             var value = result.get(key);
 
             value.quantity = value.quantity + operation.quantity;
@@ -301,6 +317,7 @@ controller.getCustomerSales = function (req, res) {
 
             result.set(key, value);
           } else {
+            console.log("not found");
             var quantity = 0;
             var amount = 0;
 
@@ -308,9 +325,10 @@ controller.getCustomerSales = function (req, res) {
             amount = amount + (operation.quantity * operation.price);
 
             var newValue = {
+              "year": year,
               "model": model,
               "gender": gender,
-              "size": size,
+              "size": item_size,
               "quantity": quantity,
               "amount": amount
             };

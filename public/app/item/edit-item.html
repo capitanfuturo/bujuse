@@ -4,9 +4,9 @@
   <h2>{{ item.model }} - {{ item.category | translate }} {{ item.gender | translate }} {{ item.size | translate }}</h2>
   <div class="form-group">
     <div class="row">
-      <div class="col-md-2"><label class="control-label">{{ 'MODEL' | translate }}*</label></div>
+      <div class="col-md-2"><label class="control-label">{{ 'MODEL' | translate }}</label></div>
       <div class="col-md-2">
-        <input ng-model="item.model" type="text" class="form-control" ng-change="hasChanged()" />
+        <input ng-model="item.model" type="text" class="form-control" disabled/>
       </div>
       <div class="col-md-2"><label class="control-label">{{ 'NOTE' | translate }}*</label></div>
       <div class="col-md-2">

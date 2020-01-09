@@ -104,8 +104,7 @@ angular.module('warehouse.item')
 
       var retrieveSeasonsNames = function () {
          translatedSeasonNames = SeasonNameService.get();
-      }
-
+      };
 
       //init controller
       $scope.rowCollection = [];

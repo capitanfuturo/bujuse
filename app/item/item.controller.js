@@ -81,7 +81,7 @@ controller.edit = function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      item.model = data.model;
+      //item.model = data.model; //not editable
       item.note = data.note;
       item.category = data.category;
       item.gender = data.gender;
