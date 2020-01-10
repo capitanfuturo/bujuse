@@ -233,12 +233,14 @@ controller.getCustomersTotalSales = function (req, res) {
         for (var i = 0; i < size; i++) {
           var operation = data[i];
           var customer = operation.customer;
+          var year = operation.creationDate.getFullYear();
+          
           var name = "";
           if(customer && customer.name){
             name = customer.name;
           }
 
-          var key = name;
+          var key = year + "|" + name;
           if (result.has(key)) {
             var value = result.get(key);
 
@@ -254,6 +256,7 @@ controller.getCustomersTotalSales = function (req, res) {
             amount = amount + (operation.quantity * operation.price);
 
             var newValue = {
+              "year": year,
               "customerName": name,
               "quantity": quantity,
               "amount": amount
@@ -283,13 +286,11 @@ controller.getCustomerSales = function (req, res) {
         res.send(err);
       } else {
         var size = data.length;
-        console.log(size);
         // A map with key = itemFullName
         // and value {quantity, amount}
         var result = new Map();
 
         for (var i = 0; i < size; i++) {
-          console.log(i);
           var operation = data[i];
           var model = "";
           var gender = "";
@@ -309,7 +310,6 @@ controller.getCustomerSales = function (req, res) {
           
           var key = year + "|" + model + "|" + gender + "|" + item_size;
           if (result.has(key)) {
-            console.log("found");
             var value = result.get(key);
 
             value.quantity = value.quantity + operation.quantity;
@@ -317,7 +317,6 @@ controller.getCustomerSales = function (req, res) {
 
             result.set(key, value);
           } else {
-            console.log("not found");
             var quantity = 0;
             var amount = 0;
 

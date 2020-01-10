@@ -4,7 +4,8 @@ var SeasonSchema = mongoose.model('Season');
 var ItemSchema = new mongoose.Schema({
   model: {
     type: String,
-    trim: true
+    trim: true,
+    unique: true
   },
   note: {
     type: String,

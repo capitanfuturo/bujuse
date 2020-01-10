@@ -15,7 +15,7 @@
       <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
         <thead>
           <tr>
-            <th>{{ 'I' | translate }}</th>
+            <!--<th>{{ 'I' | translate }}</th> -->
             <th st-sort="model" st-sort-default="true">{{ 'MODEL' | translate }}</th>
             <th>{{ 'NOTE' | translate }}</th>
             <th>{{ 'SEASONS' | translate }}</th>
@@ -23,12 +23,12 @@
             <th>{{ 'GENDER' | translate }}</th>
             <th>{{ 'SIZE' | translate }}</th>
             <th st-sort="price">{{ 'PRICE' | translate }}</th>
-            <th>{{ 'O' | translate }}</th>
+            <!--<th>{{ 'O' | translate }}</th> -->
             <th class='hidden-print'></th>
             <th class='hidden-print'></th>
           </tr>
           <tr>
-            <th></th>
+            <!--<th></th> -->
             <th><input st-search="model" class="input-sm form-control" type="search" /></th>
             <th></th>
             <th></th>
@@ -40,16 +40,16 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
+            <!--<th></th> -->
             <th class='hidden-print'></th>
             <th class='hidden-print'></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
-            <td>
+            <!-- <td>
               <qrcode data='{{ baseLoadUrl + row._id }}'></qrcode>
-            </td>
+            </td> -->
             <td>{{ row.model }}</td>
             <td>{{ row.note }}</td>
             <td>{{ renderSeasons(row) }}</td>
@@ -57,9 +57,9 @@
             <td>{{ row.gender | translate }}</td>
             <td>{{ row.size | translate }}</td>
             <td>{{ row.price }}</td>
-            <td>
+            <!-- <td>
               <qrcode data='{{ baseDownloadUrl + row._id }}'></qrcode>
-            </td>
+            </td> -->
             <td class='hidden-print'>
               <button type="button" ng-click="edit(row)" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span> {{ 'EDIT' | translate }}</button>
             </td>
