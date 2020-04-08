@@ -3,11 +3,13 @@ var mongoose = require('mongoose');
 var OperationSchema = new mongoose.Schema({
   creationDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    index: true
   },
   type: {
     type: String,
-    enum: ['I', 'O']
+    enum: ['I', 'O'],
+    index: true
   },
   quantity: Number,
   item: {

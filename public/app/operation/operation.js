@@ -25,8 +25,7 @@ angular.module('warehouse.operation')
     'OperationService',
     '$location',
     function ($scope, OperationTypeService, OperationService, $location) {
-
-      var ONE_MONTH = 30;
+      
       var ONE_WEEK = 7;
 
       //angular functions

@@ -30,7 +30,8 @@ var OrderSchema = new mongoose.Schema({
   },
   customer: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Customer'
+    ref: 'Customer',
+    index: true
   },
   customerName: {
     type: String,
@@ -46,7 +47,8 @@ var OrderSchema = new mongoose.Schema({
   deposit: Number,
   state : {
     type: String,
-    enum: ['NEW', 'WORKING', 'READY', 'DELIVERED']
+    enum: ['NEW', 'WORKING', 'READY', 'DELIVERED'],
+    index: true
   },
   isLoadOrder: {
     type: Boolean,
