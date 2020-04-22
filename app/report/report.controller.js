@@ -78,6 +78,10 @@ controller.getQuarterlySales = function (req, res) {
   getSales(req, res, 90);
 };
 
+controller.getLastFiveYearsSales = function (req, res) {
+  getSales(req, res, 1825);
+};
+
 controller.getTarget = function (req, res) {
   var seasonId = req.params.seasonId;
   Item.find()

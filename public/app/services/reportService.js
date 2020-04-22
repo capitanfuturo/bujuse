@@ -21,6 +21,9 @@ angular.module('ReportService').factory('ReportService', ['$http', 'Authenticati
     getQuarterlySales: function () {
       return $http.get(BASE_PATH + '/quarterly-sales', HEADERS);
     },
+    getFiveYearsSales: function () {
+      return $http.get(BASE_PATH + '/five-years-sales', HEADERS);
+    },
     getTarget: function(seasonId) {
       return $http.get(BASE_PATH + '/target/' + seasonId, HEADERS);
     },

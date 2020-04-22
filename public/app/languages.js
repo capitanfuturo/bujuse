@@ -36,6 +36,7 @@ angular.module('app').config(function($translateProvider) {
         EMAIL: 'Email',
         FABRIC: 'Tessuto',
         FEL: 'Felpa',
+        FIVE_YEARS_SALES: 'Vendite 5 anni',
         FW: 'A/I',
         G_BF: 'Bimba',
         G_BM: 'Bimbo',
