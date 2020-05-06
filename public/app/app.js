@@ -34,6 +34,7 @@ angular.module('app', [
   'warehouse.order',
   'warehouse.stock',
   'warehouse.target',
+  'warehouse.notSentOrders',
   'warehouse.warehouse',
   'warehouse.addOrder',
   'warehouse.viewOrder',

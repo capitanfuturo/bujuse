@@ -342,6 +342,21 @@ controller.getCustomersTotalSales = function (req, res) {
     });
 };
 
+controller.getNotSentOrders = function (req, res) {
+  Order.find({
+      state: { $in: ['NEW', 'WORKING', 'READY']}
+    })
+    .populate('customer')
+    .populate('warehouse')
+    .exec(function (err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(data);
+      }
+    });
+};
+
 controller.getCustomerSales = function (req, res) {
   var customerId = req.params.customerId;
   Operation.find({

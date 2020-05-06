@@ -1,0 +1,46 @@
+<div class="container">
+  <!-- Title -->
+  <h1><i class='fa fa-line-chart fa-3'></i> {{ 'NOT_SENT_ORDERS' | translate }}</h1>
+  <!-- /Title -->
+  <!-- Content -->
+  <div class="row">
+    <div class="col-md-12">
+      <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-condensed">
+        <thead>
+          <tr>
+            <th>{{ 'STATE' | translate }}</th>
+            <th>{{ 'WAREHOUSE' | translate }}</th>
+            <th>{{ 'CUSTOMER' | translate }}</th>
+            <th>{{ 'PHONE' | translate }}</th>
+            <th>{{ 'ITEMS' | translate }}</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr ng-repeat="row in displayedCollection">
+            <td>{{ row.state }}</td>
+            <td>{{ row.warehouse.name }}</td>
+            <td>{{ row.customerName }}</td>
+            <td>{{ row.customer.phone }}</td>
+            <td>
+              <ul>
+                <li ng-repeat="element in row.elements">
+                  {{ element.itemFullName }}, {{ element.fabric }}, #{{ element.quantity }}, {{ element.price }}€
+                </li> 
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- /Content -->
+</div>

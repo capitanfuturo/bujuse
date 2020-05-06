@@ -36,6 +36,9 @@ angular.module('ReportService').factory('ReportService', ['$http', 'Authenticati
     getYearlySales: function (year) {
       return $http.get(BASE_PATH + '/yearly-sales/' + year, HEADERS);
     },
+    getNotSentOrders: function (year) {
+      return $http.get(BASE_PATH + '/not-sent-orders/', HEADERS);
+    },
   }
 
 }]);

@@ -63,6 +63,7 @@ angular.module('app').config(function($translateProvider) {
         MOVEMENTS: 'Movimenti',
         NAME: 'Nome',
         NEW: 'Nuovo',
+        NOT_SENT_ORDERS: 'Ordini non evasi',
         NOTE: 'Note',
         O: 'Scarico',
         OK: 'Ok',
