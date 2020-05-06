@@ -29,6 +29,7 @@ angular.module('app', [
   'warehouse.monthlySales',
   'warehouse.quarterlySales',
   'warehouse.fiveYearsSales',
+  'warehouse.yearlySales',
   'warehouse.operation',
   'warehouse.order',
   'warehouse.stock',

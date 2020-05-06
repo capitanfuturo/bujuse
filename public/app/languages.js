@@ -120,7 +120,8 @@ angular.module('app').config(function($translateProvider) {
         WAREHOUSE: 'Magazzino',
         WAREHOUSES: 'Magazzini',
         WORKING: 'In lavorazione',
-        YEAR: 'Anno'
+        YEAR: 'Anno',
+        YEARLY_SALES: 'Vendite annuali',
     });
     $translateProvider.translations('en', {});
 
