@@ -26,7 +26,7 @@
         </tfoot>
         <tbody>
           <tr ng-repeat="row in displayedCollection">
-            <td>{{ row.state }}</td>
+            <td>{{ row.state | translate }}</td>
             <td>{{ row.warehouse.name }}</td>
             <td>{{ row.customerName }}</td>
             <td>{{ row.customer.phone }}</td>
