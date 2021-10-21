@@ -1,5 +1,7 @@
 # Bujuse - A tiny Warehouse manager for a tailoring shop
 
+# NOTE 21/10/2021: THIS PROJECT IS NO MORE MAINTENED (I plan to rewrite it with NestJS + Angular 11) 
+
 The idea is to create a simple inventory system for clothing items. The application is designed for artisans who need a simplified labeling and management tool for a warehouse.
 The task is not to replace a complete product or solve the problems related to the taxation or the management nor the management of supplies and logistics.
 
